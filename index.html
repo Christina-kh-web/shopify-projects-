@@ -84,6 +84,7 @@
       stroke-width: 1.5;
       fill: none;
       cursor: pointer;
+      transition: stroke 0.3s ease;
     }
     .hero-icons svg:hover { stroke: var(--color-1); }
 
@@ -106,6 +107,12 @@
       text-transform: uppercase;
       font-weight: 400;
       opacity: 0.95;
+    }
+
+    /* === SPACING AFTER HERO === */
+    .hero-spacing {
+      height: 80px;
+      background: var(--bg-light);
     }
 
     /* === 2. IMAGE WITH LUXURY TEXT === */
@@ -142,34 +149,7 @@
       margin: 0 auto;
     }
 
-    /* === NEW: SECTION DIVIDER === */
-    .section-divider {
-      padding: 80px 48px;
-      text-align: center;
-      background: var(--bg-light);
-    }
-    .section-divider h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 300;
-      color: var(--color-3);
-      letter-spacing: 4px;
-      margin-bottom: 16px;
-    }
-    .section-divider p {
-      font-size: 13px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--color-4);
-    }
-    .divider-line {
-      width: 60px;
-      height: 1px;
-      background: var(--color-1);
-      margin: 24px auto;
-    }
-
-    /* === 3 & 5. PHOTOS STICKED TOGETHER === */
+    /* === 3. PHOTOS STICKED TOGETHER === */
     .sticked-photos {
       display: flex;
       width: 100%;
@@ -193,62 +173,69 @@
       object-fit: cover;
     }
 
-    /* === CREATIVE SEPARATOR === */
-    .creative-separator {
+    /* === CREATIVE SECTION BETWEEN VIDEO AND PHOTOS === */
+    .creative-divider {
+      background: linear-gradient(135deg, var(--color-5) 0%, var(--color-3) 100%);
       padding: 100px 48px;
-      background: var(--color-5);
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .creative-separator::before {
-      content: '✦';
+    .creative-divider::before {
+      content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 120px;
-      color: var(--color-1);
-      opacity: 0.1;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-1), transparent);
     }
-    .creative-separator h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 300;
-      color: var(--color-1);
-      letter-spacing: 6px;
-      margin-bottom: 20px;
+    .creative-content {
       position: relative;
-      z-index: 1;
-    }
-    .creative-separator p {
-      font-size: 14px;
-      color: rgba(253, 252, 251, 0.7);
-      letter-spacing: 2px;
-      max-width: 500px;
+      z-index: 2;
+      max-width: 800px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
+    }
+    .creative-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: var(--color-1);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .creative-content p {
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: rgba(253, 252, 251, 0.7);
+      line-height: 1.8;
+    }
+    .creative-line {
+      width: 60px;
+      height: 1px;
+      background: var(--color-1);
+      margin: 32px auto;
     }
 
-    /* === 6. PRODUCTS IN ONE LINE === */
-    .products-line {
+    /* === 5. PRODUCTS SECTION WITH TITLE === */
+    .products-section {
       padding: 100px 48px;
       background: var(--bg-light);
     }
-    .products-header {
+    .products-title {
       text-align: center;
-      margin-bottom: 64px;
+      margin-bottom: 60px;
     }
-    .products-header h3 {
+    .products-title h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 48px;
       font-weight: 300;
-      color: var(--color-3);
       letter-spacing: 4px;
+      color: var(--color-3);
       margin-bottom: 16px;
     }
-    .products-header p {
+    .products-title p {
       font-size: 13px;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -292,7 +279,7 @@
       font-weight: 500;
     }
 
-    /* === 7. FULL WIDTH HD PHOTO WITH LUXE TEXT === */
+    /* === 6. FULL WIDTH HD PHOTO === */
     .full-width-luxe {
       position: relative;
       width: 100%;
@@ -326,7 +313,7 @@
       opacity: 0.9;
     }
 
-    /* === 8. 3 PHOTOS WITH DESCRIPTION ABOVE === */
+    /* === 7. 3 PHOTOS WITH DESCRIPTION === */
     .details-section {
       padding: 100px 48px;
       text-align: center;
@@ -361,7 +348,7 @@
       box-shadow: 0 10px 30px rgba(63, 51, 36, 0.1);
     }
 
-    /* === 9. FINAL CTA === */
+    /* === 8. FINAL CTA === */
     .final-cta {
       background: var(--color-3);
       padding: 120px 48px;
@@ -400,19 +387,22 @@
       color: var(--color-1);
     }
 
-    /* === FULL WIDTH FOOTER === */
+    /* === 9. FULL WIDTH FOOTER === */
     footer {
       background: var(--color-5);
       color: rgba(253, 252, 251, 0.7);
       padding: 80px 48px 32px;
       width: 100%;
     }
+    .footer-content {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
     .footer-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: 48px;
-      max-width: 1440px;
-      margin: 0 auto 64px;
+      margin-bottom: 64px;
     }
     .footer-col h4 {
       font-family: 'Inter', sans-serif;
@@ -450,7 +440,6 @@
       border-top: 1px solid var(--color-4);
       padding-top: 32px;
       text-align: center;
-      width: 100%;
     }
     .footer-bottom p {
       font-size: 11px;
@@ -505,6 +494,9 @@
     </div>
   </section>
 
+  <!-- SPACING AFTER HERO -->
+  <div class="hero-spacing"></div>
+
   <!-- 2. IMAGE WITH LUXURY TEXT -->
   <section class="luxury-split">
     <div class="luxury-image"></div>
@@ -512,13 +504,6 @@
       <h2>The Essence of Luxury</h2>
       <p>Every piece is a testament to uncompromising quality and timeless design. Crafted for those who understand that true elegance speaks in whispers, not shouts.</p>
     </div>
-  </section>
-
-  <!-- NEW: SECTION DIVIDER -->
-  <section class="section-divider">
-    <h3>Visual Poetry</h3>
-    <div class="divider-line"></div>
-    <p>Captured Moments of Elegance</p>
   </section>
 
   <!-- 3. TWO PHOTOS STICKED TOGETHER -->
@@ -534,24 +519,26 @@
     </video>
   </section>
 
-  <!-- NEW: CREATIVE SEPARATOR -->
-  <section class="creative-separator">
-    <h3>The Art of Detail</h3>
-    <p>Where craftsmanship meets passion</p>
+  <!-- CREATIVE DIVIDER SECTION -->
+  <section class="creative-divider">
+    <div class="creative-content">
+      <h3>The Art of Fine Jewelry</h3>
+      <div class="creative-line"></div>
+      <p>Where craftsmanship meets passion, and every detail tells a story of excellence and dedication to the highest standards of luxury.</p>
+    </div>
   </section>
 
-  <!-- 5. TWO PHOTOS STICKED TOGETHER -->
+  <!-- TWO MORE PHOTOS -->
   <section class="sticked-photos">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?width=1200" alt="Detail 3">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?width=1200" alt="Detail 4">
   </section>
 
-  <!-- 6. PRODUCTS IN ONE LINE WITH TITLE -->
-  <section class="products-line">
-    <div class="products-header">
-      <h3>Curated Collection</h3>
-      <div class="divider-line"></div>
-      <p>Timeless Pieces for Discerning Souls</p>
+  <!-- 5. PRODUCTS SECTION WITH TITLE -->
+  <section class="products-section">
+    <div class="products-title">
+      <h2>Curated Collection</h2>
+      <p>Timeless pieces for every occasion</p>
     </div>
     <div class="products-grid">
       <div class="product-card">
@@ -592,7 +579,7 @@
     </div>
   </section>
 
-  <!-- 7. FULL WIDTH HD PHOTO WITH LUXE TEXT -->
+  <!-- 6. FULL WIDTH HD PHOTO -->
   <section class="full-width-luxe">
     <div class="luxe-overlay-text">
       <h2>Crafted for Eternity</h2>
@@ -600,7 +587,7 @@
     </div>
   </section>
 
-  <!-- 8. 3 PHOTOS WITH DESCRIPTION ABOVE -->
+  <!-- 7. 3 PHOTOS WITH DESCRIPTION -->
   <section class="details-section">
     <div class="description">
       <h3>Signature Details</h3>
@@ -613,50 +600,52 @@
     </div>
   </section>
 
-  <!-- 9. FINAL CTA -->
+  <!-- 8. FINAL CTA -->
   <section class="final-cta">
     <h2>Begin Your Journey</h2>
     <p>Discover the collection that redefines modern elegance. Visit our atelier or explore our curated pieces online.</p>
     <a href="#" class="cta-button">Explore the Collection</a>
   </section>
 
-  <!-- FULL WIDTH FOOTER -->
+  <!-- 9. FULL WIDTH FOOTER -->
   <footer>
-    <div class="footer-grid">
-      <div class="footer-col footer-brand">
-        <a href="#" class="logo">SÉRA</a>
-        <p>An expression of elegance. Haute joaillerie crafted with passion for those who appreciate the finest artistry.</p>
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="#" class="logo">SÉRA</a>
+          <p>An expression of elegance. Haute joaillerie crafted with passion for those who appreciate the finest artistry.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Collections</h4>
+          <ul>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Kids</a></li>
+            <li><a href="#">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Maison</h4>
+          <ul>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Craftsmanship</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Client Care</h4>
+          <ul>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Care Instructions</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Collections</h4>
-        <ul>
-          <li><a href="#">Women</a></li>
-          <li><a href="#">Men</a></li>
-          <li><a href="#">Kids</a></li>
-          <li><a href="#">New Arrivals</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <p>&copy; 2024 SÉRA Joaillerie. All rights reserved.</p>
       </div>
-      <div class="footer-col">
-        <h4>Maison</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Craftsmanship</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Client Care</h4>
-        <ul>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">Care Instructions</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 SÉRA Joaillerie. All rights reserved.</p>
     </div>
   </footer>
 
