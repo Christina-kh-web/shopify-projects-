@@ -3,33 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RÊVE | Haute Joaillerie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>VERA | Haute Joaillerie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     
     :root {
-      --black: #0A0A0A;
-      --ivory: #FAF9F6;
+      --black: #000000;
       --white: #FFFFFF;
-      --accent: #A68B5B;
+      --ivory: #F5F5F0;
+      --grey: #888888;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Inter', sans-serif;
     }
 
     body {
-      background-color: var(--ivory);
+      background-color: var(--white);
       color: var(--black);
       font-family: var(--font-sans);
       font-weight: 300;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    a:hover { opacity: 0.6; }
     img { max-width: 100%; display: block; }
     ul { list-style: none; }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
 
     /* === HEADER === */
     header {
@@ -40,8 +48,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(12px);
+      background: transparent;
       z-index: 1000;
     }
     .logo {
@@ -49,63 +56,81 @@
       font-size: 36px;
       font-weight: 400;
       letter-spacing: 8px;
+      text-transform: uppercase;
       color: var(--white);
     }
     .header-right {
       display: flex;
-      gap: 40px;
       align-items: center;
+      gap: 40px;
     }
-    .collections-link {
+    nav ul { display: flex; gap: 32px; }
+    nav a {
       font-size: 11px;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--white);
       font-weight: 400;
+      color: var(--white);
+      position: relative;
     }
-    .collections-link:hover { color: var(--accent); }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--white);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after { width: 100%; }
     .search-icon {
       width: 20px;
       height: 20px;
       cursor: pointer;
       color: var(--white);
-      transition: color 0.3s ease;
     }
-    .search-icon:hover { color: var(--accent); }
 
-    /* === HERO SECTION === */
+    /* === HERO === */
     .hero {
       height: 100vh;
+      min-height: 800px;
       position: relative;
       overflow: hidden;
-      background: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      animation: kenBurns 25s ease-in-out infinite;
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+      background: rgba(0, 0, 0, 0.3);
     }
     .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
+      z-index: 2;
       text-align: center;
       color: var(--white);
-      z-index: 2;
-      max-width: 600px;
+      max-width: 900px;
+      padding: 0 24px;
     }
     .hero-content h1 {
       font-family: var(--font-serif);
-      font-size: clamp(48px, 8vw, 80px);
+      font-size: clamp(64px, 12vw, 120px);
       font-weight: 300;
-      letter-spacing: 6px;
+      letter-spacing: 12px;
       margin-bottom: 24px;
-      line-height: 1.1;
+      line-height: 1;
     }
     .hero-content p {
       font-size: 13px;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       opacity: 0.9;
     }
@@ -113,64 +138,65 @@
     /* === COLLECTIONS ON HERO === */
     .collections-overlay {
       position: absolute;
-      top: 50%;
-      right: 48px;
-      transform: translateY(-50%);
-      z-index: 3;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
       display: flex;
-      flex-direction: column;
-      gap: 24px;
+      gap: 48px;
+      width: 90%;
+      max-width: 1200px;
     }
-    .collection-btn {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 20px 32px;
-      color: var(--white);
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .collection-item {
+      flex: 1;
+      text-align: center;
       cursor: pointer;
       transition: all 0.4s ease;
-      min-width: 180px;
-      text-align: center;
     }
-    .collection-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: var(--white);
-      transform: translateX(-8px);
+    .collection-item:hover { transform: translateY(-8px); }
+    .collection-item a {
+      display: block;
+      color: var(--white);
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .collection-item p {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
     }
 
     /* === PRODUCTS SECTIONS === */
     .products-section {
-      display: none;
       padding: 120px 48px;
       max-width: 1440px;
       margin: 0 auto;
-      animation: fadeIn 0.6s ease;
     }
-    .products-section:target {
-      display: block;
+    .products-section:nth-child(even) {
+      background: var(--ivory);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .products-section h2 {
-      font-family: var(--font-serif);
-      font-size: 42px;
-      font-weight: 400;
+    .section-header {
       text-align: center;
-      margin-bottom: 16px;
-      letter-spacing: 2px;
-    }
-    .products-section .subtitle {
-      text-align: center;
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
       margin-bottom: 72px;
+    }
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 400;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      color: var(--grey);
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
     .product-grid {
       display: grid;
@@ -182,14 +208,18 @@
       overflow: hidden;
       transition: all 0.4s ease;
     }
+    .products-section:nth-child(even) .product-card {
+      background: var(--white);
+    }
     .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     }
     .product-image-wrap {
       overflow: hidden;
       aspect-ratio: 3/4;
       position: relative;
+      background: var(--ivory);
     }
     .product-image {
       width: 100%;
@@ -197,50 +227,22 @@
       object-fit: cover;
       transition: transform 0.6s ease;
     }
-    .product-card:hover .product-image { transform: scale(1.08); }
-    .product-badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: var(--black);
-      color: var(--white);
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 6px 12px;
-      font-weight: 500;
-    }
-    .product-info { padding: 24px; text-align: center; }
+    .product-card:hover .product-image { transform: scale(1.06); }
+    .product-info { padding: 24px 20px; text-align: center; }
     .product-info h3 {
       font-family: var(--font-serif);
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       letter-spacing: 1px;
     }
     .product-info .price {
-      font-size: 14px;
-      color: var(--accent);
+      font-size: 13px;
+      color: var(--grey);
       letter-spacing: 1px;
-      font-weight: 500;
     }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 64px;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--black);
-      border-bottom: 1px solid var(--black);
-      padding-bottom: 8px;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .back-link:hover { color: var(--accent); border-color: var(--accent); }
 
-    /* === ABOUT SECTION === */
+    /* === ABOUT === */
     .about {
       background: var(--black);
       color: var(--white);
@@ -254,26 +256,20 @@
       gap: 80px;
       align-items: center;
     }
-    .about-text .overline {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      font-weight: 500;
-    }
     .about-text h2 {
       font-family: var(--font-serif);
-      font-size: 42px;
+      font-size: 48px;
       font-weight: 400;
       margin-bottom: 32px;
+      letter-spacing: 4px;
       line-height: 1.15;
     }
     .about-text p {
       color: rgba(255,255,255,0.7);
       margin-bottom: 20px;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.8;
+      letter-spacing: 0.5px;
     }
     .about-image-wrap {
       position: relative;
@@ -288,7 +284,7 @@
     }
     .about-image-wrap:hover .about-image { transform: scale(1.04); }
 
-    /* === CONTACT SECTION === */
+    /* === CONTACT === */
     .contact {
       padding: 120px 48px;
       max-width: 1200px;
@@ -297,17 +293,11 @@
     }
     .contact h2 {
       font-family: var(--font-serif);
-      font-size: 42px;
+      font-size: 48px;
       font-weight: 400;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-    }
-    .contact .subtitle {
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: 3px;
+      letter-spacing: 6px;
       text-transform: uppercase;
-      margin-bottom: 72px;
+      margin-bottom: 48px;
     }
     .contact-grid {
       display: grid;
@@ -316,67 +306,45 @@
     }
     .contact-item h3 {
       font-family: var(--font-serif);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 400;
       margin-bottom: 16px;
+      letter-spacing: 2px;
     }
     .contact-item p {
-      color: var(--black);
-      font-size: 14px;
+      color: var(--grey);
+      font-size: 13px;
       line-height: 1.8;
+      letter-spacing: 0.5px;
     }
 
     /* === FOOTER === */
     footer {
       background: var(--black);
       color: var(--white);
-      padding: 80px 48px 32px;
+      padding: 64px 48px 32px;
+      text-align: center;
     }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
+    .footer-content {
       max-width: 1440px;
-      margin: 0 auto 64px;
+      margin: 0 auto;
     }
-    .footer-col h4 {
-      font-size: 11px;
-      letter-spacing: 2.5px;
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 8px;
       text-transform: uppercase;
       margin-bottom: 24px;
-      font-weight: 500;
-      color: var(--white);
-    }
-    .footer-col ul li { margin-bottom: 12px; }
-    .footer-col a {
-      font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      transition: all 0.3s ease;
-    }
-    .footer-col a:hover {
-      color: var(--accent);
-      padding-left: 4px;
-    }
-    .footer-brand .logo {
-      color: var(--white);
-      margin-bottom: 20px;
       display: inline-block;
-    }
-    .footer-brand p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.7;
-      max-width: 300px;
     }
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.1);
       padding-top: 32px;
-      text-align: center;
-      max-width: 1440px;
-      margin: 0 auto;
+      margin-top: 48px;
     }
     .footer-bottom p {
-      font-size: 12px;
+      font-size: 11px;
       color: rgba(255,255,255,0.5);
       letter-spacing: 1px;
     }
@@ -384,41 +352,30 @@
     /* === MOBILE === */
     @media (max-width: 1024px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .collections-overlay { flex-direction: column; gap: 32px; bottom: 60px; }
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 16px;
-        padding: 16px 24px;
-      }
+      header { padding: 20px 24px; }
+      .logo { font-size: 28px; letter-spacing: 6px; }
       .header-right { gap: 24px; }
+      nav ul { gap: 20px; }
+      nav a { font-size: 10px; }
       
-      .collections-overlay {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 48px 24px;
-      }
-      .collection-btn { min-width: 140px; padding: 16px 24px; }
+      .hero-content h1 { font-size: 48px; letter-spacing: 8px; }
       
       .products-section { padding: 72px 24px; }
       .product-grid { grid-template-columns: 1fr; }
       
       .about { padding: 72px 24px; }
       .about-content { grid-template-columns: 1fr; gap: 40px; }
-      .about-text h2 { font-size: 32px; }
+      .about-text h2 { font-size: 36px; }
       
       .contact { padding: 72px 24px; }
+      .contact h2 { font-size: 36px; }
       .contact-grid { grid-template-columns: 1fr; gap: 32px; }
       
-      footer { padding: 64px 24px 24px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 48px 24px 24px; }
     }
   </style>
 </head>
@@ -426,9 +383,15 @@
 
   <!-- HEADER -->
   <header>
-    <a href="#" class="logo">RÊVE</a>
+    <a href="#" class="logo">Vera</a>
     <div class="header-right">
-      <a href="#collections" class="collections-link">Collections</a>
+      <nav>
+        <ul>
+          <li><a href="#women">Women</a></li>
+          <li><a href="#men">Men</a></li>
+          <li><a href="#kids">Kids</a></li>
+        </ul>
+      </nav>
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="11" cy="11" r="7"/>
         <path d="m21 21-4.35-4.35"/>
@@ -436,29 +399,41 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero" id="collections">
+  <!-- HERO WITH COLLECTIONS OVERLAY -->
+  <section class="hero">
+    <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>RÊVE</h1>
+      <h1>Vera</h1>
       <p>Haute Joaillerie · Est. 1987</p>
     </div>
+    
     <div class="collections-overlay">
-      <a href="#women" class="collection-btn">Women</a>
-      <a href="#men" class="collection-btn">Men</a>
-      <a href="#kids" class="collection-btn">Kids</a>
+      <div class="collection-item">
+        <a href="#women">Women</a>
+        <p>Rings · Necklaces · Earrings</p>
+      </div>
+      <div class="collection-item">
+        <a href="#men">Men</a>
+        <p>Cufflinks · Rings · Bracelets</p>
+      </div>
+      <div class="collection-item">
+        <a href="#kids">Kids</a>
+        <p>Bracelets · Pendants · Charms</p>
+      </div>
     </div>
   </section>
 
   <!-- WOMEN PRODUCTS -->
   <section id="women" class="products-section">
-    <h2>Women's Collection</h2>
-    <p class="subtitle">Exquisite pieces for the modern woman</p>
+    <div class="section-header">
+      <h2>Women</h2>
+      <p>Exquisite pieces for the modern woman</p>
+    </div>
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrap">
           <img src="https://images.unsplash.com/photo-1605100804763-247f67b2548e?q=80&w=800&auto=format&fit=crop" alt="Diamond Ring" class="product-image">
-          <span class="product-badge">New</span>
         </div>
         <div class="product-info">
           <h3>Solitaire Diamond Ring</h3>
@@ -477,7 +452,6 @@
       <div class="product-card">
         <div class="product-image-wrap">
           <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop" alt="Sapphire Necklace" class="product-image">
-          <span class="product-badge">Bestseller</span>
         </div>
         <div class="product-info">
           <h3>Royal Sapphire Necklace</h3>
@@ -494,18 +468,18 @@
         </div>
       </div>
     </div>
-    <a href="#collections" class="back-link">← Back to Collections</a>
   </section>
 
   <!-- MEN PRODUCTS -->
   <section id="men" class="products-section">
-    <h2>Men's Collection</h2>
-    <p class="subtitle">Refined pieces for the distinguished gentleman</p>
+    <div class="section-header">
+      <h2>Men</h2>
+      <p>Refined pieces for the distinguished gentleman</p>
+    </div>
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrap">
           <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=800&auto=format&fit=crop" alt="Men's Ring" class="product-image">
-          <span class="product-badge">New</span>
         </div>
         <div class="product-info">
           <h3>Platinum Signet Ring</h3>
@@ -524,7 +498,6 @@
       <div class="product-card">
         <div class="product-image-wrap">
           <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=800&auto=format&fit=crop" alt="Men's Bracelet" class="product-image">
-          <span class="product-badge">Bestseller</span>
         </div>
         <div class="product-info">
           <h3>Titanium Chain Bracelet</h3>
@@ -541,18 +514,18 @@
         </div>
       </div>
     </div>
-    <a href="#collections" class="back-link">← Back to Collections</a>
   </section>
 
   <!-- KIDS PRODUCTS -->
   <section id="kids" class="products-section">
-    <h2>Kids' Collection</h2>
-    <p class="subtitle">Delicate pieces for precious moments</p>
+    <div class="section-header">
+      <h2>Kids</h2>
+      <p>Delicate pieces for precious moments</p>
+    </div>
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrap">
           <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" alt="Kids Bracelet" class="product-image">
-          <span class="product-badge">New</span>
         </div>
         <div class="product-info">
           <h3>Star Charm Bracelet</h3>
@@ -580,7 +553,6 @@
       <div class="product-card">
         <div class="product-image-wrap">
           <img src="https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?q=80&w=800&auto=format&fit=crop" alt="Kids Ring" class="product-image">
-          <span class="product-badge">Bestseller</span>
         </div>
         <div class="product-info">
           <h3>Butterfly Ring</h3>
@@ -588,18 +560,16 @@
         </div>
       </div>
     </div>
-    <a href="#collections" class="back-link">← Back to Collections</a>
   </section>
 
-  <!-- ABOUT SECTION -->
+  <!-- ABOUT -->
   <section class="about">
     <div class="about-content">
       <div class="about-text">
-        <p class="overline">Our Heritage</p>
-        <h2>Crafting Dreams Since 1987</h2>
-        <p>For over three decades, RÊVE has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.</p>
-        <p>Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations. We believe that true luxury lies not in ostentation, but in the quiet confidence of exquisite craftsmanship.</p>
-        <p>From the initial sketch to the final polish, every RÊVE piece undergoes over 200 hours of handcrafting, ensuring that what you wear is not merely jewelry, but a work of art.</p>
+        <h2>Crafting<br>Excellence</h2>
+        <p>For over three decades, Vera has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.</p>
+        <p>Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations.</p>
+        <p>From the initial sketch to the final polish, every Vera piece undergoes over 200 hours of handcrafting, ensuring that what you wear is not merely jewelry, but a work of art.</p>
       </div>
       <div class="about-image-wrap">
         <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1000&auto=format&fit=crop" alt="Master Craftsman" class="about-image">
@@ -607,10 +577,9 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT -->
   <section class="contact">
     <h2>Visit Our Atelier</h2>
-    <p class="subtitle">Experience the beauty of our creations in person</p>
     <div class="contact-grid">
       <div class="contact-item">
         <h3>Location</h3>
@@ -622,51 +591,18 @@
       </div>
       <div class="contact-item">
         <h3>Contact</h3>
-        <p>+33 1 42 60 00 00<br>contact@reve.com</p>
+        <p>+33 1 42 60 00 00<br>contact@vera.com</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-grid">
-      <div class="footer-col footer-brand">
-        <a href="#" class="logo">RÊVE</a>
-        <p>Haute Joaillerie crafted with passion since 1987. Timeless pieces for those who appreciate the finest artistry.</p>
+    <div class="footer-content">
+      <a href="#" class="footer-logo">Vera</a>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Vera Joaillerie. All rights reserved.</p>
       </div>
-      <div class="footer-col">
-        <h4>Collections</h4>
-        <ul>
-          <li><a href="#women">Women</a></li>
-          <li><a href="#men">Men</a></li>
-          <li><a href="#kids">Kids</a></li>
-          <li><a href="#">New Arrivals</a></li>
-          <li><a href="#">Bestsellers</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Help</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Shipping</a></li>
-          <li><a href="#">Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>About</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Craftsmanship</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Careers</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 RÊVE Joaillerie. All rights reserved.</p>
     </div>
   </footer>
 
