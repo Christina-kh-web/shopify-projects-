@@ -4,39 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lumière Joaillerie | Fine Jewelry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    /* === СБРОС И БАЗОВЫЕ НАСТРОЙКИ === */
+    /* === RESET & BASE === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; } /* Плавный скролл без JS! */
+    html { scroll-behavior: smooth; }
     
     :root {
-      --bg-color: #FDFCFB;
-      --text-main: #0A0A0A;
-      --text-muted: #666666;
+      --bg-primary: #FDFCFB;
+      --bg-secondary: #F4F2EE;
+      --text-primary: #0A0A0A;
+      --text-secondary: #666666;
       --accent: #A68B5B;
+      --white: #FFFFFF;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Inter', sans-serif;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
       font-family: var(--font-sans);
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
     a:hover { color: var(--accent); }
     img { max-width: 100%; display: block; }
 
-    /* === АНИМАЦИЯ ПОЯВЛЕНИЯ (ТОЛЬКО CSS) === */
+    /* === ANIMATIONS === */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     .animate { animation: fadeInUp 1s ease-out forwards; }
     .delay-1 { animation-delay: 0.2s; opacity: 0; }
@@ -52,25 +58,42 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(253, 252, 251, 0.9);
+      background: rgba(253, 252, 251, 0.95);
       backdrop-filter: blur(10px);
-      z-index: 100;
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 1000;
       border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
     }
     .logo {
       font-family: var(--font-serif);
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    .logo:hover { opacity: 0.7; }
+    nav ul { display: flex; gap: 40px; list-style: none; }
+    nav a {
+      font-size: 11px;
       letter-spacing: 2px;
       text-transform: uppercase;
-    }
-    nav ul { display: flex; gap: 32px; list-style: none; }
-    nav a {
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
       font-weight: 400;
+      position: relative;
+      padding: 8px 0;
     }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after { width: 100%; }
 
     /* === HERO SECTION === */
     .hero {
@@ -80,82 +103,76 @@
       justify-content: center;
       text-align: center;
       padding: 0 24px;
-      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
-      color: #FFFFFF;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                  url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      color: var(--white);
+      position: relative;
+    }
+    .hero-content { max-width: 800px; }
+    .hero-content .subtitle {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0.9;
     }
     .hero-content h1 {
       font-family: var(--font-serif);
       font-size: clamp(48px, 8vw, 80px);
       font-weight: 400;
       letter-spacing: 4px;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
       line-height: 1.1;
-    }
-    .hero-content p {
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-      opacity: 0.9;
     }
     .btn {
       display: inline-block;
-      padding: 16px 40px;
-      background: #FFFFFF;
-      color: var(--text-main);
+      padding: 16px 48px;
+      background: var(--white);
+      color: var(--text-primary);
       font-size: 11px;
       letter-spacing: 2.5px;
       text-transform: uppercase;
       font-weight: 500;
-      border: 1px solid #FFFFFF;
+      border: 1px solid var(--white);
       transition: all 0.4s ease;
+      cursor: pointer;
     }
     .btn:hover {
       background: transparent;
-      color: #FFFFFF;
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-dark {
+      background: var(--text-primary);
+      color: var(--white);
+      border-color: var(--text-primary);
+    }
+    .btn-dark:hover {
+      background: transparent;
+      color: var(--text-primary);
     }
 
-    /* === COLLECTION SECTION === */
-    .section { padding: 100px 48px; max-width: 1440px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 64px; }
+    /* === SECTIONS COMMON === */
+    .section {
+      padding: 100px 48px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
     .section-header h2 {
       font-family: var(--font-serif);
       font-size: 36px;
       font-weight: 400;
       letter-spacing: 2px;
       margin-bottom: 16px;
+      color: var(--text-primary);
     }
-    .section-header p { color: var(--text-muted); font-size: 14px; letter-spacing: 1px; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
-    .card { text-align: center; group: hover; }
-    .card-image-wrap {
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      margin-bottom: 24px;
-      background: #f0f0f0;
-    }
-    .card-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .card:hover .card-image { transform: scale(1.05); }
-    
-    .card h3 {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 400;
-      margin-bottom: 8px;
-    }
-    .card .price {
-      font-size: 13px;
-      color: var(--text-muted);
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 14px;
       letter-spacing: 1px;
     }
 
@@ -163,39 +180,227 @@
     .about {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      gap: 80px;
       align-items: center;
-      background: #F4F2EE;
+      background: var(--bg-secondary);
       padding: 100px 48px;
     }
-    .about-text h2 {
+    .about-content h2 {
       font-family: var(--font-serif);
       font-size: 36px;
       font-weight: 400;
       margin-bottom: 24px;
       line-height: 1.2;
     }
-    .about-text p { color: var(--text-muted); margin-bottom: 32px; font-size: 15px; }
-    .about-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+    .about-content p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .about-image:hover { transform: scale(1.02); }
+
+    /* === FEATURES SECTION === */
+    .features {
+      background: var(--bg-primary);
+      padding: 100px 48px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 40px 24px;
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover { transform: translateY(-8px); }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--accent);
+    }
+    .feature-card h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* === COLLECTIONS SECTION === */
+    .collections {
+      background: var(--bg-secondary);
+      padding: 100px 48px;
+    }
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .collection-card {
+      background: var(--white);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .collection-image-wrap {
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .collection-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .collection-card:hover .collection-image { transform: scale(1.08); }
+    .collection-info {
+      padding: 24px;
+      text-align: center;
+    }
+    .collection-info h3 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .collection-info p {
+      color: var(--text-secondary);
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    /* === CONTACT SECTION === */
+    .contact {
+      background: var(--text-primary);
+      color: var(--white);
+      padding: 100px 48px;
+      text-align: center;
+    }
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact h2 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+    }
+    .contact p {
+      font-size: 15px;
+      margin-bottom: 40px;
+      opacity: 0.8;
+      line-height: 1.8;
+    }
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .contact-item {
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+    .contact-item strong {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      opacity: 0.6;
+    }
 
     /* === FOOTER === */
     footer {
-      background: var(--text-main);
-      color: #FFFFFF;
-      padding: 64px 48px;
+      background: var(--text-primary);
+      color: var(--white);
+      padding: 32px 48px;
       text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
-    footer .logo { color: #FFFFFF; margin-bottom: 24px; display: inline-block; }
-    footer p { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 1px; }
+    footer p {
+      font-size: 12px;
+      opacity: 0.5;
+      letter-spacing: 1px;
+    }
 
-    /* === MOBILE === */
-    @media (max-width: 768px) {
+    /* === MOBILE RESPONSIVE === */
+    @media (max-width: 968px) {
       header { padding: 20px 24px; }
-      nav { display: none; } /* Для простоты на мобильном скрываем меню, можно добавить гамбургер на CSS, но для минимализма оставим так */
-      .hero-content h1 { font-size: 42px; }
+      nav ul { gap: 24px; }
+      nav a { font-size: 10px; }
+      
       .section { padding: 64px 24px; }
-      .about { grid-template-columns: 1fr; padding: 64px 24px; gap: 40px; }
-      .about-img { order: -1; }
+      .about {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 64px 24px;
+      }
+      .about-image { order: -1; }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .collection-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      
+      .contact { padding: 64px 24px; }
+      .contact-info { gap: 32px; }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px 24px;
+      }
+      nav ul { gap: 16px; flex-wrap: wrap; justify-content: center; }
+      
+      .hero-content h1 { font-size: 36px; }
+      .section-header h2 { font-size: 28px; }
+      
+      .collection-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        gap: 24px;
+      }
     }
   </style>
 </head>
@@ -206,74 +411,135 @@
     <a href="#" class="logo">Lumière</a>
     <nav>
       <ul>
-        <li><a href="#collection">Collection</a></li>
-        <li><a href="#about">Our Story</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#collections">Collections</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-content">
-      <p class="animate delay-1">Handcrafted Excellence</p>
+      <p class="subtitle animate delay-1">Handcrafted Excellence Since 1987</p>
       <h1 class="animate delay-2">Timeless<br>Elegance</h1>
-      <a href="#collection" class="btn animate delay-3">Discover Collection</a>
+      <a href="#collections" class="btn animate delay-3">Discover Collection</a>
     </div>
   </section>
 
-  <!-- COLLECTION -->
-  <section id="collection" class="section">
-    <div class="section-header">
-      <h2>The New Collection</h2>
-      <p>Designed for the modern muse</p>
-    </div>
-    
-    <div class="grid">
-      <!-- Item 1 -->
-      <div class="card">
-        <div class="card-image-wrap">
-          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" alt="Gold Necklace" class="card-image">
-        </div>
-        <h3>Eternity Necklace</h3>
-        <p class="price">$1,250</p>
-      </div>
-      
-      <!-- Item 2 -->
-      <div class="card">
-        <div class="card-image-wrap">
-          <img src="https://images.unsplash.com/photo-1605100804763-247f67b2548e?q=80&w=800&auto=format&fit=crop" alt="Diamond Ring" class="card-image">
-        </div>
-        <h3>Solitaire Ring</h3>
-        <p class="price">$3,400</p>
-      </div>
-      
-      <!-- Item 3 -->
-      <div class="card">
-        <div class="card-image-wrap">
-          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" alt="Pearl Earrings" class="card-image">
-        </div>
-        <h3>Luna Earrings</h3>
-        <p class="price">$890</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
+  <!-- ABOUT SECTION -->
   <section id="about" class="about">
-    <div class="about-text">
-      <h2>Crafted with Passion,<br>Worn with Pride.</h2>
-      <p>Each piece in our collection is meticulously handcrafted by master artisans. We source only the finest ethically mined gemstones and recycled precious metals, ensuring that your jewelry is as kind to the earth as it is beautiful to behold.</p>
-      <a href="#" class="btn" style="background: var(--text-main); color: #fff; border-color: var(--text-main);">Read Our Story</a>
+    <div class="about-content">
+      <h2>Crafted with Passion,<br>Worn with Pride</h2>
+      <p>Each piece in our collection is meticulously handcrafted by master artisans with over 30 years of experience. We source only the finest ethically mined gemstones and recycled precious metals, ensuring that your jewelry is as kind to the earth as it is beautiful to behold.</p>
+      <p>Our commitment to excellence extends beyond craftsmanship. We believe that true luxury lies in the details—the perfect cut of a diamond, the seamless flow of gold, the subtle brilliance of a well-placed gem.</p>
+      <a href="#collections" class="btn btn-dark">View Our Work</a>
     </div>
-    <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1000&auto=format&fit=crop" alt="Jewelry Crafting" class="about-img">
+    <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1000&auto=format&fit=crop" alt="Jewelry Crafting" class="about-image">
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="features">
+    <div class="section-header">
+      <h2>Why Choose Lumière</h2>
+      <p>Our commitment to excellence</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <h3>Ethical Sourcing</h3>
+        <p>All our gemstones are ethically sourced and certified. We work directly with mines that adhere to the highest standards of environmental and social responsibility.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◈</div>
+        <h3>Master Craftsmanship</h3>
+        <p>Each piece is handcrafted by artisans with decades of experience. We combine traditional techniques with modern precision to create timeless designs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">❖</div>
+        <h3>Lifetime Warranty</h3>
+        <p>We stand behind our craftsmanship with a lifetime warranty. Your jewelry will be maintained and repaired by our experts for generations to come.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS SECTION -->
+  <section id="collections" class="collections">
+    <div class="section-header">
+      <h2>Our Collections</h2>
+      <p>Discover our latest creations</p>
+    </div>
+    <div class="collection-grid">
+      <div class="collection-card">
+        <div class="collection-image-wrap">
+          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" alt="Rings Collection" class="collection-image">
+        </div>
+        <div class="collection-info">
+          <h3>Rings</h3>
+          <p>24 Pieces</p>
+        </div>
+      </div>
+      <div class="collection-card">
+        <div class="collection-image-wrap">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" alt="Necklaces Collection" class="collection-image">
+        </div>
+        <div class="collection-info">
+          <h3>Necklaces</h3>
+          <p>18 Pieces</p>
+        </div>
+      </div>
+      <div class="collection-card">
+        <div class="collection-image-wrap">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" alt="Earrings Collection" class="collection-image">
+        </div>
+        <div class="collection-info">
+          <h3>Earrings</h3>
+          <p>32 Pieces</p>
+        </div>
+      </div>
+      <div class="collection-card">
+        <div class="collection-image-wrap">
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b2548e?q=80&w=800&auto=format&fit=crop" alt="Bracelets Collection" class="collection-image">
+        </div>
+        <div class="collection-info">
+          <h3>Bracelets</h3>
+          <p>15 Pieces</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact">
+    <div class="contact-content">
+      <h2>Visit Our Atelier</h2>
+      <p>Experience the beauty of our creations in person. Our expert consultants are ready to help you find the perfect piece or create a custom design that tells your unique story.</p>
+      <a href="mailto:contact@lumiere.com" class="btn">Get in Touch</a>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <strong>Location</strong>
+          123 Rue de la Paix<br>
+          Paris, France 75002
+        </div>
+        <div class="contact-item">
+          <strong>Hours</strong>
+          Mon - Sat: 10am - 7pm<br>
+          Sunday: By Appointment
+        </div>
+        <div class="contact-item">
+          <strong>Contact</strong>
+          +33 1 42 60 00 00<br>
+          contact@lumiere.com
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer id="contact">
-    <a href="#" class="logo">Lumière</a>
+  <footer>
     <p>&copy; 2024 Lumière Joaillerie. All rights reserved.</p>
-    <p style="margin-top: 8px;">Paris &bull; New York &bull; Tokyo</p>
   </footer>
 
 </body>
