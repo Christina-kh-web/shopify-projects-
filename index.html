@@ -43,15 +43,17 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
-      transition: background 0.4s ease;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+      transition: all 0.4s ease;
     }
     header.scrolled {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     }
-    header.scrolled .logo, header.scrolled nav a, header.scrolled .search-icon {
+    header.scrolled .logo, 
+    header.scrolled nav a, 
+    header.scrolled .search-icon {
       color: var(--black);
     }
     header.scrolled nav a::after { background: var(--black); }
@@ -105,7 +107,7 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.3);
       z-index: 1;
     }
     .hero-content {
@@ -147,10 +149,29 @@
     .product-info h3 { font-family: var(--font-serif); font-size: 18px; font-weight: 400; margin-bottom: 8px; letter-spacing: 1px; }
     .product-info .price { font-size: 13px; color: var(--grey); letter-spacing: 1px; }
 
-    /* === ABOUT === */
-    .about {
-      background: var(--black); color: var(--white); padding: 120px 48px;
+    /* === IMAGE BANNER === */
+    .image-banner {
+      position: relative;
+      height: 60vh;
+      min-height: 500px;
+      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0287.jpg?width=1600') center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
     }
+    .image-banner::before {
+      content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+    }
+    .banner-content { position: relative; z-index: 2; max-width: 700px; padding: 0 24px; }
+    .banner-content h2 {
+      font-family: var(--font-serif); font-size: 56px; font-weight: 400; letter-spacing: 4px; margin-bottom: 24px;
+    }
+    .banner-content p { font-size: 14px; letter-spacing: 2px; line-height: 1.8; opacity: 0.9; }
+
+    /* === ABOUT === */
+    .about { background: var(--black); color: var(--white); padding: 120px 48px; }
     .about-content {
       max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
@@ -161,9 +182,7 @@
     .about-image-wrap:hover .about-image { transform: scale(1.04); }
 
     /* === RICH FOOTER === */
-    footer {
-      background: var(--black); color: var(--white); padding: 80px 48px 32px;
-    }
+    footer { background: var(--black); color: var(--white); padding: 80px 48px 32px; }
     .footer-grid {
       display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 48px;
       max-width: 1440px; margin: 0 auto 64px;
@@ -211,6 +230,8 @@
       .about-text h2 { font-size: 36px; }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
       .hero-content h1 { font-size: 56px; letter-spacing: 6px; }
+      .image-banner { height: 50vh; }
+      .banner-content h2 { font-size: 36px; }
     }
   </style>
 </head>
@@ -234,9 +255,9 @@
     </div>
   </header>
 
-  <!-- HERO VIDEO -->
+  <!-- HERO VIDEO (Главная страница с видео) -->
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565">
+    <video class="hero-video" autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?width=1600">
       <source src="https://cdn.shopify.com/s/files/1/0703/3195/7291/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
@@ -246,7 +267,7 @@
     </div>
   </section>
 
-  <!-- WOMEN COLLECTION -->
+  <!-- WOMEN COLLECTION (Только женские фото) -->
   <section id="women" class="section">
     <div class="section-header">
       <h2 data-i18n="title_women">Women</h2>
@@ -255,7 +276,7 @@
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?v=1791130614" alt="Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?width=1200" alt="Women Jewelry" class="product-image">
         </div>
         <div class="product-info">
           <h3 data-i18n="prod_w1">Diamond Solitaire Ring</h3>
@@ -264,7 +285,7 @@
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?width=1200" alt="Women Jewelry" class="product-image">
         </div>
         <div class="product-info">
           <h3 data-i18n="prod_w2">Luna Pearl Earrings</h3>
@@ -273,7 +294,7 @@
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?v=1791130614" alt="Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?width=1200" alt="Women Jewelry" class="product-image">
         </div>
         <div class="product-info">
           <h3 data-i18n="prod_w3">Royal Sapphire Necklace</h3>
@@ -282,7 +303,7 @@
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?v=1791130614" alt="Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?width=1200" alt="Women Jewelry" class="product-image">
         </div>
         <div class="product-info">
           <h3 data-i18n="prod_w4">Aurum Gold Bracelet</h3>
@@ -292,7 +313,7 @@
     </div>
   </section>
 
-  <!-- MEN COLLECTION -->
+  <!-- MEN COLLECTION (Только мужские фото) -->
   <section id="men" class="section section-alt">
     <div class="section-inner">
       <div class="section-header">
@@ -302,7 +323,7 @@
       <div class="product-grid">
         <div class="product-card">
           <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?v=1791130628" alt="Jewelry" class="product-image">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?width=1200" alt="Men Jewelry" class="product-image">
           </div>
           <div class="product-info">
             <h3 data-i18n="prod_m1">Platinum Signet Ring</h3>
@@ -311,7 +332,7 @@
         </div>
         <div class="product-card">
           <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?v=1791130628" alt="Jewelry" class="product-image">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?width=1200" alt="Men Jewelry" class="product-image">
           </div>
           <div class="product-info">
             <h3 data-i18n="prod_m2">Onyx Cufflinks</h3>
@@ -320,7 +341,7 @@
         </div>
         <div class="product-card">
           <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?v=1791130628" alt="Jewelry" class="product-image">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?width=1200" alt="Men Jewelry" class="product-image">
           </div>
           <div class="product-info">
             <h3 data-i18n="prod_m3">Titanium Chain Bracelet</h3>
@@ -329,7 +350,7 @@
         </div>
         <div class="product-card">
           <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Jewelry" class="product-image">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?width=1200" alt="Men Jewelry" class="product-image">
           </div>
           <div class="product-info">
             <h3 data-i18n="prod_m4">Obsidian Pendant</h3>
@@ -340,47 +361,55 @@
     </div>
   </section>
 
-  <!-- KIDS COLLECTION -->
+  <!-- IMAGE BANNER (Качественное фото-баннер) -->
+  <section class="image-banner">
+    <div class="banner-content">
+      <h2 data-i18n="banner_title">The Art of Detail</h2>
+      <p data-i18n="banner_desc">Every curve, every facet, every finish is meticulously considered. Discover the philosophy behind our craft.</p>
+    </div>
+  </section>
+
+  <!-- KIDS COLLECTION (Девочки и мальчики вместе) -->
   <section id="kids" class="section">
     <div class="section-header">
       <h2 data-i18n="title_kids">Kids</h2>
-      <p data-i18n="desc_kids">Delicate pieces for precious moments</p>
+      <p data-i18n="desc_kids">Delicate pieces for precious moments (Boys & Girls)</p>
     </div>
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?v=1791131195" alt="Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?width=1200" alt="Kids Girl Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3 data-i18n="prod_k1">Star Charm Bracelet</h3>
-          <p class="price">$450</p>
+          <h3 data-i18n="prod_k1">Girl's Pearl Charm</h3>
+          <p class="price">$350</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?v=1791131195" alt="Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?width=1200" alt="Kids Boy Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3 data-i18n="prod_k2">Heart Pendant Necklace</h3>
-          <p class="price">$380</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0319.jpg?v=1791131195" alt="Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3 data-i18n="prod_k3">Pearl Stud Earrings</h3>
-          <p class="price">$320</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0320.jpg?v=1791131196" alt="Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3 data-i18n="prod_k4">Butterfly Ring</h3>
+          <h3 data-i18n="prod_k2">Boy's Silver Compass</h3>
           <p class="price">$290</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0324.jpg?width=1200" alt="Kids Girl Jewelry" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3 data-i18n="prod_k3">Girl's Heart Locket</h3>
+          <p class="price">$420</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?width=1200" alt="Kids Boy Jewelry" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3 data-i18n="prod_k4">Boy's Classic Ring</h3>
+          <p class="price">$250</p>
         </div>
       </div>
     </div>
@@ -395,7 +424,7 @@
         <p data-i18n="about_p2">Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations.</p>
       </div>
       <div class="about-image-wrap">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565" alt="Atelier" class="about-image">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?width=1200" alt="Atelier" class="about-image">
       </div>
     </div>
   </section>
@@ -442,7 +471,7 @@
         <h4 data-i18n="footer_newsletter">Newsletter</h4>
         <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 16px; line-height: 1.6;" data-i18n="newsletter_text">Join our world and receive exclusive offers.</p>
         <form onsubmit="event.preventDefault();" style="display: flex; border-bottom: 1px solid rgba(255,255,255,0.3);">
-          <input type="email" placeholder="Email" style="flex:1; background:transparent; border:none; color:white; padding:12px 0; outline:none; font-family: var(--font-sans); font-size: 12px;" data-i18n-placeholder="placeholder_email">
+          <input type="email" placeholder="Email address" style="flex:1; background:transparent; border:none; color:white; padding:12px 0; outline:none; font-family: var(--font-sans); font-size: 12px;" data-i18n-placeholder="placeholder_email">
           <button type="submit" style="background:transparent; border:none; color:white; cursor:pointer; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;" data-i18n="btn_subscribe">Subscribe</button>
         </form>
       </div>
@@ -454,7 +483,6 @@
 
   <!-- TRANSLATION SCRIPT -->
   <script>
-    // Словарь переводов
     const translations = {
       en: {
         nav_women: "Women", nav_men: "Men", nav_kids: "Kids",
@@ -463,8 +491,9 @@
         prod_w1: "Diamond Solitaire Ring", prod_w2: "Luna Pearl Earrings", prod_w3: "Royal Sapphire Necklace", prod_w4: "Aurum Gold Bracelet",
         title_men: "Men", desc_men: "Refined pieces for the distinguished gentleman",
         prod_m1: "Platinum Signet Ring", prod_m2: "Onyx Cufflinks", prod_m3: "Titanium Chain Bracelet", prod_m4: "Obsidian Pendant",
-        title_kids: "Kids", desc_kids: "Delicate pieces for precious moments",
-        prod_k1: "Star Charm Bracelet", prod_k2: "Heart Pendant Necklace", prod_k3: "Pearl Stud Earrings", prod_k4: "Butterfly Ring",
+        banner_title: "The Art of Detail", banner_desc: "Every curve, every facet, every finish is meticulously considered. Discover the philosophy behind our craft.",
+        title_kids: "Kids", desc_kids: "Delicate pieces for precious moments (Boys & Girls)",
+        prod_k1: "Girl's Pearl Charm", prod_k2: "Boy's Silver Compass", prod_k3: "Girl's Heart Locket", prod_k4: "Boy's Classic Ring",
         about_title: "Crafting<br>Excellence",
         about_p1: "For over three decades, SÉRA has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.",
         about_p2: "Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations.",
@@ -483,10 +512,11 @@
         prod_w1: "Кольцо с бриллиантом", prod_w2: "Жемчужные серьги Luna", prod_w3: "Сапфировое колье Royal", prod_w4: "Золотой браслет Aurum",
         title_men: "Мужчинам", desc_men: "Изысканные аксессуары для джентльмена",
         prod_m1: "Платиновая печатка", prod_m2: "Запонки с ониксом", prod_m3: "Титановый браслет", prod_m4: "Кулон из обсидиана",
-        title_kids: "Детям", desc_kids: "Деликатные изделия для драгоценных моментов",
-        prod_k1: "Браслет со звездой", prod_k2: "Кулон в форме сердца", prod_k3: "Серьги с жемчугом", prod_k4: "Кольцо «Бабочка»",
+        banner_title: "Искусство Деталей", banner_desc: "Каждый изгиб, каждая грань, каждая отделка тщательно продуманы. Откройте для себя философию нашего мастерства.",
+        title_kids: "Детям", desc_kids: "Деликатные изделия для драгоценных моментов (Для мальчиков и девочек)",
+        prod_k1: "Детский жемчужный шарм", prod_k2: "Серебряный компас для мальчика", prod_k3: "Детский кулон-сердечко", prod_k4: "Классическое кольцо для мальчика",
         about_title: "Совершенство<br>Мастерства",
-        about_p1: "Уже более трех десятилетий SÉRA является синонимом исключительного мастерства и вневременного дизайна. Основанная в самом сердце Парижа, наша мастерская объединяет мастеров, посвятивших свою жизнь искусству высокой ювелирной мод.",
+        about_p1: "Уже более трех десятилетий SÉRA является синонимом исключительного мастерства и вневременного дизайна. Основанная в самом сердце Парижа, наша мастерская объединяет мастеров, посвятивших свою жизнь искусству высокой ювелирной моды.",
         about_p2: "Каждое изделие в нашей коллекции рассказывает историю — о внимании к мельчайшим деталям, этичном происхождении драгоценных камней и страсти, которая движет нами создавать украшения, переходящие из поколения в поколение.",
         footer_desc: "Высокое ювелирное искусство, созданное со страстью. Вневременные изделия для ценителей.",
         footer_collections: "Коллекции", footer_help: "Помощь", footer_about: "О нас", footer_newsletter: "Рассылка",
@@ -503,8 +533,9 @@
         prod_w1: "Bague Solitaire Diamant", prod_w2: "Boucles d'oreilles Luna", prod_w3: "Collier Saphir Royal", prod_w4: "Bracelet Or Aurum",
         title_men: "Hommes", desc_men: "Des pièces raffinées pour le gentleman distingué",
         prod_m1: "Chevalière en Platine", prod_m2: "Boutons de manchette Onyx", prod_m3: "Bracelet Chaîne Titane", prod_m4: "Pendentif Obsidienne",
-        title_kids: "Enfants", desc_kids: "Des pièces délicates pour des moments précieux",
-        prod_k1: "Bracelet Étoile", prod_k2: "Collier Cœur", prod_k3: "Boucles d'oreilles Perle", prod_k4: "Bague Papillon",
+        banner_title: "L'Art du Détail", banner_desc: "Chaque courbe, chaque facette, chaque finition est méticuleusement étudiée. Découvrez la philosophie de notre savoir-faire.",
+        title_kids: "Enfants", desc_kids: "Des pièces délicates pour des moments précieux (Garçons et Filles)",
+        prod_k1: "Charme Perle pour Fille", prod_k2: "Boussole en Argent pour Garçon", prod_k3: "Médiator Cœur pour Fille", prod_k4: "Bague Classique pour Garçon",
         about_title: "L'Excellence<br>Artisanale",
         about_p1: "Depuis plus de trois décennies, SÉRA est synonyme de savoir-faire exceptionnel et de design intemporel. Fondé au cœur de Paris, notre atelier réunit des maîtres artisans qui ont dédié leur vie à l'art de la haute joaillerie.",
         about_p2: "Chaque pièce de notre collection raconte une histoire — celle d'une attention méticuleuse aux détails, de pierres précieuses d'origine éthique et de la passion qui nous pousse à créer des bijoux qui traversent les générations.",
@@ -519,32 +550,27 @@
     };
 
     function changeLanguage(lang) {
-      // Обновляем текстовые содержимое
       document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang][key]) {
-          element.innerHTML = translations[lang][key]; // innerHTML позволяет использовать <br>
+          element.innerHTML = translations[lang][key];
         }
       });
-      // Обновляем placeholder у input
       document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
         const key = element.getAttribute('data-i18n-placeholder');
         if (translations[lang][key]) {
           element.placeholder = translations[lang][key];
         }
       });
-      // Сохраняем выбор в localStorage
       localStorage.setItem('sera_lang', lang);
     }
 
-    // При загрузке страницы проверяем сохраненный язык или ставим английский
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('sera_lang') || 'en';
       document.getElementById('languageSelect').value = savedLang;
       changeLanguage(savedLang);
     });
 
-    // Эффект смены цвета хедера при скролле
     window.addEventListener('scroll', () => {
       const header = document.getElementById('mainHeader');
       if (window.scrollY > 50) {
