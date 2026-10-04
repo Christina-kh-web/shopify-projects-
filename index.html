@@ -30,7 +30,7 @@
 
     h1, h2, h3, .luxe-font { font-family: 'Cormorant Garamond', serif; }
     a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
-    img { max-width: 100%; display: block; object-fit: cover; }
+    img { max-width: 100%; display: block; object-fit: contain; }
 
     /* === HERO BANNER === */
     .hero {
@@ -38,7 +38,8 @@
       width: 100%;
       height: 100vh;
       min-height: 700px;
-      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?width=1920') center/cover no-repeat;
+      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?width=1920') center/contain no-repeat;
+      background-size: cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -121,7 +122,9 @@
       min-height: 80vh;
     }
     .luxury-image {
-      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?width=1200') center/cover no-repeat;
+      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?width=1200') center/contain no-repeat;
+      background-size: contain;
+      background-color: var(--bg-light);
     }
     .luxury-text {
       background: var(--color-5);
@@ -148,15 +151,17 @@
       margin: 0 auto;
     }
 
-    /* === PHOTOS STICKED TOGETHER === */
+    /* === PHOTOS STICKED TOGETHER (FULL SIZE, NO CROP) === */
     .sticked-photos {
       display: flex;
       width: 100%;
+      background: var(--bg-light);
     }
     .sticked-photos img {
       width: 50%;
-      height: 70vh;
-      object-fit: cover;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
     }
 
     /* === TITLE SECTIONS === */
@@ -186,17 +191,20 @@
       color: var(--color-3);
     }
 
-    /* === VIDEO SECTION === */
+    /* === VIDEO SECTION (FULL SIZE, NO CROP) === */
     .video-section {
       width: 100%;
-      height: 85vh;
       overflow: hidden;
       background: var(--color-3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .video-section video {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      max-height: 100vh;
+      object-fit: contain;
     }
 
     /* === PRODUCTS SECTION === */
@@ -234,14 +242,13 @@
     .product-card:hover { transform: translateY(-8px); }
     .product-image-wrap {
       overflow: hidden;
-      aspect-ratio: 3/4;
       margin-bottom: 20px;
       background: #f0ebe6;
     }
     .product-image-wrap img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       transition: transform 0.6s ease;
     }
     .product-card:hover .product-image-wrap img { transform: scale(1.05); }
@@ -264,11 +271,13 @@
     .full-width-luxe {
       position: relative;
       width: 100%;
-      height: 75vh;
-      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?width=1920') center/cover no-repeat;
+      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?width=1920') center/contain no-repeat;
+      background-size: contain;
+      background-color: var(--bg-light);
       display: flex;
       align-items: center;
       justify-content: center;
+      min-height: 60vh;
     }
     .full-width-luxe::before {
       content: '';
@@ -321,11 +330,12 @@
       display: flex;
       justify-content: center;
       gap: 32px;
+      flex-wrap: wrap;
     }
     .details-grid img {
       width: 300px;
-      height: 400px;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       box-shadow: 0 10px 30px rgba(63, 51, 36, 0.1);
     }
 
@@ -432,7 +442,7 @@
     @media (max-width: 1024px) {
       .products-grid { grid-template-columns: repeat(3, 1fr); }
       .luxury-split { grid-template-columns: 1fr; }
-      .luxury-image { height: 50vh; }
+      .luxury-image { min-height: 50vh; }
     }
     @media (max-width: 768px) {
       .hero-header { padding: 24px; flex-direction: column; gap: 20px; }
@@ -440,11 +450,11 @@
       .hero-content h1 { font-size: 56px; letter-spacing: 6px; }
       
       .sticked-photos { flex-direction: column; }
-      .sticked-photos img { width: 100%; height: 50vh; }
+      .sticked-photos img { width: 100%; }
       
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .details-grid { flex-direction: column; align-items: center; }
-      .details-grid img { width: 100%; max-width: 400px; height: auto; aspect-ratio: 3/4; }
+      .details-grid img { width: 100%; max-width: 400px; }
       
       .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
       .footer-brand p { margin: 0 auto; }
@@ -486,7 +496,7 @@
     </div>
   </section>
 
-  <!-- TWO PHOTOS STICKED TOGETHER -->
+  <!-- TWO PHOTOS STICKED TOGETHER (FULL SIZE) -->
   <section class="sticked-photos">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?width=1200" alt="Detail 1">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?width=1200" alt="Detail 2">
@@ -497,7 +507,7 @@
     <h2>The Art of Movement</h2>
   </section>
 
-  <!-- VIDEO SECTION -->
+  <!-- VIDEO SECTION (FULL SIZE) -->
   <section class="video-section">
     <video autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?width=1920">
       <source src="https://cdn.shopify.com/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
@@ -509,7 +519,7 @@
     <h2>Timeless Beauty</h2>
   </section>
 
-  <!-- TWO MORE PHOTOS -->
+  <!-- TWO MORE PHOTOS (FULL SIZE) -->
   <section class="sticked-photos">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?width=1200" alt="Detail 3">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?width=1200" alt="Detail 4">
@@ -560,7 +570,7 @@
     </div>
   </section>
 
-  <!-- FULL WIDTH HD PHOTO -->
+  <!-- FULL WIDTH HD PHOTO (FULL SIZE) -->
   <section class="full-width-luxe">
     <div class="luxe-overlay-text">
       <h2>Crafted for Eternity</h2>
@@ -568,7 +578,7 @@
     </div>
   </section>
 
-  <!-- 3 PHOTOS WITH DESCRIPTION -->
+  <!-- 3 PHOTOS WITH DESCRIPTION (FULL SIZE) -->
   <section class="details-section">
     <div class="description">
       <h3>Signature Details</h3>
