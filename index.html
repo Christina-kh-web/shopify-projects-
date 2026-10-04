@@ -3,762 +3,569 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SÉRA | Haute Joaillerie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>SÉRA | An Expression of Elegance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
+    /* === ЦВЕТОВАЯ ПАЛИТРА (строго по ТЗ) === */
     :root {
-      --black: #0A0A0A;
-      --white: #FFFFFF;
-      --ivory: #F5F5F0;
-      --grey: #888888;
-      --font-serif: 'Cormorant Garamond', serif;
-      --font-sans: 'Inter', sans-serif;
+      --color-1: #87745A; /* Светлый бронзовый/золотой (акценты, кнопки) */
+      --color-2: #70462E; /* Средний коричневый (ховеры) */
+      --color-3: #3D342D; /* Темный коричневый (основной текст, заголовки) */
+      --color-4: #63513F; /* Приглушенный коричневый (рамки, линии) */
+      --color-5: #3F3324; /* Глубокий темный (фон футера, темные секции) */
+      --bg-light: #FDFCFB; /* Очень светлый фон для контраста */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
+    
     body {
-      background-color: var(--white);
-      color: var(--black);
-      font-family: var(--font-sans);
+      background-color: var(--bg-light);
+      color: var(--color-3);
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    a { text-decoration: none; color: inherit; transition: opacity 0.3s ease; }
-    a:hover { opacity: 0.6; }
-    img { max-width: 100%; display: block; }
-    ul { list-style: none; }
+    h1, h2, h3, .luxe-font { font-family: 'Cormorant Garamond', serif; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    img { max-width: 100%; display: block; object-fit: cover; }
 
-    /* === HEADER === */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 24px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-    }
-    .logo {
-      font-family: var(--font-serif);
-      font-size: 36px;
-      font-weight: 400;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .header-right { display: flex; align-items: center; gap: 32px; }
-    nav ul { display: flex; gap: 32px; }
-    nav a {
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      font-weight: 400;
-      color: var(--white);
-      position: relative;
-    }
-    nav a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
-      background: var(--white); transition: width 0.3s ease;
-    }
-    nav a:hover::after { width: 100%; }
-    .search-icon {
-      width: 20px; height: 20px; cursor: pointer; color: var(--white);
-      stroke: currentColor; fill: none; stroke-width: 1.5;
-    }
-
-    /* === HERO VIDEO === */
+    /* === 1. HERO BANNER === */
     .hero {
+      position: relative;
+      width: 100%;
       height: 100vh;
       min-height: 700px;
-      position: relative;
-      overflow: hidden;
+      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?width=1920') center/cover no-repeat;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-    }
-    .hero-video {
-      position: absolute;
-      top: 50%; left: 50%;
-      min-width: 100%; min-height: 100%;
-      width: auto; height: auto;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      z-index: 0;
+      align-items: center;
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-      z-index: 1;
+      background: rgba(63, 51, 36, 0.2); /* Легкое затемнение для читаемости */
     }
+    
+    /* Header внутри Hero */
+    .hero-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .hero-nav {
+      display: flex;
+      gap: 40px;
+    }
+    .hero-nav a {
+      color: #FFFFFF;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 400;
+      text-decoration: none; /* без подчеркивания */
+      background: transparent; /* без фона */
+    }
+    .hero-nav a:hover { color: var(--color-1); }
+    
+    .hero-icons {
+      display: flex;
+      gap: 24px;
+    }
+    .hero-icons svg {
+      width: 22px;
+      height: 22px;
+      stroke: #FFFFFF;
+      stroke-width: 1.5;
+      fill: none;
+      cursor: pointer;
+      transition: stroke 0.3s ease;
+    }
+    .hero-icons svg:hover { stroke: var(--color-1); }
+
+    /* Центр Hero */
     .hero-content {
-      position: relative; z-index: 2; text-align: center; color: var(--white);
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      color: #FFFFFF;
     }
     .hero-content h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(64px, 12vw, 120px);
+      font-size: clamp(60px, 10vw, 110px);
       font-weight: 300;
       letter-spacing: 12px;
       margin-bottom: 16px;
       line-height: 1;
     }
     .hero-content p {
-      font-size: 13px; letter-spacing: 4px; text-transform: uppercase; opacity: 0.9;
-    }
-
-    /* === HOME PREVIEW SECTIONS === */
-    .home-section { padding: 120px 48px; max-width: 1440px; margin: 0 auto; }
-    .home-section.alt { background-color: var(--ivory); max-width: 100%; }
-    .home-section.alt .section-inner { max-width: 1440px; margin: 0 auto; padding: 0 48px; }
-    
-    .section-header { text-align: center; margin-bottom: 72px; }
-    .section-header h2 {
-      font-family: var(--font-serif);
-      font-size: 48px; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 16px;
-    }
-    .section-header p { color: var(--grey); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
-
-    .product-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
-    }
-    .product-card { background: var(--white); overflow: hidden; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-    .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-    .product-image-wrap { overflow: hidden; aspect-ratio: 3/4; background: var(--ivory); }
-    .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-    .product-card:hover .product-image { transform: scale(1.05); }
-    .product-info { padding: 24px 20px; text-align: center; }
-    .product-info h3 { font-family: var(--font-serif); font-size: 18px; font-weight: 400; margin-bottom: 8px; letter-spacing: 1px; }
-    .product-info .price { font-size: 13px; color: var(--grey); letter-spacing: 1px; }
-
-    /* === COLLECTION PAGES (Hidden by default) === */
-    .collection-page {
-      display: none;
-      padding: 160px 48px 120px;
-      max-width: 1440px;
-      margin: 0 auto;
-      min-height: 100vh;
-    }
-    
-    /* Show collection when targeted */
-    .collection-page:target {
-      display: block;
-    }
-    
-    /* Hide home when collection is targeted */
-    .home-page:has(.collection-page:target) {
-      display: none;
-    }
-
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 48px;
-      font-size: 11px;
-      letter-spacing: 2.5px;
+      font-size: 13px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      color: var(--black);
-      border: 1px solid var(--black);
-      padding: 12px 32px;
-      transition: all 0.3s ease;
-    }
-    .back-btn:hover {
-      background: var(--black);
-      color: var(--white);
+      font-weight: 400;
+      opacity: 0.95;
     }
 
-    /* === IMAGE BANNER === */
-    .image-banner {
+    /* === 2. IMAGE WITH LUXURY TEXT === */
+    .luxury-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+    .luxury-image {
+      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?width=1200') center/cover no-repeat;
+    }
+    .luxury-text {
+      background: var(--color-5);
+      color: var(--bg-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px;
+      text-align: center;
+    }
+    .luxury-text h2 {
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-bottom: 24px;
+      color: var(--color-1);
+    }
+    .luxury-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: 1px;
+      color: rgba(253, 252, 251, 0.8);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* === 3 & 5. PHOTOS STICKED TOGETHER (NO GAP, NO TEXT) === */
+    .sticked-photos {
+      display: flex;
+      width: 100%;
+    }
+    .sticked-photos img {
+      width: 50%;
+      height: 70vh;
+      object-fit: cover;
+    }
+
+    /* === 4. VIDEO SECTION === */
+    .video-section {
+      width: 100%;
+      height: 85vh;
+      overflow: hidden;
+      background: var(--color-3);
+    }
+    .video-section video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* === 6. PRODUCTS IN ONE LINE === */
+    .products-line {
+      padding: 100px 48px;
+      background: var(--bg-light);
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* Ровно 5 в одну линию */
+      gap: 24px;
+    }
+    .product-card {
+      text-align: center;
+      transition: transform 0.4s ease;
+    }
+    .product-card:hover { transform: translateY(-8px); }
+    .product-image-wrap {
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      margin-bottom: 20px;
+      background: #f0ebe6;
+    }
+    .product-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .product-card:hover .product-image-wrap img { transform: scale(1.05); }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--color-3);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .product-price {
+      font-size: 13px;
+      color: var(--color-1);
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+
+    /* === 7. FULL WIDTH HD PHOTO WITH LUXE TEXT === */
+    .full-width-luxe {
       position: relative;
-      height: 60vh;
-      min-height: 500px;
-      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0287.jpg?width=1600') center/cover no-repeat fixed;
+      width: 100%;
+      height: 75vh;
+      background: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?width=1920') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .full-width-luxe::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(61, 52, 45, 0.4);
+    }
+    .luxe-overlay-text {
+      position: relative;
+      z-index: 2;
       text-align: center;
-      color: var(--white);
+      color: #FFFFFF;
     }
-    .image-banner::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
-    .banner-content { position: relative; z-index: 2; max-width: 700px; padding: 0 24px; }
-    .banner-content h2 { font-family: var(--font-serif); font-size: 56px; font-weight: 400; letter-spacing: 4px; margin-bottom: 24px; }
-    .banner-content p { font-size: 14px; letter-spacing: 2px; line-height: 1.8; opacity: 0.9; }
-
-    /* === ABOUT === */
-    .about { background: var(--black); color: var(--white); padding: 120px 48px; }
-    .about-content {
-      max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    .luxe-overlay-text h2 {
+      font-size: 56px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 16px;
     }
-    .about-text h2 { font-family: var(--font-serif); font-size: 48px; font-weight: 400; margin-bottom: 32px; letter-spacing: 4px; line-height: 1.15; }
-    .about-text p { color: rgba(255,255,255,0.7); margin-bottom: 20px; font-size: 14px; line-height: 1.8; letter-spacing: 0.5px; }
-    .about-image-wrap { overflow: hidden; aspect-ratio: 4/5; }
-    .about-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-    .about-image-wrap:hover .about-image { transform: scale(1.04); }
+    .luxe-overlay-text p {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
 
-    /* === FOOTER === */
-    footer { background: var(--black); color: var(--white); padding: 80px 48px 32px; }
+    /* === 8. 3 PHOTOS WITH DESCRIPTION ABOVE === */
+    .details-section {
+      padding: 100px 48px;
+      text-align: center;
+      background: var(--bg-light);
+    }
+    .details-section .description {
+      max-width: 600px;
+      margin: 0 auto 64px;
+    }
+    .details-section .description h3 {
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--color-3);
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+    .details-section .description p {
+      font-size: 14px;
+      color: var(--color-4);
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+    }
+    .details-grid {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+    }
+    .details-grid img {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(63, 51, 36, 0.1);
+    }
+
+    /* === 9. FINAL CTA === */
+    .final-cta {
+      background: var(--color-3);
+      padding: 120px 48px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--color-1);
+      letter-spacing: 4px;
+      margin-bottom: 24px;
+    }
+    .final-cta p {
+      color: rgba(253, 252, 251, 0.8);
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 48px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 18px 56px;
+      background: var(--color-1);
+      color: #FFFFFF;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1px solid var(--color-1);
+      transition: all 0.4s ease;
+    }
+    .cta-button:hover {
+      background: transparent;
+      color: var(--color-1);
+    }
+
+    /* === FULL FOOTER === */
+    footer {
+      background: var(--color-5);
+      color: rgba(253, 252, 251, 0.7);
+      padding: 80px 48px 32px;
+    }
     .footer-grid {
-      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 48px;
-      max-width: 1440px; margin: 0 auto 64px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      max-width: 1440px;
+      margin: 0 auto 64px;
     }
     .footer-col h4 {
-      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 24px; font-weight: 500; color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      font-weight: 500;
+      color: var(--color-1);
     }
-    .footer-col ul li { margin-bottom: 12px; }
-    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.6); }
-    .footer-col a:hover { color: var(--white); padding-left: 4px; }
+    .footer-col ul li { margin-bottom: 14px; }
+    .footer-col a {
+      font-size: 13px;
+      color: rgba(253, 252, 251, 0.7);
+      transition: all 0.3s ease;
+    }
+    .footer-col a:hover { color: var(--color-1); padding-left: 4px; }
     
-    .footer-brand .logo { color: var(--white); margin-bottom: 20px; display: inline-block; font-size: 28px; }
-    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 280px; }
+    .footer-brand .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 6px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
     
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; text-align: center;
-      max-width: 1440px; margin: 0 auto;
+      border-top: 1px solid var(--color-4);
+      padding-top: 32px;
+      text-align: center;
+      max-width: 1440px;
+      margin: 0 auto;
     }
-    .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+    .footer-bottom p {
+      font-size: 11px;
+      color: rgba(253, 252, 251, 0.5);
+      letter-spacing: 1px;
+    }
 
-    /* === MOBILE === */
+    /* === MOBILE RESPONSIVE === */
     @media (max-width: 1024px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .luxury-split { grid-template-columns: 1fr; }
+      .luxury-image { height: 50vh; }
     }
     @media (max-width: 768px) {
-      header { padding: 16px 24px; flex-direction: column; gap: 16px; }
-      .logo { font-size: 28px; letter-spacing: 6px; }
-      .header-right { gap: 16px; width: 100%; justify-content: space-between; }
-      nav ul { gap: 16px; }
-      nav a { font-size: 10px; }
-      
-      .home-section, .collection-page { padding: 72px 24px; }
-      .product-grid { grid-template-columns: 1fr; gap: 24px; }
-      .about-content { grid-template-columns: 1fr; gap: 40px; }
-      .about-text h2 { font-size: 36px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-header { padding: 24px; flex-direction: column; gap: 20px; }
+      .hero-nav { gap: 24px; }
       .hero-content h1 { font-size: 56px; letter-spacing: 6px; }
-      .image-banner { height: 50vh; }
-      .banner-content h2 { font-size: 36px; }
+      
+      .sticked-photos { flex-direction: column; }
+      .sticked-photos img { width: 100%; height: 50vh; }
+      
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .details-grid { flex-direction: column; align-items: center; }
+      .details-grid img { width: 100%; max-width: 400px; height: auto; aspect-ratio: 3/4; }
+      
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .footer-brand p { margin: 0 auto; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <a href="#" class="logo">SÉRA</a>
-    <div class="header-right">
-      <nav>
-        <ul>
-          <li><a href="#women">Women</a></li>
-          <li><a href="#men">Men</a></li>
-          <li><a href="#kids">Kids</a></li>
-        </ul>
-      </nav>
-      <svg class="search-icon" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="7"/>
-        <path d="m21 21-4.35-4.35"/>
-      </svg>
-    </div>
-  </header>
-
-  <!-- HOME PAGE -->
-  <div class="home-page">
+  <!-- 1. HERO BANNER -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
     
-    <!-- HERO VIDEO -->
-    <section class="hero">
-      <video class="hero-video" autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?width=1600">
-        <source src="https://cdn.shopify.com/s/files/1/0703/3195/7291/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>SÉRA</h1>
-        <p>Haute Joaillerie · Est. 1987</p>
-      </div>
-    </section>
-
-    <!-- WOMEN PREVIEW (3 photos) -->
-    <section class="home-section">
-      <div class="section-header">
-        <h2>Women</h2>
-        <p>Exquisite pieces for the modern woman</p>
-      </div>
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?width=1200" alt="Women Jewelry" class="product-image">
-          </div>
-          <div class="product-info">
-            <h3>Diamond Solitaire Ring</h3>
-            <p class="price">$4,200</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?width=1200" alt="Women Jewelry" class="product-image">
-          </div>
-          <div class="product-info">
-            <h3>Luna Pearl Earrings</h3>
-            <p class="price">$1,250</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?width=1200" alt="Women Jewelry" class="product-image">
-          </div>
-          <div class="product-info">
-            <h3>Royal Sapphire Necklace</h3>
-            <p class="price">$5,800</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <a href="#women" class="back-btn" style="display:flex;align-items:center;justify-content:center;height:100%;text-align:center;">View All →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MEN PREVIEW (3 photos) -->
-    <section class="home-section alt">
-      <div class="section-inner">
-        <div class="section-header">
-          <h2>Men</h2>
-          <p>Refined pieces for the distinguished gentleman</p>
-        </div>
-        <div class="product-grid">
-          <div class="product-card">
-            <div class="product-image-wrap">
-              <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?width=1200" alt="Men Jewelry" class="product-image">
-            </div>
-            <div class="product-info">
-              <h3>Platinum Signet Ring</h3>
-              <p class="price">$3,600</p>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image-wrap">
-              <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?width=1200" alt="Men Jewelry" class="product-image">
-            </div>
-            <div class="product-info">
-              <h3>Onyx Cufflinks</h3>
-              <p class="price">$890</p>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image-wrap">
-              <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?width=1200" alt="Men Jewelry" class="product-image">
-            </div>
-            <div class="product-info">
-              <h3>Titanium Chain Bracelet</h3>
-              <p class="price">$1,850</p>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image-wrap">
-              <a href="#men" class="back-btn" style="display:flex;align-items:center;justify-content:center;height:100%;text-align:center;">View All →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- KIDS PREVIEW (3 photos) -->
-    <section class="home-section">
-      <div class="section-header">
-        <h2>Kids</h2>
-        <p>Delicate pieces for precious moments</p>
-      </div>
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?width=1200" alt="Kids Jewelry" class="product-image">
-          </div>
-          <div class="product-info">
-            <h3>Girl's Pearl Charm</h3>
-            <p class="price">$350</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?width=1200" alt="Kids Jewelry" class="product-image">
-          </div>
-          <div class="product-info">
-            <h3>Boy's Silver Compass</h3>
-            <p class="price">$290</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0324.jpg?width=1200" alt="Kids Jewelry" class="product-image">
-          </div>
-          <div class="product-info">
-            <h3>Girl's Heart Locket</h3>
-            <p class="price">$420</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-image-wrap">
-            <a href="#kids" class="back-btn" style="display:flex;align-items:center;justify-content:center;height:100%;text-align:center;">View All →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- IMAGE BANNER -->
-    <section class="image-banner">
-      <div class="banner-content">
-        <h2>The Art of Detail</h2>
-        <p>Every curve, every facet, every finish is meticulously considered. Discover the philosophy behind our craft.</p>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about">
-      <div class="about-content">
-        <div class="about-text">
-          <h2>Crafting<br>Excellence</h2>
-          <p>For over three decades, SÉRA has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.</p>
-          <p>Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations.</p>
-        </div>
-        <div class="about-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?width=1200" alt="Atelier" class="about-image">
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-col footer-brand">
-          <a href="#" class="logo">SÉRA</a>
-          <p>Haute Joaillerie crafted with passion. Timeless pieces for those who appreciate the finest artistry.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Collections</h4>
-          <ul>
-            <li><a href="#women">Women</a></li>
-            <li><a href="#men">Men</a></li>
-            <li><a href="#kids">Kids</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Help</h4>
-          <ul>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Shipping</a></li>
-            <li><a href="#">Returns</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>About</h4>
-          <ul>
-            <li><a href="#">Our Story</a></li>
-            <li><a href="#">Craftsmanship</a></li>
-            <li><a href="#">Sustainability</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Newsletter</h4>
-          <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 16px; line-height: 1.6;">Join our world and receive exclusive offers.</p>
-          <form onsubmit="event.preventDefault();" style="display: flex; border-bottom: 1px solid rgba(255,255,255,0.3);">
-            <input type="email" placeholder="Email address" style="flex:1; background:transparent; border:none; color:white; padding:12px 0; outline:none; font-family: var(--font-sans); font-size: 12px;">
-            <button type="submit" style="background:transparent; border:none; color:white; cursor:pointer; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">Subscribe</button>
-          </form>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 SÉRA Joaillerie. All rights reserved.</p>
-      </div>
-    </footer>
-  </div>
-
-  <!-- WOMEN COLLECTION PAGE -->
-  <div id="women" class="collection-page">
-    <a href="#" class="back-btn">← Back to Home</a>
-    <div class="section-header">
-      <h2>Women Collection</h2>
-      <p>Complete collection of exquisite pieces</p>
-    </div>
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Diamond Solitaire Ring</h3>
-          <p class="price">$4,200</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Luna Pearl Earrings</h3>
-          <p class="price">$1,250</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Royal Sapphire Necklace</h3>
-          <p class="price">$5,800</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Aurum Gold Bracelet</h3>
-          <p class="price">$2,400</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0299.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Eternity Band</h3>
-          <p class="price">$3,100</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0296.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Emerald Drop Earrings</h3>
-          <p class="price">$4,500</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Vintage Ruby Ring</h3>
-          <p class="price">$6,200</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0292.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Crystal Tiara</h3>
-          <p class="price">$8,900</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Diamond Tennis Bracelet</h3>
-          <p class="price">$7,500</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0298.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Rose Gold Pendant</h3>
-          <p class="price">$2,800</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Sapphire Halo Ring</h3>
-          <p class="price">$5,400</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0315.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Platinum Chain Necklace</h3>
-          <p class="price">$3,900</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?width=1200" alt="Women Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Opal Statement Ring</h3>
-          <p class="price">$4,700</p>
-        </div>
+    <div class="hero-header">
+      <nav class="hero-nav">
+        <a href="#">WOMEN</a>
+        <a href="#">MEN</a>
+        <a href="#">KIDS</a>
+      </nav>
+      <div class="hero-icons">
+        <!-- Search Icon -->
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        <!-- Sign Up / User Icon -->
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </div>
     </div>
-  </div>
 
-  <!-- MEN COLLECTION PAGE -->
-  <div id="men" class="collection-page">
-    <a href="#" class="back-btn">← Back to Home</a>
-    <div class="section-header">
-      <h2>Men Collection</h2>
-      <p>Complete collection of refined pieces</p>
+    <div class="hero-content">
+      <h1>SÉRA</h1>
+      <p>An Expression of Elegance</p>
     </div>
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Platinum Signet Ring</h3>
-          <p class="price">$3,600</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Onyx Cufflinks</h3>
-          <p class="price">$890</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Titanium Chain Bracelet</h3>
-          <p class="price">$1,850</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Obsidian Pendant</h3>
-          <p class="price">$2,100</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0310.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Classic Gold Band</h3>
-          <p class="price">$1,200</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0307.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Sapphire Tie Pin</h3>
-          <p class="price">$750</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0308.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Silver Skull Ring</h3>
-          <p class="price">$980</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0313.jpg?width=1200" alt="Men Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Leather Wrap Bracelet</h3>
-          <p class="price">$650</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <!-- KIDS COLLECTION PAGE -->
-  <div id="kids" class="collection-page">
-    <a href="#" class="back-btn">← Back to Home</a>
-    <div class="section-header">
-      <h2>Kids Collection</h2>
-      <p>Delicate pieces for boys and girls</p>
+  <!-- 2. IMAGE WITH LUXURY TEXT -->
+  <section class="luxury-split">
+    <div class="luxury-image"></div>
+    <div class="luxury-text">
+      <h2>The Essence of Luxury</h2>
+      <p>Every piece is a testament to uncompromising quality and timeless design. Crafted for those who understand that true elegance speaks in whispers, not shouts.</p>
     </div>
-    <div class="product-grid">
+  </section>
+
+  <!-- 3. TWO PHOTOS STICKED TOGETHER (NO TEXT) -->
+  <section class="sticked-photos">
+    <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?width=1200" alt="Detail 1">
+    <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?width=1200" alt="Detail 2">
+  </section>
+
+  <!-- 4. VIDEO SECTION -->
+  <section class="video-section">
+    <video autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?width=1920">
+      <source src="https://cdn.shopify.com/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
+    </video>
+  </section>
+
+  <!-- 5. TWO PHOTOS STICKED TOGETHER (NO TEXT) -->
+  <section class="sticked-photos">
+    <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?width=1200" alt="Detail 3">
+    <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?width=1200" alt="Detail 4">
+  </section>
+
+  <!-- 6. PRODUCTS IN ONE LINE (5 items) -->
+  <section class="products-line">
+    <div class="products-grid">
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?width=1200" alt="Kids Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?width=800" alt="Product 1">
         </div>
-        <div class="product-info">
-          <h3>Girl's Pearl Charm</h3>
-          <p class="price">$350</p>
-        </div>
+        <div class="product-name">Luna Pearl Drop</div>
+        <div class="product-price">$1,250</div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?width=1200" alt="Kids Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?width=800" alt="Product 2">
         </div>
-        <div class="product-info">
-          <h3>Boy's Silver Compass</h3>
-          <p class="price">$290</p>
-        </div>
+        <div class="product-name">Ethereal Gold Band</div>
+        <div class="product-price">$2,400</div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0324.jpg?width=1200" alt="Kids Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?width=800" alt="Product 3">
         </div>
-        <div class="product-info">
-          <h3>Girl's Heart Locket</h3>
-          <p class="price">$420</p>
-        </div>
+        <div class="product-name">Royal Sapphire Pendant</div>
+        <div class="product-price">$3,800</div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?width=1200" alt="Kids Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?width=800" alt="Product 4">
         </div>
-        <div class="product-info">
-          <h3>Boy's Classic Ring</h3>
-          <p class="price">$250</p>
-        </div>
+        <div class="product-name">Diamond Solitaire</div>
+        <div class="product-price">$5,200</div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0323.jpg?width=1200" alt="Kids Jewelry" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?width=800" alt="Product 5">
         </div>
-        <div class="product-info">
-          <h3>Girl's Star Bracelet</h3>
-          <p class="price">$310</p>
-        </div>
+        <div class="product-name">Heritage Cufflinks</div>
+        <div class="product-price">$980</div>
       </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0319.jpg?width=1200" alt="Kids Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Boy's Leather Cord</h3>
-          <p class="price">$180</p>
-        </div>
+    </div
+  </section>
+
+  <!-- 7. FULL WIDTH HD PHOTO WITH LUXE TEXT -->
+  <section class="full-width-luxe">
+    <div class="luxe-overlay-text">
+      <h2>Crafted for Eternity</h2>
+      <p>Where heritage meets modern sophistication</p>
+    </div>
+  </section>
+
+  <!-- 8. 3 PHOTOS WITH DESCRIPTION ABOVE -->
+  <section class="details-section">
+    <div class="description">
+      <h3>Signature Details</h3>
+      <p>From the initial sketch to the final polish, every SÉRA piece undergoes over 200 hours of meticulous handcrafting. We believe that true luxury lies in the details that others overlook.</p>
+    </div>
+    <div class="details-grid">
+      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?width=600" alt="Detail A">
+      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?width=600" alt="Detail B">
+      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?width=600" alt="Detail C">
+    </div>
+  </section>
+
+  <!-- 9. FINAL CTA -->
+  <section class="final-cta">
+    <h2>Begin Your Journey</h2>
+    <p>Discover the collection that redefines modern elegance. Visit our atelier or explore our curated pieces online.</p>
+    <a href="#" class="cta-button">Explore the Collection</a>
+  </section>
+
+  <!-- FULL FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="#" class="logo">SÉRA</a>
+        <p>An expression of elegance. Haute joaillerie crafted with passion for those who appreciate the finest artistry.</p>
       </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0320.jpg?width=1200" alt="Kids Jewelry" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Girl's Butterfly Pendant</h3>
-          <p class="price">$275</p>
-        </div>
+      <div class="footer-col">
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Kids</a></li>
+          <li><a href="#">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Maison</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Craftsmanship</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Client Care</h4>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
       </div>
     </div>
-  </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 SÉRA Joaillerie. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
