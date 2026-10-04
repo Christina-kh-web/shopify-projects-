@@ -1,1 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>AURELIA — Modern Fine Jewellery</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       GLOBAL STYLES
+    ========================== */
+
+    :root {
+      --cream: #f8f5ef;
+      --white: #ffffff;
+      --black: #171717;
+      --muted: #77736c;
+      --gold: #b8955c;
+      --gold-light: #d6bd8d;
+      --border: #e7e1d7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+    }
+
+    nav {
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.55rem;
+      letter-spacing: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(248, 245, 239, 0.98) 0%,
+          rgba(248, 245, 239, 0.88) 45%,
+          rgba(248, 245, 239, 0.25) 100%
+        ),
+        url("https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1800&q=85")
+        center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 620px;
+      padding-top: 50px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3.2rem, 7vw, 6.4rem);
+      font-weight: 500;
+      line-height: 0.98;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 500px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+    }
+
+    /* =========================
+       BUTTON
+    ========================== */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      border: 1px solid var(--black);
+      transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--black);
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       SECTION COMMON STYLES
+    ========================== */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 60px;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.1;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    /* =========================
+       ABOUT SECTION
+    ========================== */
+
+    .about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-image {
+      height: 600px;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .about-text .eyebrow {
+      margin-bottom: 15px;
+    }
+
+    .about-text h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      margin-top: 35px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+
+    /* =========================
+       FEATURES SECTION
+    ========================== */
+
+    .features {
+      background: var(--cream);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      padding: 42px 34px;
+      border: 1px solid var(--border);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(30, 25, 15, 0.08);
+    }
+
+    .feature-number {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    .feature-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.65rem;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       COLLECTION BANNER
+    ========================== */
+
+    .collection {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(
+          rgba(20, 18, 15, 0.48),
+          rgba(20, 18, 15, 0.48)
+        ),
+        url("https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1800&q=85")
+        center/cover no-repeat;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .collection-content {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .collection .eyebrow {
+      color: var(--gold-light);
+    }
+
+    .collection h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .collection p {
+      max-width: 520px;
+      margin: 0 auto 35px;
+      color: #e8e4dc;
+    }
+
+    .collection .btn {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .collection .btn:hover {
+      background: transparent;
+      color: var(--white);
+    }
+
+    /* =========================
+       CONTACT SECTION
+    ========================== */
+
+    .contact {
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .contact-info h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .contact-info > p {
+      color: var(--muted);
+      max-width: 450px;
+      margin-bottom: 35px;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-details div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-details span:first-child {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 16px 0;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form .btn {
+      align-self: flex-start;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 35px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: "Playfair Display", serif;
+      letter-spacing: 3px;
+    }
+
+    .copyright {
+      color: #96938d;
+      font-size: 0.8rem;
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================== */
+
+    @media (max-width: 800px) {
+
+      nav {
+        height: 75px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 90vh;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(248, 245, 239, 0.94),
+            rgba(248, 245, 239, 0.65)
+          ),
+          url("https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=85")
+          center/cover no-repeat;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .about-image {
+        height: 450px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        padding: 32px 28px;
+      }
+
+      .collection {
+        min-height: 450px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      .about-image {
+        height: 380px;
+      }
+
+      .collection h2 {
+        font-size: 2.7rem;
+      }
+
+      .contact-grid {
+        gap: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER / NAVIGATION
+  ========================== -->
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">AURELIA</a>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Craftsmanship</a></li>
+          <li><a href="#collection">Collection</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            Fine jewellery · Est. 2018
+          </div>
+
+          <h1>
+            Made to be<br>
+            <span>remembered.</span>
+          </h1>
+
+          <p>
+            Timeless jewellery designed for the moments that matter.
+            Discover refined pieces crafted with intention, precision,
+            and a quiet sense of luxury.
+          </p>
+
+          <a href="#collection" class="btn">
+            Explore Collection
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         ABOUT SECTION
+    ========================== -->
+
+    <section class="about" id="about">
+      <div class="container">
+
+        <div class="about-grid">
+
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1000&q=85"
+              alt="Elegant gold jewellery"
+            >
+          </div>
+
+          <div class="about-text">
+
+            <div class="eyebrow">
+              Our Philosophy
+            </div>
+
+            <h2>
+              Beauty in the details.
+            </h2>
+
+            <p>
+              At AURELIA, we believe jewellery should feel personal.
+              Every piece is thoughtfully designed to become part of
+              your story rather than simply follow a trend.
+            </p>
+
+            <p>
+              From the first sketch to the final polish, we combine
+              traditional craftsmanship with contemporary design to
+              create jewellery that feels effortless today and
+              meaningful for years to come.
+            </p>
+
+            <div class="signature">
+              — The Aurelia Studio
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         FEATURES / BENEFITS
+    ========================== -->
+
+    <section class="features" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="eyebrow">
+            Why Aurelia
+          </div>
+
+          <h2>
+            Designed with purpose.
+          </h2>
+
+          <p>
+            Thoughtful materials, timeless silhouettes, and meticulous
+            craftsmanship come together in every piece.
+          </p>
+        </div>
+
+
+        <div class="features-grid">
+
+          <!-- Feature 01 -->
+          <div class="feature-card">
+            <div class="feature-number">
+              01 / MATERIALS
+            </div>
+
+            <h3>
+              Considered Materials
+            </h3>
+
+            <p>
+              We select premium metals and carefully sourced stones
+              for lasting beauty, quality, and comfort.
+            </p>
+          </div>
+
+
+          <!-- Feature 02 -->
+          <div class="feature-card">
+            <div class="feature-number">
+              02 / CRAFT
+            </div>
+
+            <h3>
+              Crafted Slowly
+            </h3>
+
+            <p>
+              Each piece receives careful attention from skilled
+              makers who value precision over mass production.
+            </p>
+          </div>
+
+
+          <!-- Feature 03 -->
+          <div class="feature-card">
+            <div class="feature-number">
+              03 / DESIGN
+            </div>
+
+            <h3>
+              Timeless Design
+            </h3>
+
+            <p>
+              Clean lines and subtle details create pieces that
+              complement your style season after season.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         COLLECTION CTA
+    ========================== -->
+
+    <section class="collection" id="collection">
+      <div class="container">
+
+        <div class="collection-content">
+
+          <div class="eyebrow">
+            The New Collection
+          </div>
+
+          <h2>
+            Quiet luxury,<br>
+            beautifully worn.
+          </h2>
+
+          <p>
+            Discover our latest collection of refined essentials,
+            created to layer, gift, and keep.
+          </p>
+
+          <a href="#contact" class="btn">
+            Discover More
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         CONTACT SECTION
+    ========================== -->
+
+    <section class="contact" id="contact">
+      <div class="container">
+
+        <div class="contact-grid">
+
+          <!-- Contact information -->
+          <div class="contact-info">
+
+            <div class="eyebrow">
+              Get in Touch
+            </div>
+
+            <h2>
+              Let's create something lasting.
+            </h2>
+
+            <p>
+              Have a question about a piece, an order, or a private
+              appointment? We'd love to hear from you.
+            </p>
+
+            <div class="contact-details">
+
+              <div>
+                <span>Email</span>
+                <span>hello@aurelia-jewellery.com</span>
+              </div>
+
+              <div>
+                <span>Studio</span>
+                <span>24 Atelier Street, London</span>
+              </div>
+
+              <div>
+                <span>Hours</span>
+                <span>Mon — Fri · 10:00 — 18:00</span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Contact form -->
+          <form class="contact-form">
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              aria-label="Your name"
+              required
+            >
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Your email"
+              aria-label="Your email"
+              required
+            >
+
+            <textarea
+              name="message"
+              placeholder="Tell us how we can help..."
+              aria-label="Your message"
+              required
+            ></textarea>
+
+            <!--
+              This form is visual only because the page
+              intentionally uses HTML and CSS without JavaScript
+              or a backend.
+            -->
+            <button type="submit" class="btn">
+              Send Message
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-content">
+
+        <div class="footer-logo">
+          AURELIA
+        </div>
+
+        <div class="copyright">
+          © 2026 Aurelia Jewellery. All rights reserved.
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
