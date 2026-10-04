@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VERA | Haute Joaillerie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>SÉRA | Haute Joaillerie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    
     :root {
-      --black: #000000;
+      --black: #0A0A0A;
       --white: #FFFFFF;
       --ivory: #F5F5F0;
       --grey: #888888;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Inter', sans-serif;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--white);
@@ -28,16 +28,10 @@
       overflow-x: hidden;
     }
 
-    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    a { text-decoration: none; color: inherit; transition: opacity 0.3s ease; }
     a:hover { opacity: 0.6; }
     img { max-width: 100%; display: block; }
     ul { list-style: none; }
-
-    @keyframes kenBurns {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
 
     /* === HEADER === */
     header {
@@ -48,9 +42,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: transparent;
       z-index: 1000;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+      transition: background 0.4s ease;
     }
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+    header.scrolled .logo, header.scrolled nav a, header.scrolled .search-icon {
+      color: var(--black);
+    }
+    header.scrolled nav a::after { background: var(--black); }
+
     .logo {
       font-family: var(--font-serif);
       font-size: 36px;
@@ -59,11 +64,7 @@
       text-transform: uppercase;
       color: var(--white);
     }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
+    .header-right { display: flex; align-items: center; gap: 40px; }
     nav ul { display: flex; gap: 32px; }
     nav a {
       font-size: 11px;
@@ -74,488 +75,311 @@
       position: relative;
     }
     nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--white);
-      transition: width 0.3s ease;
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+      background: var(--white); transition: width 0.3s ease;
     }
     nav a:hover::after { width: 100%; }
     .search-icon {
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      color: var(--white);
+      width: 20px; height: 20px; cursor: pointer; color: var(--white);
+      stroke: currentColor; fill: none; stroke-width: 1.5;
     }
 
-    /* === HERO === */
+    /* === HERO VIDEO === */
     .hero {
       height: 100vh;
-      min-height: 800px;
+      min-height: 700px;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .hero-bg {
+    .hero-video {
       position: absolute;
-      inset: 0;
-      background: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
-      animation: kenBurns 25s ease-in-out infinite;
+      top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 0;
     }
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.3);
+      position: absolute; inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
     }
     .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: var(--white);
-      max-width: 900px;
-      padding: 0 24px;
+      position: relative; z-index: 2; text-align: center; color: var(--white);
     }
     .hero-content h1 {
       font-family: var(--font-serif);
       font-size: clamp(64px, 12vw, 120px);
       font-weight: 300;
       letter-spacing: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       line-height: 1;
     }
     .hero-content p {
-      font-size: 13px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      opacity: 0.9;
+      font-size: 13px; letter-spacing: 4px; text-transform: uppercase; opacity: 0.9;
     }
 
-    /* === COLLECTIONS ON HERO === */
-    .collections-overlay {
-      position: absolute;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      gap: 48px;
-      width: 90%;
-      max-width: 1200px;
-    }
-    .collection-item {
-      flex: 1;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.4s ease;
-    }
-    .collection-item:hover { transform: translateY(-8px); }
-    .collection-item a {
-      display: block;
-      color: var(--white);
-      font-family: var(--font-serif);
-      font-size: 28px;
-      font-weight: 400;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .collection-item p {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
-    /* === PRODUCTS SECTIONS === */
-    .products-section {
-      padding: 120px 48px;
-      max-width: 1440px;
-      margin: 0 auto;
-    }
-    .products-section:nth-child(even) {
-      background: var(--ivory);
-    }
-    .section-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
+    /* === SECTIONS === */
+    .section { padding: 120px 48px; max-width: 1440px; margin: 0 auto; }
+    .section-alt { background-color: var(--ivory); max-width: 100%; }
+    .section-alt .section-inner { max-width: 1440px; margin: 0 auto; padding: 0 48px; }
+    
+    .section-header { text-align: center; margin-bottom: 72px; }
     .section-header h2 {
       font-family: var(--font-serif);
-      font-size: 48px;
-      font-weight: 400;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+      font-size: 48px; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 16px;
     }
-    .section-header p {
-      color: var(--grey);
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+    .section-header p { color: var(--grey); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+
     .product-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
     }
-    .product-card {
-      background: var(--white);
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-    .products-section:nth-child(even) .product-card {
-      background: var(--white);
-    }
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-    .product-image-wrap {
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      position: relative;
-      background: var(--ivory);
-    }
-    .product-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    .product-card:hover .product-image { transform: scale(1.06); }
+    .product-card { background: var(--white); overflow: hidden; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    .product-image-wrap { overflow: hidden; aspect-ratio: 3/4; background: var(--ivory); }
+    .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    .product-card:hover .product-image { transform: scale(1.05); }
     .product-info { padding: 24px 20px; text-align: center; }
-    .product-info h3 {
-      font-family: var(--font-serif);
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-    .product-info .price {
-      font-size: 13px;
-      color: var(--grey);
-      letter-spacing: 1px;
-    }
+    .product-info h3 { font-family: var(--font-serif); font-size: 18px; font-weight: 400; margin-bottom: 8px; letter-spacing: 1px; }
+    .product-info .price { font-size: 13px; color: var(--grey); letter-spacing: 1px; }
 
     /* === ABOUT === */
     .about {
-      background: var(--black);
-      color: var(--white);
-      padding: 120px 48px;
+      background: var(--black); color: var(--white); padding: 120px 48px;
     }
     .about-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
-    .about-text h2 {
-      font-family: var(--font-serif);
-      font-size: 48px;
-      font-weight: 400;
-      margin-bottom: 32px;
-      letter-spacing: 4px;
-      line-height: 1.15;
-    }
-    .about-text p {
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 20px;
-      font-size: 14px;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
-    }
-    .about-image-wrap {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4/5;
-    }
-    .about-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
-    }
+    .about-text h2 { font-family: var(--font-serif); font-size: 48px; font-weight: 400; margin-bottom: 32px; letter-spacing: 4px; line-height: 1.15; }
+    .about-text p { color: rgba(255,255,255,0.7); margin-bottom: 20px; font-size: 14px; line-height: 1.8; letter-spacing: 0.5px; }
+    .about-image-wrap { overflow: hidden; aspect-ratio: 4/5; }
+    .about-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
     .about-image-wrap:hover .about-image { transform: scale(1.04); }
 
-    /* === CONTACT === */
-    .contact {
-      padding: 120px 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .contact h2 {
-      font-family: var(--font-serif);
-      font-size: 48px;
-      font-weight: 400;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-    }
-    .contact-item h3 {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 400;
-      margin-bottom: 16px;
-      letter-spacing: 2px;
-    }
-    .contact-item p {
-      color: var(--grey);
-      font-size: 13px;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
-    }
-
-    /* === FOOTER === */
+    /* === RICH FOOTER === */
     footer {
-      background: var(--black);
-      color: var(--white);
-      padding: 64px 48px 32px;
-      text-align: center;
+      background: var(--black); color: var(--white); padding: 80px 48px 32px;
     }
-    .footer-content {
-      max-width: 1440px;
-      margin: 0 auto;
+    .footer-grid {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 48px;
+      max-width: 1440px; margin: 0 auto 64px;
     }
-    .footer-logo {
-      font-family: var(--font-serif);
-      font-size: 32px;
-      font-weight: 400;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      display: inline-block;
+    .footer-col h4 {
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 24px; font-weight: 500; color: var(--white);
     }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .footer-col a:hover { color: var(--white); padding-left: 4px; }
+    
+    .footer-brand .logo { color: var(--white); margin-bottom: 20px; display: inline-block; font-size: 28px; }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 280px; }
+    
+    .lang-switcher { margin-top: 24px; }
+    .lang-switcher select {
+      background: transparent; border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: 10px 16px; font-family: var(--font-sans); font-size: 12px; letter-spacing: 1px;
+      cursor: pointer; outline: none; width: 100%; transition: border-color 0.3s;
+    }
+    .lang-switcher select:hover { border-color: var(--white); }
+    .lang-switcher select option { background: var(--black); color: var(--white); }
+
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 32px;
-      margin-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; text-align: center;
+      max-width: 1440px; margin: 0 auto;
     }
-    .footer-bottom p {
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 1px;
-    }
+    .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
 
     /* === MOBILE === */
     @media (max-width: 1024px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .collections-overlay { flex-direction: column; gap: 32px; bottom: 60px; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 768px) {
       header { padding: 20px 24px; }
       .logo { font-size: 28px; letter-spacing: 6px; }
-      .header-right { gap: 24px; }
-      nav ul { gap: 20px; }
+      .header-right { gap: 20px; }
+      nav ul { gap: 16px; }
       nav a { font-size: 10px; }
       
-      .hero-content h1 { font-size: 48px; letter-spacing: 8px; }
-      
-      .products-section { padding: 72px 24px; }
+      .section, .section-alt .section-inner, .about, footer { padding-left: 24px; padding-right: 24px; }
       .product-grid { grid-template-columns: 1fr; }
-      
-      .about { padding: 72px 24px; }
       .about-content { grid-template-columns: 1fr; gap: 40px; }
       .about-text h2 { font-size: 36px; }
-      
-      .contact { padding: 72px 24px; }
-      .contact h2 { font-size: 36px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      
-      footer { padding: 48px 24px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-content h1 { font-size: 56px; letter-spacing: 6px; }
     }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header>
-    <a href="#" class="logo">Vera</a>
+  <header id="mainHeader">
+    <a href="#" class="logo">SÉRA</a>
     <div class="header-right">
       <nav>
         <ul>
-          <li><a href="#women">Women</a></li>
-          <li><a href="#men">Men</a></li>
-          <li><a href="#kids">Kids</a></li>
+          <li><a href="#women" data-i18n="nav_women">Women</a></li>
+          <li><a href="#men" data-i18n="nav_men">Men</a></li>
+          <li><a href="#kids" data-i18n="nav_kids">Kids</a></li>
         </ul>
       </nav>
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <svg class="search-icon" viewBox="0 0 24 24">
         <circle cx="11" cy="11" r="7"/>
         <path d="m21 21-4.35-4.35"/>
       </svg>
     </div>
   </header>
 
-  <!-- HERO WITH COLLECTIONS OVERLAY -->
+  <!-- HERO VIDEO -->
   <section class="hero">
-    <div class="hero-bg"></div>
+    <video class="hero-video" autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565">
+      <source src="https://cdn.shopify.com/s/files/1/0703/3195/7291/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Vera</h1>
-      <p>Haute Joaillerie · Est. 1987</p>
-    </div>
-    
-    <div class="collections-overlay">
-      <div class="collection-item">
-        <a href="#women">Women</a>
-        <p>Rings · Necklaces · Earrings</p>
-      </div>
-      <div class="collection-item">
-        <a href="#men">Men</a>
-        <p>Cufflinks · Rings · Bracelets</p>
-      </div>
-      <div class="collection-item">
-        <a href="#kids">Kids</a>
-        <p>Bracelets · Pendants · Charms</p>
-      </div>
+      <h1>SÉRA</h1>
+      <p data-i18n="hero_subtitle">Haute Joaillerie · Est. 1987</p>
     </div>
   </section>
 
-  <!-- WOMEN PRODUCTS -->
-  <section id="women" class="products-section">
+  <!-- WOMEN COLLECTION -->
+  <section id="women" class="section">
     <div class="section-header">
-      <h2>Women</h2>
-      <p>Exquisite pieces for the modern woman</p>
+      <h2 data-i18n="title_women">Women</h2>
+      <p data-i18n="desc_women">Exquisite pieces for the modern woman</p>
     </div>
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1605100804763-247f67b2548e?q=80&w=800&auto=format&fit=crop" alt="Diamond Ring" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?v=1791130614" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Solitaire Diamond Ring</h3>
+          <h3 data-i18n="prod_w1">Diamond Solitaire Ring</h3>
           <p class="price">$4,200</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" alt="Pearl Earrings" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Luna Pearl Earrings</h3>
+          <h3 data-i18n="prod_w2">Luna Pearl Earrings</h3>
           <p class="price">$1,250</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop" alt="Sapphire Necklace" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?v=1791130614" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Royal Sapphire Necklace</h3>
+          <h3 data-i18n="prod_w3">Royal Sapphire Necklace</h3>
           <p class="price">$5,800</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=800&auto=format&fit=crop" alt="Gold Bracelet" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?v=1791130614" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Aurum Gold Bracelet</h3>
+          <h3 data-i18n="prod_w4">Aurum Gold Bracelet</h3>
           <p class="price">$2,400</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MEN PRODUCTS -->
-  <section id="men" class="products-section">
-    <div class="section-header">
-      <h2>Men</h2>
-      <p>Refined pieces for the distinguished gentleman</p>
-    </div>
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=800&auto=format&fit=crop" alt="Men's Ring" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Platinum Signet Ring</h3>
-          <p class="price">$3,600</p>
-        </div>
+  <!-- MEN COLLECTION -->
+  <section id="men" class="section section-alt">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2 data-i18n="title_men">Men</h2>
+        <p data-i18n="desc_men">Refined pieces for the distinguished gentleman</p>
       </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop" alt="Cufflinks" class="product-image">
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?v=1791130628" alt="Jewelry" class="product-image">
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod_m1">Platinum Signet Ring</h3>
+            <p class="price">$3,600</p>
+          </div>
         </div>
-        <div class="product-info">
-          <h3>Onyx Cufflinks</h3>
-          <p class="price">$890</p>
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?v=1791130628" alt="Jewelry" class="product-image">
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod_m2">Onyx Cufflinks</h3>
+            <p class="price">$890</p>
+          </div>
         </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=800&auto=format&fit=crop" alt="Men's Bracelet" class="product-image">
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?v=1791130628" alt="Jewelry" class="product-image">
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod_m3">Titanium Chain Bracelet</h3>
+            <p class="price">$1,850</p>
+          </div>
         </div>
-        <div class="product-info">
-          <h3>Titanium Chain Bracelet</h3>
-          <p class="price">$1,850</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop" alt="Men's Pendant" class="product-image">
-        </div>
-        <div class="product-info">
-          <h3>Obsidian Pendant</h3>
-          <p class="price">$2,100</p>
+        <div class="product-card">
+          <div class="product-image-wrap">
+            <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Jewelry" class="product-image">
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod_m4">Obsidian Pendant</h3>
+            <p class="price">$2,100</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- KIDS PRODUCTS -->
-  <section id="kids" class="products-section">
+  <!-- KIDS COLLECTION -->
+  <section id="kids" class="section">
     <div class="section-header">
-      <h2>Kids</h2>
-      <p>Delicate pieces for precious moments</p>
+      <h2 data-i18n="title_kids">Kids</h2>
+      <p data-i18n="desc_kids">Delicate pieces for precious moments</p>
     </div>
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" alt="Kids Bracelet" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?v=1791131195" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Star Charm Bracelet</h3>
+          <h3 data-i18n="prod_k1">Star Charm Bracelet</h3>
           <p class="price">$450</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop" alt="Kids Pendant" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?v=1791131195" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Heart Pendant Necklace</h3>
+          <h3 data-i18n="prod_k2">Heart Pendant Necklace</h3>
           <p class="price">$380</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=800&auto=format&fit=crop" alt="Kids Earrings" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0319.jpg?v=1791131195" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Pearl Stud Earrings</h3>
+          <h3 data-i18n="prod_k3">Pearl Stud Earrings</h3>
           <p class="price">$320</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?q=80&w=800&auto=format&fit=crop" alt="Kids Ring" class="product-image">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0320.jpg?v=1791131196" alt="Jewelry" class="product-image">
         </div>
         <div class="product-info">
-          <h3>Butterfly Ring</h3>
+          <h3 data-i18n="prod_k4">Butterfly Ring</h3>
           <p class="price">$290</p>
         </div>
       </div>
@@ -566,45 +390,169 @@
   <section class="about">
     <div class="about-content">
       <div class="about-text">
-        <h2>Crafting<br>Excellence</h2>
-        <p>For over three decades, Vera has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.</p>
-        <p>Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations.</p>
-        <p>From the initial sketch to the final polish, every Vera piece undergoes over 200 hours of handcrafting, ensuring that what you wear is not merely jewelry, but a work of art.</p>
+        <h2 data-i18n="about_title">Crafting<br>Excellence</h2>
+        <p data-i18n="about_p1">For over three decades, SÉRA has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.</p>
+        <p data-i18n="about_p2">Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations.</p>
       </div>
       <div class="about-image-wrap">
-        <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1000&auto=format&fit=crop" alt="Master Craftsman" class="about-image">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565" alt="Atelier" class="about-image">
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact">
-    <h2>Visit Our Atelier</h2>
-    <div class="contact-grid">
-      <div class="contact-item">
-        <h3>Location</h3>
-        <p>123 Rue de la Paix<br>Paris, France 75002</p>
-      </div>
-      <div class="contact-item">
-        <h3>Hours</h3>
-        <p>Monday – Saturday<br>10:00 AM – 7:00 PM<br>Sunday: By Appointment</p>
-      </div>
-      <div class="contact-item">
-        <h3>Contact</h3>
-        <p>+33 1 42 60 00 00<br>contact@vera.com</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- RICH FOOTER -->
   <footer>
-    <div class="footer-content">
-      <a href="#" class="footer-logo">Vera</a>
-      <div class="footer-bottom">
-        <p>&copy; 2024 Vera Joaillerie. All rights reserved.</p>
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="#" class="logo">SÉRA</a>
+        <p data-i18n="footer_desc">Haute Joaillerie crafted with passion. Timeless pieces for those who appreciate the finest artistry.</p>
+        <div class="lang-switcher">
+          <select id="languageSelect" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="fr">Français</option>
+          </select>
+        </div>
       </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_collections">Collections</h4>
+        <ul>
+          <li><a href="#women" data-i18n="nav_women">Women</a></li>
+          <li><a href="#men" data-i18n="nav_men">Men</a></li>
+          <li><a href="#kids" data-i18n="nav_kids">Kids</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_help">Help</h4>
+        <ul>
+          <li><a href="#" data-i18n="link_contact">Contact Us</a></li>
+          <li><a href="#" data-i18n="link_shipping">Shipping</a></li>
+          <li><a href="#" data-i18n="link_returns">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_about">About</h4>
+        <ul>
+          <li><a href="#" data-i18n="link_story">Our Story</a></li>
+          <li><a href="#" data-i18n="link_craft">Craftsmanship</a></li>
+          <li><a href="#" data-i18n="link_sustain">Sustainability</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_newsletter">Newsletter</h4>
+        <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 16px; line-height: 1.6;" data-i18n="newsletter_text">Join our world and receive exclusive offers.</p>
+        <form onsubmit="event.preventDefault();" style="display: flex; border-bottom: 1px solid rgba(255,255,255,0.3);">
+          <input type="email" placeholder="Email" style="flex:1; background:transparent; border:none; color:white; padding:12px 0; outline:none; font-family: var(--font-sans); font-size: 12px;" data-i18n-placeholder="placeholder_email">
+          <button type="submit" style="background:transparent; border:none; color:white; cursor:pointer; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;" data-i18n="btn_subscribe">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 SÉRA Joaillerie. <span data-i18n="footer_rights">All rights reserved.</span></p>
     </div>
   </footer>
 
+  <!-- TRANSLATION SCRIPT -->
+  <script>
+    // Словарь переводов
+    const translations = {
+      en: {
+        nav_women: "Women", nav_men: "Men", nav_kids: "Kids",
+        hero_subtitle: "Haute Joaillerie · Est. 1987",
+        title_women: "Women", desc_women: "Exquisite pieces for the modern woman",
+        prod_w1: "Diamond Solitaire Ring", prod_w2: "Luna Pearl Earrings", prod_w3: "Royal Sapphire Necklace", prod_w4: "Aurum Gold Bracelet",
+        title_men: "Men", desc_men: "Refined pieces for the distinguished gentleman",
+        prod_m1: "Platinum Signet Ring", prod_m2: "Onyx Cufflinks", prod_m3: "Titanium Chain Bracelet", prod_m4: "Obsidian Pendant",
+        title_kids: "Kids", desc_kids: "Delicate pieces for precious moments",
+        prod_k1: "Star Charm Bracelet", prod_k2: "Heart Pendant Necklace", prod_k3: "Pearl Stud Earrings", prod_k4: "Butterfly Ring",
+        about_title: "Crafting<br>Excellence",
+        about_p1: "For over three decades, SÉRA has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.",
+        about_p2: "Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations.",
+        footer_desc: "Haute Joaillerie crafted with passion. Timeless pieces for those who appreciate the finest artistry.",
+        footer_collections: "Collections", footer_help: "Help", footer_about: "About", footer_newsletter: "Newsletter",
+        link_contact: "Contact Us", link_shipping: "Shipping", link_returns: "Returns",
+        link_story: "Our Story", link_craft: "Craftsmanship", link_sustain: "Sustainability",
+        newsletter_text: "Join our world and receive exclusive offers.",
+        placeholder_email: "Email address", btn_subscribe: "Subscribe",
+        footer_rights: "All rights reserved."
+      },
+      ru: {
+        nav_women: "Женщинам", nav_men: "Мужчинам", nav_kids: "Детям",
+        hero_subtitle: "Высокое Ювелирное Искусство · Осн. 1987",
+        title_women: "Женщинам", desc_women: "Изысканные изделия для современной женщины",
+        prod_w1: "Кольцо с бриллиантом", prod_w2: "Жемчужные серьги Luna", prod_w3: "Сапфировое колье Royal", prod_w4: "Золотой браслет Aurum",
+        title_men: "Мужчинам", desc_men: "Изысканные аксессуары для джентльмена",
+        prod_m1: "Платиновая печатка", prod_m2: "Запонки с ониксом", prod_m3: "Титановый браслет", prod_m4: "Кулон из обсидиана",
+        title_kids: "Детям", desc_kids: "Деликатные изделия для драгоценных моментов",
+        prod_k1: "Браслет со звездой", prod_k2: "Кулон в форме сердца", prod_k3: "Серьги с жемчугом", prod_k4: "Кольцо «Бабочка»",
+        about_title: "Совершенство<br>Мастерства",
+        about_p1: "Уже более трех десятилетий SÉRA является синонимом исключительного мастерства и вневременного дизайна. Основанная в самом сердце Парижа, наша мастерская объединяет мастеров, посвятивших свою жизнь искусству высокой ювелирной мод.",
+        about_p2: "Каждое изделие в нашей коллекции рассказывает историю — о внимании к мельчайшим деталям, этичном происхождении драгоценных камней и страсти, которая движет нами создавать украшения, переходящие из поколения в поколение.",
+        footer_desc: "Высокое ювелирное искусство, созданное со страстью. Вневременные изделия для ценителей.",
+        footer_collections: "Коллекции", footer_help: "Помощь", footer_about: "О нас", footer_newsletter: "Рассылка",
+        link_contact: "Связаться с нами", link_shipping: "Доставка", link_returns: "Возврат",
+        link_story: "Наша история", link_craft: "Мастерство", link_sustain: "Устойчивое развитие",
+        newsletter_text: "Присоединяйтесь к нашему миру и получайте эксклюзивные предложения.",
+        placeholder_email: "Адрес электронной почты", btn_subscribe: "Подписаться",
+        footer_rights: "Все права защищены."
+      },
+      fr: {
+        nav_women: "Femmes", nav_men: "Hommes", nav_kids: "Enfants",
+        hero_subtitle: "Haute Joaillerie · Est. 1987",
+        title_women: "Femmes", desc_women: "Des pièces exquises pour la femme moderne",
+        prod_w1: "Bague Solitaire Diamant", prod_w2: "Boucles d'oreilles Luna", prod_w3: "Collier Saphir Royal", prod_w4: "Bracelet Or Aurum",
+        title_men: "Hommes", desc_men: "Des pièces raffinées pour le gentleman distingué",
+        prod_m1: "Chevalière en Platine", prod_m2: "Boutons de manchette Onyx", prod_m3: "Bracelet Chaîne Titane", prod_m4: "Pendentif Obsidienne",
+        title_kids: "Enfants", desc_kids: "Des pièces délicates pour des moments précieux",
+        prod_k1: "Bracelet Étoile", prod_k2: "Collier Cœur", prod_k3: "Boucles d'oreilles Perle", prod_k4: "Bague Papillon",
+        about_title: "L'Excellence<br>Artisanale",
+        about_p1: "Depuis plus de trois décennies, SÉRA est synonyme de savoir-faire exceptionnel et de design intemporel. Fondé au cœur de Paris, notre atelier réunit des maîtres artisans qui ont dédié leur vie à l'art de la haute joaillerie.",
+        about_p2: "Chaque pièce de notre collection raconte une histoire — celle d'une attention méticuleuse aux détails, de pierres précieuses d'origine éthique et de la passion qui nous pousse à créer des bijoux qui traversent les générations.",
+        footer_desc: "Haute Joaillerie conçue avec passion. Des pièces intemporelles pour ceux qui apprécient le plus bel art.",
+        footer_collections: "Collections", footer_help: "Aide", footer_about: "À propos", footer_newsletter: "Newsletter",
+        link_contact: "Nous contacter", link_shipping: "Livraison", link_returns: "Retours",
+        link_story: "Notre histoire", link_craft: "Savoir-faire", link_sustain: "Durabilité",
+        newsletter_text: "Rejoignez notre univers et recevez des offres exclusives.",
+        placeholder_email: "Adresse e-mail", btn_subscribe: "S'abonner",
+        footer_rights: "Tous droits réservés."
+      }
+    };
+
+    function changeLanguage(lang) {
+      // Обновляем текстовые содержимое
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          element.innerHTML = translations[lang][key]; // innerHTML позволяет использовать <br>
+        }
+      });
+      // Обновляем placeholder у input
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+          element.placeholder = translations[lang][key];
+        }
+      });
+      // Сохраняем выбор в localStorage
+      localStorage.setItem('sera_lang', lang);
+    }
+
+    // При загрузке страницы проверяем сохраненный язык или ставим английский
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('sera_lang') || 'en';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang);
+    });
+
+    // Эффект смены цвета хедера при скролле
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 </html>
