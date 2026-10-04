@@ -32,7 +32,7 @@
     a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     img { max-width: 100%; display: block; object-fit: cover; }
 
-    /* === 1. HERO BANNER === */
+    /* === HERO BANNER === */
     .hero {
       position: relative;
       width: 100%;
@@ -109,13 +109,12 @@
       opacity: 0.95;
     }
 
-    /* === SPACING AFTER HERO === */
     .hero-spacing {
       height: 80px;
       background: var(--bg-light);
     }
 
-    /* === 2. IMAGE WITH LUXURY TEXT === */
+    /* === IMAGE WITH LUXURY TEXT === */
     .luxury-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -149,7 +148,7 @@
       margin: 0 auto;
     }
 
-    /* === 3. PHOTOS STICKED TOGETHER === */
+    /* === PHOTOS STICKED TOGETHER === */
     .sticked-photos {
       display: flex;
       width: 100%;
@@ -160,7 +159,34 @@
       object-fit: cover;
     }
 
-    /* === 4. VIDEO SECTION === */
+    /* === TITLE SECTIONS === */
+    .title-section {
+      padding: 80px 48px;
+      text-align: center;
+      background: var(--bg-light);
+    }
+    .title-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: var(--color-3);
+    }
+
+    .title-section-short {
+      padding: 60px 48px;
+      text-align: center;
+      background: var(--bg-light);
+    }
+    .title-section-short h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: var(--color-3);
+    }
+
+    /* === VIDEO SECTION === */
     .video-section {
       width: 100%;
       height: 85vh;
@@ -173,52 +199,7 @@
       object-fit: cover;
     }
 
-    /* === CREATIVE SECTION BETWEEN VIDEO AND PHOTOS === */
-    .creative-divider {
-      background: linear-gradient(135deg, var(--color-5) 0%, var(--color-3) 100%);
-      padding: 100px 48px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .creative-divider::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--color-1), transparent);
-    }
-    .creative-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .creative-content h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 300;
-      letter-spacing: 4px;
-      color: var(--color-1);
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-    .creative-content p {
-      font-size: 14px;
-      letter-spacing: 2px;
-      color: rgba(253, 252, 251, 0.7);
-      line-height: 1.8;
-    }
-    .creative-line {
-      width: 60px;
-      height: 1px;
-      background: var(--color-1);
-      margin: 32px auto;
-    }
-
-    /* === 5. PRODUCTS SECTION WITH TITLE === */
+    /* === PRODUCTS SECTION === */
     .products-section {
       padding: 100px 48px;
       background: var(--bg-light);
@@ -279,7 +260,7 @@
       font-weight: 500;
     }
 
-    /* === 6. FULL WIDTH HD PHOTO === */
+    /* === FULL WIDTH HD PHOTO === */
     .full-width-luxe {
       position: relative;
       width: 100%;
@@ -313,7 +294,7 @@
       opacity: 0.9;
     }
 
-    /* === 7. 3 PHOTOS WITH DESCRIPTION === */
+    /* === 3 PHOTOS WITH DESCRIPTION === */
     .details-section {
       padding: 100px 48px;
       text-align: center;
@@ -348,7 +329,7 @@
       box-shadow: 0 10px 30px rgba(63, 51, 36, 0.1);
     }
 
-    /* === 8. FINAL CTA === */
+    /* === FINAL CTA === */
     .final-cta {
       background: var(--color-3);
       padding: 120px 48px;
@@ -387,7 +368,7 @@
       color: var(--color-1);
     }
 
-    /* === 9. FULL WIDTH FOOTER === */
+    /* === FULL WIDTH FOOTER === */
     footer {
       background: var(--color-5);
       color: rgba(253, 252, 251, 0.7);
@@ -472,7 +453,7 @@
 </head>
 <body>
 
-  <!-- 1. HERO BANNER -->
+  <!-- HERO BANNER -->
   <section class="hero">
     <div class="hero-overlay"></div>
     
@@ -494,10 +475,9 @@
     </div>
   </section>
 
-  <!-- SPACING AFTER HERO -->
   <div class="hero-spacing"></div>
 
-  <!-- 2. IMAGE WITH LUXURY TEXT -->
+  <!-- IMAGE WITH LUXURY TEXT -->
   <section class="luxury-split">
     <div class="luxury-image"></div>
     <div class="luxury-text">
@@ -506,26 +486,27 @@
     </div>
   </section>
 
-  <!-- 3. TWO PHOTOS STICKED TOGETHER -->
+  <!-- TWO PHOTOS STICKED TOGETHER -->
   <section class="sticked-photos">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?width=1200" alt="Detail 1">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?width=1200" alt="Detail 2">
   </section>
 
-  <!-- 4. VIDEO SECTION -->
+  <!-- TITLE BEFORE VIDEO -->
+  <section class="title-section">
+    <h2>The Art of Movement</h2>
+  </section>
+
+  <!-- VIDEO SECTION -->
   <section class="video-section">
     <video autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?width=1920">
       <source src="https://cdn.shopify.com/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
     </video>
   </section>
 
-  <!-- CREATIVE DIVIDER SECTION -->
-  <section class="creative-divider">
-    <div class="creative-content">
-      <h3>The Art of Fine Jewelry</h3>
-      <div class="creative-line"></div>
-      <p>Where craftsmanship meets passion, and every detail tells a story of excellence and dedication to the highest standards of luxury.</p>
-    </div>
+  <!-- SHORT TITLE AFTER VIDEO -->
+  <section class="title-section-short">
+    <h2>Timeless Beauty</h2>
   </section>
 
   <!-- TWO MORE PHOTOS -->
@@ -534,7 +515,7 @@
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?width=1200" alt="Detail 4">
   </section>
 
-  <!-- 5. PRODUCTS SECTION WITH TITLE -->
+  <!-- PRODUCTS SECTION WITH TITLE -->
   <section class="products-section">
     <div class="products-title">
       <h2>Curated Collection</h2>
@@ -579,7 +560,7 @@
     </div>
   </section>
 
-  <!-- 6. FULL WIDTH HD PHOTO -->
+  <!-- FULL WIDTH HD PHOTO -->
   <section class="full-width-luxe">
     <div class="luxe-overlay-text">
       <h2>Crafted for Eternity</h2>
@@ -587,7 +568,7 @@
     </div>
   </section>
 
-  <!-- 7. 3 PHOTOS WITH DESCRIPTION -->
+  <!-- 3 PHOTOS WITH DESCRIPTION -->
   <section class="details-section">
     <div class="description">
       <h3>Signature Details</h3>
@@ -600,14 +581,14 @@
     </div>
   </section>
 
-  <!-- 8. FINAL CTA -->
+  <!-- FINAL CTA -->
   <section class="final-cta">
     <h2>Begin Your Journey</h2>
     <p>Discover the collection that redefines modern elegance. Visit our atelier or explore our curated pieces online.</p>
     <a href="#" class="cta-button">Explore the Collection</a>
   </section>
 
-  <!-- 9. FULL WIDTH FOOTER -->
+  <!-- FULL WIDTH FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-grid">
