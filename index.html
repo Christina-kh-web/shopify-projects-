@@ -7,14 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
-    /* === ЦВЕТОВАЯ ПАЛИТРА (строго по ТЗ) === */
     :root {
-      --color-1: #87745A; /* Светлый бронзовый/золотой (акценты, кнопки) */
-      --color-2: #70462E; /* Средний коричневый (ховеры) */
-      --color-3: #3D342D; /* Темный коричневый (основной текст, заголовки) */
-      --color-4: #63513F; /* Приглушенный коричневый (рамки, линии) */
-      --color-5: #3F3324; /* Глубокий темный (фон футера, темные секции) */
-      --bg-light: #FDFCFB; /* Очень светлый фон для контраста */
+      --color-1: #87745A;
+      --color-2: #70462E;
+      --color-3: #3D342D;
+      --color-4: #63513F;
+      --color-5: #3F3324;
+      --bg-light: #FDFCFB;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,10 +46,9 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: rgba(63, 51, 36, 0.2); /* Легкое затемнение для читаемости */
+      background: rgba(63, 51, 36, 0.2);
     }
     
-    /* Header внутри Hero */
     .hero-header {
       position: absolute;
       top: 0;
@@ -72,8 +70,6 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       font-weight: 400;
-      text-decoration: none; /* без подчеркивания */
-      background: transparent; /* без фона */
     }
     .hero-nav a:hover { color: var(--color-1); }
     
@@ -88,11 +84,9 @@
       stroke-width: 1.5;
       fill: none;
       cursor: pointer;
-      transition: stroke 0.3s ease;
     }
     .hero-icons svg:hover { stroke: var(--color-1); }
 
-    /* Центр Hero */
     .hero-content {
       position: relative;
       z-index: 5;
@@ -148,7 +142,34 @@
       margin: 0 auto;
     }
 
-    /* === 3 & 5. PHOTOS STICKED TOGETHER (NO GAP, NO TEXT) === */
+    /* === NEW: SECTION DIVIDER === */
+    .section-divider {
+      padding: 80px 48px;
+      text-align: center;
+      background: var(--bg-light);
+    }
+    .section-divider h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--color-3);
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+    .section-divider p {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-4);
+    }
+    .divider-line {
+      width: 60px;
+      height: 1px;
+      background: var(--color-1);
+      margin: 24px auto;
+    }
+
+    /* === 3 & 5. PHOTOS STICKED TOGETHER === */
     .sticked-photos {
       display: flex;
       width: 100%;
@@ -172,14 +193,70 @@
       object-fit: cover;
     }
 
+    /* === CREATIVE SEPARATOR === */
+    .creative-separator {
+      padding: 100px 48px;
+      background: var(--color-5);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .creative-separator::before {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 120px;
+      color: var(--color-1);
+      opacity: 0.1;
+    }
+    .creative-separator h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--color-1);
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .creative-separator p {
+      font-size: 14px;
+      color: rgba(253, 252, 251, 0.7);
+      letter-spacing: 2px;
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
     /* === 6. PRODUCTS IN ONE LINE === */
     .products-line {
       padding: 100px 48px;
       background: var(--bg-light);
     }
+    .products-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .products-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--color-3);
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+    .products-header p {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-4);
+    }
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr); /* Ровно 5 в одну линию */
+      grid-template-columns: repeat(5, 1fr);
       gap: 24px;
     }
     .product-card {
@@ -323,11 +400,12 @@
       color: var(--color-1);
     }
 
-    /* === FULL FOOTER === */
+    /* === FULL WIDTH FOOTER === */
     footer {
       background: var(--color-5);
       color: rgba(253, 252, 251, 0.7);
       padding: 80px 48px 32px;
+      width: 100%;
     }
     .footer-grid {
       display: grid;
@@ -372,8 +450,7 @@
       border-top: 1px solid var(--color-4);
       padding-top: 32px;
       text-align: center;
-      max-width: 1440px;
-      margin: 0 auto;
+      width: 100%;
     }
     .footer-bottom p {
       font-size: 11px;
@@ -417,9 +494,7 @@
         <a href="#">KIDS</a>
       </nav>
       <div class="hero-icons">
-        <!-- Search Icon -->
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
-        <!-- Sign Up / User Icon -->
         <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </div>
     </div>
@@ -439,7 +514,14 @@
     </div>
   </section>
 
-  <!-- 3. TWO PHOTOS STICKED TOGETHER (NO TEXT) -->
+  <!-- NEW: SECTION DIVIDER -->
+  <section class="section-divider">
+    <h3>Visual Poetry</h3>
+    <div class="divider-line"></div>
+    <p>Captured Moments of Elegance</p>
+  </section>
+
+  <!-- 3. TWO PHOTOS STICKED TOGETHER -->
   <section class="sticked-photos">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?width=1200" alt="Detail 1">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?width=1200" alt="Detail 2">
@@ -452,14 +534,25 @@
     </video>
   </section>
 
-  <!-- 5. TWO PHOTOS STICKED TOGETHER (NO TEXT) -->
+  <!-- NEW: CREATIVE SEPARATOR -->
+  <section class="creative-separator">
+    <h3>The Art of Detail</h3>
+    <p>Where craftsmanship meets passion</p>
+  </section>
+
+  <!-- 5. TWO PHOTOS STICKED TOGETHER -->
   <section class="sticked-photos">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?width=1200" alt="Detail 3">
     <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?width=1200" alt="Detail 4">
   </section>
 
-  <!-- 6. PRODUCTS IN ONE LINE (5 items) -->
+  <!-- 6. PRODUCTS IN ONE LINE WITH TITLE -->
   <section class="products-line">
+    <div class="products-header">
+      <h3>Curated Collection</h3>
+      <div class="divider-line"></div>
+      <p>Timeless Pieces for Discerning Souls</p>
+    </div>
     <div class="products-grid">
       <div class="product-card">
         <div class="product-image-wrap">
@@ -496,7 +589,7 @@
         <div class="product-name">Heritage Cufflinks</div>
         <div class="product-price">$980</div>
       </div>
-    </div
+    </div>
   </section>
 
   <!-- 7. FULL WIDTH HD PHOTO WITH LUXE TEXT -->
@@ -527,7 +620,7 @@
     <a href="#" class="cta-button">Explore the Collection</a>
   </section>
 
-  <!-- FULL FOOTER -->
+  <!-- FULL WIDTH FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-col footer-brand">
