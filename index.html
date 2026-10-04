@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lumière Joaillerie | Fine Jewelry for Women, Men & Kids</title>
+  <title>Aurelia | Haute Joaillerie</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    /* === RESET & BASE === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     
@@ -17,7 +16,6 @@
       --bg-dark: #0A0A0A;
       --text-primary: #0A0A0A;
       --text-secondary: #666666;
-      --text-light: #999999;
       --accent: #A68B5B;
       --accent-light: #C9B07D;
       --white: #FFFFFF;
@@ -45,47 +43,26 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
     @keyframes kenBurns {
-      0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.15) translate(-2%, -2%); }
-    }
-    @keyframes shimmer {
-      0% { background-position: -1000px 0; }
-      100% { background-position: 1000px 0; }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     .animate { animation: fadeInUp 1s ease-out forwards; }
     .delay-1 { animation-delay: 0.2s; opacity: 0; }
     .delay-2 { animation-delay: 0.4s; opacity: 0; }
     .delay-3 { animation-delay: 0.6s; opacity: 0; }
-    .delay-4 { animation-delay: 0.8s; opacity: 0; }
-
-    /* === ANNOUNCEMENT BAR === */
-    .announcement {
-      background: var(--bg-dark);
-      color: var(--white);
-      text-align: center;
-      padding: 12px 24px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 400;
-    }
-    .announcement span { color: var(--accent-light); }
 
     /* === HEADER === */
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
       width: 100%;
-      padding: 20px 48px;
+      padding: 24px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(253, 252, 251, 0.97);
+      background: rgba(253, 252, 251, 0.95);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       z-index: 1000;
@@ -93,80 +70,75 @@
     }
     .logo {
       font-family: var(--font-serif);
-      font-size: 28px;
-      font-weight: 500;
-      letter-spacing: 4px;
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 6px;
       text-transform: uppercase;
       color: var(--text-primary);
     }
     .logo:hover { opacity: 0.7; }
     
-    nav ul { display: flex; gap: 36px; }
-    nav a {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 400;
+    .search-wrap {
       position: relative;
-      padding: 8px 0;
+      width: 300px;
     }
-    nav a::after {
-      content: '';
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 40px 12px 16px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 1px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .search-wrap input:focus { border-color: var(--accent); }
+    .search-wrap button {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-    nav a:hover::after { width: 100%; }
-    nav a:hover { color: var(--accent); }
-
-    .header-icons { display: flex; gap: 20px; align-items: center; }
-    .header-icons a {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
       font-size: 16px;
-    }
-    .header-icons a:hover {
-      background: var(--bg-secondary);
-      color: var(--accent);
+      color: var(--text-secondary);
     }
 
-    /* === HERO SECTION WITH ANIMATION === */
+    /* === HERO SECTION === */
     .hero {
       height: 100vh;
-      min-height: 700px;
+      min-height: 800px;
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 0 24px;
-      position: relative;
-      overflow: hidden;
-      color: var(--white);
     }
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)), 
-                  url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
-      animation: kenBurns 20s ease-in-out infinite alternate;
+      background: url('https://images.unsplash.com/photo-1605100804763-247f67b2548e?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      animation: kenBurns 20s ease-in-out infinite;
       z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+      z-index: 1;
     }
     .hero-content {
       position: relative;
-      z-index: 1;
-      max-width: 900px;
+      z-index: 2;
+      text-align: center;
+      color: var(--white);
+      max-width: 800px;
+      padding: 0 24px;
     }
     .hero-content .subtitle {
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 4px;
       text-transform: uppercase;
       margin-bottom: 24px;
@@ -175,21 +147,17 @@
     }
     .hero-content h1 {
       font-family: var(--font-serif);
-      font-size: clamp(52px, 9vw, 96px);
-      font-weight: 400;
-      letter-spacing: 3px;
+      font-size: clamp(56px, 10vw, 100px);
+      font-weight: 300;
+      letter-spacing: 4px;
       margin-bottom: 32px;
       line-height: 1.05;
-      font-style: italic;
     }
     .hero-content p {
       font-size: 14px;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       margin-bottom: 48px;
       opacity: 0.9;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
     }
     .btn {
       display: inline-block;
@@ -207,143 +175,101 @@
     .btn:hover {
       background: transparent;
       color: var(--white);
-      transform: translateY(-2px);
       letter-spacing: 4px;
     }
-    .btn-dark {
-      background: var(--text-primary);
-      color: var(--white);
-      border-color: var(--text-primary);
+
+    /* === COLLECTIONS (Transparent over hero) === */
+    .collections {
+      position: relative;
+      margin-top: -200px;
+      z-index: 10;
+      padding: 0 48px 120px;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .btn-dark:hover {
-      background: transparent;
-      color: var(--text-primary);
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
     }
-    .btn-outline {
-      background: transparent;
-      color: var(--text-primary);
-      border-color: var(--text-primary);
+    .collection-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
     }
-    .btn-outline:hover {
-      background: var(--text-primary);
-      color: var(--white);
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
+    .collection-image {
+      width: 100%;
+      height: 65%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .collection-card:hover .collection-image { transform: scale(1.08); }
+    .collection-info {
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .collection-info h3 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .collection-info p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .collection-link {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 4px;
+      transition: all 0.3s ease;
+    }
+    .collection-link:hover {
+      letter-spacing: 3.5px;
     }
 
-    /* === SECTIONS COMMON === */
-    .section {
+    /* === PRODUCTS SECTION === */
+    .products-section {
       padding: 120px 48px;
       max-width: 1440px;
       margin: 0 auto;
     }
-    .section-header {
+    .products-section .section-header {
       text-align: center;
       margin-bottom: 72px;
     }
-    .section-header .overline {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      font-weight: 500;
-    }
-    .section-header h2 {
+    .products-section .section-header h2 {
       font-family: var(--font-serif);
       font-size: 42px;
       font-weight: 400;
       letter-spacing: 2px;
       margin-bottom: 16px;
-      color: var(--text-primary);
     }
-    .section-header p {
+    .products-section .section-header p {
       color: var(--text-secondary);
       font-size: 14px;
       letter-spacing: 1px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* === CATEGORIES (WOMEN / MEN / KIDS) === */
-    .categories {
-      background: var(--bg-primary);
-      padding: 120px 48px;
-    }
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      max-width: 1440px;
-      margin: 0 auto;
-    }
-    .category-card {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      cursor: pointer;
-      group: hover;
-    }
-    .category-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .category-card:hover .category-image { transform: scale(1.08); }
-    .category-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.2) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px 32px;
-      color: var(--white);
-      transition: background 0.4s ease;
-    }
-    .category-card:hover .category-overlay {
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.3) 100%);
-    }
-    .category-overlay h3 {
-      font-family: var(--font-serif);
-      font-size: 36px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-    .category-overlay p {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.9;
-      margin-bottom: 24px;
-    }
-    .category-link {
-      display: inline-block;
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--white);
-      width: fit-content;
-      transition: all 0.3s ease;
-    }
-    .category-link:hover {
-      letter-spacing: 3.5px;
-      color: var(--accent-light);
-      border-color: var(--accent-light);
-    }
-
-    /* === FEATURED PRODUCTS === */
-    .featured {
-      background: var(--bg-secondary);
-      padding: 120px 48px;
     }
     .product-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 32px;
-      max-width: 1440px;
-      margin: 0 auto;
     }
     .product-card {
       background: var(--white);
@@ -390,21 +316,22 @@
       font-size: 13px;
       color: var(--text-secondary);
       letter-spacing: 1px;
-      font-weight: 400;
     }
 
     /* === ABOUT SECTION === */
     .about {
+      background: var(--bg-secondary);
+      padding: 120px 48px;
+    }
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
-      background: var(--bg-primary);
-      padding: 120px 48px;
-      max-width: 1440px;
-      margin: 0 auto;
     }
-    .about-content .overline {
+    .about-text .overline {
       font-size: 11px;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -412,14 +339,14 @@
       margin-bottom: 16px;
       font-weight: 500;
     }
-    .about-content h2 {
+    .about-text h2 {
       font-family: var(--font-serif);
       font-size: 42px;
       font-weight: 400;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
       line-height: 1.15;
     }
-    .about-content p {
+    .about-text p {
       color: var(--text-secondary);
       margin-bottom: 20px;
       font-size: 15px;
@@ -438,148 +365,32 @@
     }
     .about-image-wrap:hover .about-image { transform: scale(1.04); }
 
-    /* === FEATURES === */
-    .features {
-      background: var(--bg-secondary);
-      padding: 120px 48px;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-      max-width: 1440px;
-      margin: 0 auto;
-    }
-    .feature-card {
-      text-align: center;
-      padding: 32px 20px;
-      transition: transform 0.3s ease;
-    }
-    .feature-card:hover { transform: translateY(-6px); }
-    .feature-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-    }
-    .feature-card h3 {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 400;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-    .feature-card p {
-      color: var(--text-secondary);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    /* === TESTIMONIALS === */
-    .testimonials {
-      background: var(--bg-primary);
-      padding: 120px 48px;
-      text-align: center;
-    }
-    .testimonial-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .testimonial-quote {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.5;
-      margin-bottom: 32px;
-      color: var(--text-primary);
-    }
-    .testimonial-author {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-    }
-    .testimonial-author strong {
-      display: block;
-      color: var(--text-primary);
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    /* === NEWSLETTER === */
-    .newsletter {
-      background: var(--bg-dark);
-      color: var(--white);
-      padding: 100px 48px;
-      text-align: center;
-    }
-    .newsletter-content {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .newsletter h2 {
-      font-family: var(--font-serif);
-      font-size: 36px;
-      font-weight: 400;
-      margin-bottom: 16px;
-      letter-spacing: 2px;
-    }
-    .newsletter p {
-      font-size: 14px;
-      margin-bottom: 40px;
-      opacity: 0.8;
-    }
-    .newsletter-form {
-      display: flex;
-      max-width: 500px;
-      margin: 0 auto;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-    }
-    .newsletter-form input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      padding: 16px 0;
-      color: var(--white);
-      font-family: var(--font-sans);
-      font-size: 13px;
-      letter-spacing: 1px;
-      outline: none;
-    }
-    .newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
-    .newsletter-form button {
-      background: transparent;
-      border: none;
-      color: var(--white);
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      padding: 16px 24px;
-      font-family: var(--font-sans);
-      transition: color 0.3s ease;
-    }
-    .newsletter-form button:hover { color: var(--accent-light); }
-
-    /* === CONTACT === */
+    /* === CONTACT SECTION === */
     .contact {
-      background: var(--bg-primary);
       padding: 120px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact .section-header {
+      margin-bottom: 72px;
+    }
+    .contact .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .contact .section-header p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      letter-spacing: 1px;
     }
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
     }
     .contact-item h3 {
       font-family: var(--font-serif);
@@ -592,11 +403,6 @@
       font-size: 14px;
       line-height: 1.8;
     }
-    .contact-item .icon {
-      font-size: 24px;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
 
     /* === FOOTER === */
     footer {
@@ -606,7 +412,7 @@
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 48px;
       max-width: 1440px;
       margin: 0 auto 64px;
@@ -640,65 +446,10 @@
       line-height: 1.7;
       max-width: 300px;
     }
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .social-links a {
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-    .social-links a:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--white);
-      transform: translateY(-3px);
-    }
-    .footer-newsletter input {
-      width: 100%;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 12px 16px;
-      color: var(--white);
-      font-family: var(--font-sans);
-      font-size: 12px;
-      margin-bottom: 12px;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-    .footer-newsletter input:focus { border-color: var(--accent); }
-    .footer-newsletter input::placeholder { color: rgba(255,255,255,0.4); }
-    .footer-newsletter button {
-      width: 100%;
-      background: var(--accent);
-      color: var(--white);
-      border: none;
-      padding: 12px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      font-family: var(--font-sans);
-      transition: background 0.3s ease;
-    }
-    .footer-newsletter button:hover { background: var(--accent-light); }
-    
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.1);
       padding-top: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
+      text-align: center;
       max-width: 1440px;
       margin: 0 auto;
     }
@@ -707,146 +458,97 @@
       color: rgba(255,255,255,0.5);
       letter-spacing: 1px;
     }
-    .payment-methods {
-      display: flex;
-      gap: 16px;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      color: rgba(255,255,255,0.5);
-      text-transform: uppercase;
-    }
 
-    /* === MOBILE RESPONSIVE === */
+    /* === MOBILE === */
     @media (max-width: 1024px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
-      .announcement { font-size: 10px; padding: 10px 16px; }
       header {
         flex-direction: column;
         gap: 16px;
         padding: 16px 24px;
       }
-      nav ul { gap: 20px; flex-wrap: wrap; justify-content: center; }
-      nav a { font-size: 10px; }
-      .header-icons { gap: 12px; }
+      .search-wrap { width: 100%; }
       
-      .section, .categories, .featured, .features, .testimonials, .contact {
-        padding: 72px 24px;
-      }
-      .section-header h2 { font-size: 32px; }
+      .collections { padding: 0 24px 72px; margin-top: -100px; }
+      .collection-grid { grid-template-columns: 1fr; gap: 24px; }
       
-      .category-grid { grid-template-columns: 1fr; gap: 24px; }
-      .category-overlay h3 { font-size: 28px; }
+      .products-section { padding: 72px 24px; }
+      .product-grid { grid-template-columns: 1fr; }
       
-      .about {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 72px 24px;
-      }
-      .about-content h2 { font-size: 32px; }
-      .about-image-wrap { order: -1; }
+      .about { padding: 72px 24px; }
+      .about-content { grid-template-columns: 1fr; gap: 40px; }
+      .about-text h2 { font-size: 32px; }
       
-      .product-grid { grid-template-columns: 1fr; gap: 24px; }
-      .features-grid { grid-template-columns: 1fr; }
+      .contact { padding: 72px 24px; }
       .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      
-      .newsletter { padding: 72px 24px; }
-      .newsletter h2 { font-size: 28px; }
       
       footer { padding: 64px 24px 24px; }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ANNOUNCEMENT BAR -->
-  <div class="announcement">
-    Complimentary shipping on all orders over $500 <span>✦</span> Lifetime warranty included
-  </div>
-
   <!-- HEADER -->
   <header>
-    <a href="#" class="logo">Lumière</a>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#collections">Collections</a></li>
-        <li><a href="#women">Women</a></li>
-        <li><a href="#men">Men</a></li>
-        <li><a href="#kids">Kids</a></li>
-        <li><a href="#about">Our Story</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="header-icons">
-      <a href="#" aria-label="Search">🔍</a>
-      <a href="#" aria-label="Account"></a>
-      <a href="#" aria-label="Wishlist">♡</a>
-      <a href="#" aria-label="Bag">🛍</a>
+    <a href="#" class="logo">Aurelia</a>
+    <div class="search-wrap">
+      <input type="text" placeholder="Search collections...">
+      <button type="button">🔍</button>
     </div>
   </header>
 
-  <!-- HERO SECTION WITH KEN BURNS ANIMATION -->
-  <section id="home" class="hero">
+  <!-- HERO SECTION -->
+  <section class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="subtitle animate delay-1">Haute Joaillerie · Since 1987</p>
-      <h1 class="animate delay-2">Adorn Your<br>Story</h1>
-      <p class="animate delay-3">Timeless pieces crafted for those who appreciate the art of fine jewelry</p>
-      <a href="#collections" class="btn animate delay-4">Explore Collections</a>
+      <p class="subtitle animate delay-1">Haute Joaillerie · Est. 1987</p>
+      <h1 class="animate delay-2">Timeless<br>Elegance</h1>
+      <p class="animate delay-3">Exquisite pieces crafted for those who appreciate the finest artistry</p>
+      <a href="#collections" class="btn animate delay-3">Explore Collections</a>
     </div>
   </section>
 
-  <!-- CATEGORIES: WOMEN / MEN / KIDS -->
-  <section id="collections" class="categories">
-    <div class="section-header">
-      <p class="overline">Our Collections</p>
-      <h2>Shop by Category</h2>
-      <p>Discover jewelry designed for every chapter of life</p>
-    </div>
-    <div class="category-grid">
-      <!-- WOMEN -->
-      <div class="category-card" id="women">
-        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1000&auto=format&fit=crop" alt="Women's Jewelry" class="category-image">
-        <div class="category-overlay">
+  <!-- COLLECTIONS (Transparent over hero) -->
+  <section id="collections" class="collections">
+    <div class="collection-grid">
+      <div class="collection-card">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1000&auto=format&fit=crop" alt="Women's Jewelry" class="collection-image">
+        <div class="collection-info">
           <h3>Women</h3>
           <p>Rings · Necklaces · Earrings</p>
-          <a href="#" class="category-link">Discover →</a>
+          <a href="#women-products" class="collection-link">Discover</a>
         </div>
       </div>
-      <!-- MEN -->
-      <div class="category-card" id="men">
-        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=1000&auto=format&fit=crop" alt="Men's Jewelry" class="category-image">
-        <div class="category-overlay">
+      <div class="collection-card">
+        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=1000&auto=format&fit=crop" alt="Men's Jewelry" class="collection-image">
+        <div class="collection-info">
           <h3>Men</h3>
           <p>Cufflinks · Rings · Bracelets</p>
-          <a href="#" class="category-link">Discover →</a>
+          <a href="#men-products" class="collection-link">Discover</a>
         </div>
       </div>
-      <!-- KIDS -->
-      <div class="category-card" id="kids">
-        <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=1000&auto=format&fit=crop" alt="Kids Jewelry" class="category-image">
-        <div class="category-overlay">
+      <div class="collection-card">
+        <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=1000&auto=format&fit=crop" alt="Kids Jewelry" class="collection-image">
+        <div class="collection-info">
           <h3>Kids</h3>
           <p>Bracelets · Pendants · Charms</p>
-          <a href="#" class="category-link">Discover →</a>
+          <a href="#kids-products" class="collection-link">Discover</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURED PRODUCTS -->
-  <section class="featured">
+  <!-- WOMEN PRODUCTS -->
+  <section id="women-products" class="products-section">
     <div class="section-header">
-      <p class="overline">New Arrivals</p>
-      <h2>Featured Pieces</h2>
-      <p>Our latest creations, handcrafted with passion</p>
+      <h2>Women's Collection</h2>
+      <p>Exquisite pieces designed for the modern woman</p>
     </div>
     <div class="product-grid">
       <div class="product-card">
@@ -856,7 +558,7 @@
         </div>
         <div class="product-info">
           <h3>Solitaire Diamond Ring</h3>
-          <p class="price">$3,400</p>
+          <p class="price">$4,200</p>
         </div>
       </div>
       <div class="product-card">
@@ -865,121 +567,161 @@
         </div>
         <div class="product-info">
           <h3>Luna Pearl Earrings</h3>
-          <p class="price">$890</p>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-image-wrap">
-          <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=800&auto=format&fit=crop" alt="Gold Bracelet" class="product-image">
-          <span class="product-badge">Bestseller</span>
-        </div>
-        <div class="product-info">
-          <h3>Aurum Gold Bracelet</h3>
-          <p class="price">$1,650</p>
+          <p class="price">$1,250</p>
         </div>
       </div>
       <div class="product-card">
         <div class="product-image-wrap">
           <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop" alt="Sapphire Necklace" class="product-image">
+          <span class="product-badge">Bestseller</span>
         </div>
         <div class="product-info">
           <h3>Royal Sapphire Necklace</h3>
-          <p class="price">$4,200</p>
+          <p class="price">$5,800</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=800&auto=format&fit=crop" alt="Gold Bracelet" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3>Aurum Gold Bracelet</h3>
+          <p class="price">$2,400</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEN PRODUCTS -->
+  <section id="men-products" class="products-section" style="background: var(--bg-secondary);">
+    <div class="section-header">
+      <h2>Men's Collection</h2>
+      <p>Refined pieces for the distinguished gentleman</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=800&auto=format&fit=crop" alt="Men's Ring" class="product-image">
+          <span class="product-badge">New</span>
+        </div>
+        <div class="product-info">
+          <h3>Platinum Signet Ring</h3>
+          <p class="price">$3,600</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop" alt="Cufflinks" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3>Onyx Cufflinks</h3>
+          <p class="price">$890</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=800&auto=format&fit=crop" alt="Men's Bracelet" class="product-image">
+          <span class="product-badge">Bestseller</span>
+        </div>
+        <div class="product-info">
+          <h3>Titanium Chain Bracelet</h3>
+          <p class="price">$1,850</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=800&auto=format&fit=crop" alt="Men's Pendant" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3>Obsidian Pendant</h3>
+          <p class="price">$2,100</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KIDS PRODUCTS -->
+  <section id="kids-products" class="products-section">
+    <div class="section-header">
+      <h2>Kids' Collection</h2>
+      <p>Delicate pieces for precious moments</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" alt="Kids Bracelet" class="product-image">
+          <span class="product-badge">New</span>
+        </div>
+        <div class="product-info">
+          <h3>Star Charm Bracelet</h3>
+          <p class="price">$450</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=800&auto=format&fit=crop" alt="Kids Pendant" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3>Heart Pendant Necklace</h3>
+          <p class="price">$380</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=800&auto=format&fit=crop" alt="Kids Earrings" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3>Pearl Stud Earrings</h3>
+          <p class="price">$320</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap">
+          <img src="https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?q=80&w=800&auto=format&fit=crop" alt="Kids Ring" class="product-image">
+          <span class="product-badge">Bestseller</span>
+        </div>
+        <div class="product-info">
+          <h3>Butterfly Ring</h3>
+          <p class="price">$290</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ABOUT SECTION -->
-  <section id="about" class="about">
+  <section class="about">
     <div class="about-content">
-      <p class="overline">Our Heritage</p>
-      <h2>Crafted with Passion,<br>Worn with Pride</h2>
-      <p>For over three decades, Lumière has been at the forefront of fine jewelry craftsmanship. Each piece is meticulously handcrafted by master artisans who bring decades of experience to every creation.</p>
-      <p>We source only the finest ethically mined gemstones and recycled precious metals, ensuring that your jewelry is as kind to the earth as it is beautiful to behold. Our commitment to excellence extends beyond craftsmanship — we believe that true luxury lies in the details.</p>
-      <a href="#" class="btn btn-outline" style="margin-top: 16px;">Read Our Story</a>
-    </div>
-    <div class="about-image-wrap">
-      <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1000&auto=format&fit=crop" alt="Jewelry Crafting" class="about-image">
+      <div class="about-text">
+        <p class="overline">Our Heritage</p>
+        <h2>Crafting Excellence Since 1987</h2>
+        <p>For over three decades, Aurelia has been synonymous with exceptional craftsmanship and timeless design. Founded in the heart of Paris, our atelier brings together master artisans who have dedicated their lives to the art of fine jewelry.</p>
+        <p>Each piece in our collection tells a story — of meticulous attention to detail, of ethically sourced gemstones, and of the passion that drives us to create jewelry that transcends generations. We believe that true luxury lies not in ostentation, but in the quiet confidence of exquisite craftsmanship.</p>
+        <p>From the initial sketch to the final polish, every Aurelia piece undergoes over 200 hours of handcrafting, ensuring that what you wear is not merely jewelry, but a work of art.</p>
+      </div>
+      <div class="about-image-wrap">
+        <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1000&auto=format&fit=crop" alt="Master Craftsman" class="about-image">
+      </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="features">
+  <!-- CONTACT SECTION -->
+  <section class="contact">
     <div class="section-header">
-      <p class="overline">Why Lumière</p>
-      <h2>Our Commitment</h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">✦</div>
-        <h3>Ethical Sourcing</h3>
-        <p>All gemstones are ethically sourced and certified with the highest standards of responsibility.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">◈</div>
-        <h3>Master Craftsmanship</h3>
-        <p>Each piece is handcrafted by artisans with decades of experience in traditional techniques.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">❖</div>
-        <h3>Lifetime Warranty</h3>
-        <p>We stand behind our work with a lifetime warranty for maintenance and repairs.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">✧</div>
-        <h3>Free Shipping</h3>
-        <p>Complimentary worldwide shipping on all orders over $500 with secure packaging.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <div class="testimonial-content">
-      <p class="overline" style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 500;">Client Stories</p>
-      <p class="testimonial-quote">"The craftsmanship is extraordinary. My engagement ring from Lumière is not just jewelry — it's a work of art that I will treasure for generations."</p>
-      <div class="testimonial-author">
-        <strong>Isabelle Moreau</strong>
-        Paris, France
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWSLETTER -->
-  <section class="newsletter">
-    <div class="newsletter-content">
-      <h2>Join the Maison</h2>
-      <p>Subscribe to receive exclusive access to new collections, private events, and special offers.</p>
-      <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="Your email address" required>
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="section-header">
-      <p class="overline">Get in Touch</p>
       <h2>Visit Our Atelier</h2>
       <p>Experience the beauty of our creations in person</p>
     </div>
     <div class="contact-grid">
       <div class="contact-item">
-        <div class="icon">📍</div>
         <h3>Location</h3>
         <p>123 Rue de la Paix<br>Paris, France 75002</p>
       </div>
       <div class="contact-item">
-        <div class="icon">🕐</div>
         <h3>Hours</h3>
-        <p>Monday – Saturday<br>10:00 AM – 7:00 PM</p>
+        <p>Monday – Saturday<br>10:00 AM – 7:00 PM<br>Sunday: By Appointment</p>
       </div>
       <div class="contact-item">
-        <div class="icon">✉</div>
         <h3>Contact</h3>
-        <p>+33 1 42 60 00 00<br>contact@lumiere.com</p>
+        <p>+33 1 42 60 00 00<br>contact@aurelia.com</p>
       </div>
     </div>
   </section>
@@ -988,21 +730,15 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-col footer-brand">
-        <a href="#" class="logo">Lumière</a>
-        <p>Haute Joaillerie crafted with passion since 1987. Timeless pieces for those who appreciate the art of fine jewelry.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Facebook">FB</a>
-          <a href="#" aria-label="Pinterest">PI</a>
-          <a href="#" aria-label="TikTok">TT</a>
-        </div>
+        <a href="#" class="logo">Aurelia</a>
+        <p>Haute Joaillerie crafted with passion since 1987. Timeless pieces for those who appreciate the finest artistry.</p>
       </div>
       <div class="footer-col">
-        <h4>Shop</h4>
+        <h4>Collections</h4>
         <ul>
-          <li><a href="#women">Women</a></li>
-          <li><a href="#men">Men</a></li>
-          <li><a href="#kids">Kids</a></li>
+          <li><a href="#women-products">Women</a></li>
+          <li><a href="#men-products">Men</a></li>
+          <li><a href="#kids-products">Kids</a></li>
           <li><a href="#">New Arrivals</a></li>
           <li><a href="#">Bestsellers</a></li>
         </ul>
@@ -1020,31 +756,16 @@
       <div class="footer-col">
         <h4>About</h4>
         <ul>
-          <li><a href="#about">Our Story</a></li>
+          <li><a href="#">Our Story</a></li>
           <li><a href="#">Craftsmanship</a></li>
           <li><a href="#">Sustainability</a></li>
           <li><a href="#">Press</a></li>
           <li><a href="#">Careers</a></li>
         </ul>
       </div>
-      <div class="footer-col footer-newsletter">
-        <h4>Newsletter</h4>
-        <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 16px; line-height: 1.6;">Join our world and receive exclusive offers.</p>
-        <form onsubmit="return false;">
-          <input type="email" placeholder="Your email" required>
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 Lumière Joaillerie. All rights reserved.</p>
-      <div class="payment-methods">
-        <span>Visa</span>
-        <span>Mastercard</span>
-        <span>Amex</span>
-        <span>PayPal</span>
-        <span>Apple Pay</span>
-      </div>
+      <p>&copy; 2024 Aurelia Joaillerie. All rights reserved.</p>
     </div>
   </footer>
 
