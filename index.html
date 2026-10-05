@@ -225,77 +225,47 @@
       display: block;
     }
 
-    /* Section 5: Kids Photos */
-    .section-kids {
-      padding: 5rem 0;
+    /* Collection Sections */
+    .collection-section {
+      padding: 6rem 2rem;
       text-align: center;
     }
 
-    .kids-photos-container {
-      display: flex;
-      gap: 0;
-      width: 100%;
-      height: 70vh;
-    }
-
-    .kids-photos-container img {
-      flex: 1;
-      width: 50%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    /* Section 6: Products */
-    .section-products {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .products-grid {
+    .collection-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
       gap: 1.5rem;
       max-width: 1400px;
       margin: 0 auto;
     }
 
-    .product-card {
-      text-align: center;
+    .collection-grid.grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .collection-grid.grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .collection-item {
+      position: relative;
+      overflow: hidden;
       cursor: pointer;
     }
 
-    .product-card img {
+    .collection-item img {
       width: 100%;
       aspect-ratio: 3/4;
       object-fit: cover;
-      margin-bottom: 1.2rem;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       image-rendering: -webkit-optimize-contrast;
     }
 
-    .product-card:hover img {
-      transform: scale(1.03);
+    .collection-item:hover img {
+      transform: scale(1.04);
     }
 
-    .product-card h4 {
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-      color: var(--color-dark);
-      font-weight: 400;
-    }
-
-    .product-card .price {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      color: var(--color-black);
-      letter-spacing: 0.1em;
-      font-weight: 500;
-    }
-
-    /* Section 7: Full Width Photo */
+    /* Section 9: Full Width Photo */
     .section-fullwidth {
       position: relative;
       width: 100%;
@@ -340,7 +310,7 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-    /* Section 8: Three Photos */
+    /* Section 10: Three Photos */
     .section-three-photos {
       padding: 5rem 2rem;
       text-align: center;
@@ -362,7 +332,7 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Section 9: CTA */
+    /* Section 11: CTA */
     .section-cta {
       background-color: var(--color-dark);
       padding: 6rem 2rem;
@@ -406,7 +376,7 @@
       color: var(--color-white);
     }
 
-    /* Section 10: Footer (Unchanged) */
+    /* Section 12: Footer */
     .footer {
       background-color: var(--color-darkest);
       color: var(--color-muted);
@@ -464,16 +434,17 @@
 
     /* Mobile Responsiveness */
     @media (max-width: 1024px) {
-      .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      
       .hero-content h1 {
         font-size: 4rem;
       }
 
       .split-text {
         padding: 4rem 3rem;
+      }
+
+      .collection-grid.grid-4,
+      .collection-grid.grid-3 {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -533,14 +504,12 @@
         font-size: 2rem;
       }
 
-      .section-two-photos,
-      .kids-photos-container {
+      .section-two-photos {
         flex-direction: column;
         height: auto;
       }
 
-      .section-two-photos img,
-      .kids-photos-container img {
+      .section-two-photos img {
         width: 100%;
         height: 55vh;
       }
@@ -549,7 +518,8 @@
         height: 65vh;
       }
 
-      .products-grid {
+      .collection-grid.grid-4,
+      .collection-grid.grid-3 {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
@@ -638,48 +608,75 @@
     </div>
   </section>
 
-  <!-- 5. Kids Photos -->
-  <section class="section-kids">
-    <h2 class="section-title">Petite Elegance</h2>
-    <div class="kids-photos-container">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Kids Fashion 1">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?v=1791131195" alt="Kids Fashion 2">
+  <!-- 5. Women's Collection -->
+  <section class="collection-section">
+    <h2 class="section-title">Women's Collection</h2>
+    <div class="collection-grid grid-4">
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0279.jpg?v=1791130565" alt="Women 1"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?v=1791130565" alt="Women 2"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0280.jpg?v=1791130565" alt="Women 3"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565" alt="Women 4"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0287.jpg?v=1791130565" alt="Women 5"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Women 6"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?v=1791130566" alt="Women 7"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?v=1791130566" alt="Women 8"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0286.jpg?v=1791130566" alt="Women 9"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?v=1791130566" alt="Women 10"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0283.jpg?v=1791130566" alt="Women 11"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?v=1791130593" alt="Women 12"></div>
     </div>
   </section>
 
-  <!-- 6. Products with Price (Black Color) -->
-  <section class="section-products">
-    <h2 class="section-title">Curated Selections</h2>
-    <div class="products-grid">
-      <div class="product-card">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="Product 1">
-        <h4>The Obsidian Trench</h4>
-        <span class="price">$2,100</span>
-      </div>
-      <div class="product-card">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?v=1791130593" alt="Product 2">
-        <h4>Velvet Midnight Dress</h4>
-        <span class="price">$1,850</span>
-      </div>
-      <div class="product-card">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?v=1791130566" alt="Product 3">
-        <h4>Cashmere Wrap Coat</h4>
-        <span class="price">$3,200</span>
-      </div>
-      <div class="product-card">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?v=1791130614" alt="Product 4">
-        <h4>Tailored Linen Blazer</h4>
-        <span class="price">$1,650</span>
-      </div>
-      <div class="product-card">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Product 5">
-        <h4>Signature Silk Blouse</h4>
-        <span class="price">$980</span>
-      </div>
+  <!-- 6. Men's Collection -->
+  <section class="collection-section">
+    <h2 class="section-title">Men's Collection</h2>
+    <div class="collection-grid grid-4">
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?v=1791130614" alt="Men 1"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="Men 2"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?v=1791130614" alt="Men 3"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?v=1791130614" alt="Men 4"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0299.jpg?v=1791130614" alt="Men 5"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0296.jpg?v=1791130614" alt="Men 6"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?v=1791130614" alt="Men 7"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0292.jpg?v=1791130614" alt="Men 8"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?v=1791130614" alt="Men 9"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0298.jpg?v=1791130614" alt="Men 10"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?v=1791130614" alt="Men 11"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0315.jpg?v=1791130614" alt="Men 12"></div>
     </div>
   </section>
 
-  <!-- 7. Full Width Photo with Luxe Text -->
+  <!-- 7. Girls Kids Collection -->
+  <section class="collection-section">
+    <h2 class="section-title">Girls Collection</h2>
+    <div class="collection-grid grid-3">
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?v=1791130627" alt="Girls 1"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?v=1791130628" alt="Girls 2"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?v=1791130628" alt="Girls 3"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?v=1791130628" alt="Girls 4"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Girls 5"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0310.jpg?v=1791130628" alt="Girls 6"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0307.jpg?v=1791130628" alt="Girls 7"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0308.jpg?v=1791130628" alt="Girls 8"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0313.jpg?v=1791130628" alt="Girls 9"></div>
+    </div>
+  </section>
+
+  <!-- 8. Boys Kids Collection -->
+  <section class="collection-section">
+    <h2 class="section-title">Boys Collection</h2>
+    <div class="collection-grid grid-4">
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?v=1791131195" alt="Boys 1"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?v=1791131195" alt="Boys 2"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0324.jpg?v=1791131195" alt="Boys 3"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?v=1791131195" alt="Boys 4"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0323.jpg?v=1791131195" alt="Boys 5"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0319.jpg?v=1791131195" alt="Boys 6"></div>
+      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0320.jpg?v=1791131196" alt="Boys 7"></div>
+    </div>
+  </section>
+
+  <!-- 9. Full Width Photo with Luxe Text -->
   <section class="section-fullwidth">
     <div class="fullwidth-text">
       <h2>"Elegance is not standing out, but being remembered."</h2>
@@ -687,7 +684,7 @@
     </div>
   </section>
 
-  <!-- 8. Three Photos with Description Above -->
+  <!-- 10. Three Photos with Description Above -->
   <section class="section-three-photos">
     <h2 class="section-title">The Architecture of Style</h2>
     <div class="three-photos-grid">
@@ -697,14 +694,14 @@
     </div>
   </section>
 
-  <!-- 9. Final Luxe CTA -->
+  <!-- 11. Final Luxe CTA -->
   <section class="section-cta">
     <h2>Join the Inner Circle</h2>
     <p>Experience the pinnacle of refined living. Subscribe to receive exclusive access to new collections and private events.</p>
     <a href="#" class="btn-luxe">Discover More</a>
   </section>
 
-  <!-- 10. Full Footer (Unchanged) -->
+  <!-- 12. Full Footer -->
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-col">
