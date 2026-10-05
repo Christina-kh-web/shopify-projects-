@@ -738,26 +738,41 @@
         height: 250px;
       }
 
-      /* KEEP FOOTER 4 COLUMNS LIKE DESKTOP */
+      /* BEAUTIFUL MOBILE FOOTER - 2x2 Grid Layout */
+      .footer {
+        padding: 3.5rem 1.5rem 2rem;
+      }
+
       .footer-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.5rem;
-        text-align: center;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 1.5rem;
+        margin: 0 auto 3rem;
+        max-width: 100%;
+      }
+
+      .footer-col {
+        text-align: left;
       }
 
       .footer-col h4 {
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
-        margin-bottom: 0.8rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        margin-bottom: 1.2rem;
       }
 
       .footer-col ul li {
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.7rem;
       }
 
       .footer-col ul li a {
-        font-size: 0.6rem;
-        letter-spacing: 0.05em;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+      }
+
+      .footer-bottom {
+        padding-top: 2rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
       }
 
       .section-cta h2 {
