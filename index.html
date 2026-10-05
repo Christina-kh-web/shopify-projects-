@@ -25,6 +25,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--color-bg);
@@ -50,7 +54,32 @@
       font-weight: 400;
     }
 
-    /* Section 1: Hero Banner */
+    /* =========================================
+       PURE CSS PAGE ROUTING (No JavaScript)
+       ========================================= */
+    .page {
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+
+    /* Default: Show home if no target is active */
+    body:not(:has(.page:target)) #home {
+      display: block;
+    }
+
+    /* Show the specifically targeted page */
+    .page:target {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================================
+       HOME PAGE STYLES
+       ========================================= */
     .hero {
       position: relative;
       width: 100%;
@@ -142,7 +171,6 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-    /* Section 2: Split Layout (Text Left, Image Right) */
     .section-split {
       display: flex;
       width: 100%;
@@ -188,7 +216,6 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Section 3: Two Photos, Bigger, Sticked */
     .section-two-photos {
       display: flex;
       gap: 0;
@@ -205,7 +232,6 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Section 4: Video (Big, Full Width) */
     .section-video {
       padding: 4rem 0;
       text-align: center;
@@ -225,47 +251,74 @@
       display: block;
     }
 
-    /* Collection Sections */
-    .collection-section {
-      padding: 6rem 2rem;
+    .section-kids {
+      padding: 5rem 0;
       text-align: center;
     }
 
-    .collection-grid {
+    .kids-photos-container {
+      display: flex;
+      gap: 0;
+      width: 100%;
+      height: 70vh;
+    }
+
+    .kids-photos-container img {
+      flex: 1;
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .section-products {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .products-grid {
       display: grid;
+      grid-template-columns: repeat(5, 1fr);
       gap: 1.5rem;
       max-width: 1400px;
       margin: 0 auto;
     }
 
-    .collection-grid.grid-4 {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .collection-grid.grid-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .collection-item {
-      position: relative;
-      overflow: hidden;
+    .product-card {
+      text-align: center;
       cursor: pointer;
     }
 
-    .collection-item img {
+    .product-card img {
       width: 100%;
       aspect-ratio: 3/4;
       object-fit: cover;
-      display: block;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      margin-bottom: 1.2rem;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       image-rendering: -webkit-optimize-contrast;
     }
 
-    .collection-item:hover img {
-      transform: scale(1.04);
+    .product-card:hover img {
+      transform: scale(1.03);
     }
 
-    /* Section 9: Full Width Photo */
+    .product-card h4 {
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      color: var(--color-dark);
+      font-weight: 400;
+    }
+
+    .product-card .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      color: var(--color-black);
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
     .section-fullwidth {
       position: relative;
       width: 100%;
@@ -310,7 +363,6 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-    /* Section 10: Three Photos */
     .section-three-photos {
       padding: 5rem 2rem;
       text-align: center;
@@ -332,7 +384,6 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Section 11: CTA */
     .section-cta {
       background-color: var(--color-dark);
       padding: 6rem 2rem;
@@ -376,7 +427,131 @@
       color: var(--color-white);
     }
 
-    /* Section 12: Footer */
+    /* =========================================
+       COLLECTION PAGES STYLES
+       ========================================= */
+    .collection-header-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background-color: rgba(245, 241, 235, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+      border-bottom: 1px solid rgba(135, 116, 90, 0.2);
+    }
+
+    .collection-header-bar .brand-link {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--color-dark);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+    }
+
+    .collection-nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .collection-nav a {
+      color: var(--color-dark);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .collection-nav a:hover {
+      color: var(--color-gold);
+    }
+
+    .collection-page-content {
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .collection-hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background-color: var(--color-bg);
+    }
+
+    .collection-hero h1 {
+      font-size: 3.5rem;
+      color: var(--color-dark);
+      margin-bottom: 1rem;
+      letter-spacing: 0.15em;
+    }
+
+    .collection-hero p {
+      font-size: 1.1rem;
+      color: var(--color-muted);
+      letter-spacing: 0.1em;
+      font-weight: 300;
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+
+    .collection-item {
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .collection-item img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .collection-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .collection-item h4 {
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      color: var(--color-dark);
+      font-weight: 400;
+    }
+
+    .collection-item .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      color: var(--color-black);
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .subsection-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--color-dark);
+      margin: 4rem 0 2rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================
+       FOOTER STYLES
+       ========================================= */
     .footer {
       background-color: var(--color-darkest);
       color: var(--color-muted);
@@ -432,19 +607,21 @@
       text-transform: uppercase;
     }
 
-    /* Mobile Responsiveness */
+    /* =========================================
+       MOBILE RESPONSIVENESS
+       ========================================= */
     @media (max-width: 1024px) {
+      .products-grid,
+      .collection-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
       .hero-content h1 {
         font-size: 4rem;
       }
 
       .split-text {
         padding: 4rem 3rem;
-      }
-
-      .collection-grid.grid-4,
-      .collection-grid.grid-3 {
-        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -504,12 +681,14 @@
         font-size: 2rem;
       }
 
-      .section-two-photos {
+      .section-two-photos,
+      .kids-photos-container {
         flex-direction: column;
         height: auto;
       }
 
-      .section-two-photos img {
+      .section-two-photos img,
+      .kids-photos-container img {
         width: 100%;
         height: 55vh;
       }
@@ -518,10 +697,11 @@
         height: 65vh;
       }
 
-      .collection-grid.grid-4,
-      .collection-grid.grid-3 {
+      .products-grid,
+      .collection-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+        padding: 2rem 1rem 4rem;
       }
 
       .fullwidth-text h2 {
@@ -550,200 +730,495 @@
       .section-cta h2 {
         font-size: 2rem;
       }
+
+      /* Collection Mobile Adjustments */
+      .collection-header-bar {
+        padding: 0 1.5rem;
+        height: 70px;
+      }
+      
+      .collection-header-bar .brand-link {
+        font-size: 1.4rem;
+      }
+      
+      .collection-nav {
+        gap: 1.2rem;
+      }
+      
+      .collection-nav a {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+      }
+      
+      .collection-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .collection-page-content {
+        padding-top: 70px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. Hero Banner -->
-  <section class="hero">
-    <nav class="hero-nav-left">
-      <a href="#">Women</a>
-      <a href="#">Men</a>
-      <a href="#">Kids</a>
-    </nav>
-    
-    <div class="hero-nav-right">
-      <svg viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="8"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-      <svg viewBox="0 0 24 24">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-        <circle cx="12" cy="7" r="4"></circle>
-      </svg>
-    </div>
-
-    <div class="hero-content">
-      <h1>SÉRA</h1>
-      <p>An Expression of Elegance</p>
-    </div>
-  </section>
-
-  <!-- 2. Split Layout: Text Left, Image Right -->
-  <section class="section-split">
-    <div class="split-text">
-      <h2>The Art of Detail</h2>
-      <p>Every stitch tells a story of dedication, craftsmanship, and timeless grace. Our latest collection embodies the pinnacle of refined living, designed for those who appreciate the subtle nuances of true luxury.</p>
-    </div>
-    <div class="split-image">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Luxury Detail">
-    </div>
-  </section>
-
-  <!-- 3. Two Photos, Bigger, Sticked Together -->
-  <section class="section-two-photos">
-    <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?v=1791130565" alt="Luxury Fashion 1">
-    <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?v=1791130614" alt="Luxury Fashion 2">
-  </section>
-
-  <!-- 4. Video (Big, Full Width) -->
-  <section class="section-video">
-    <h2 class="section-title">A Cinematic Journey</h2>
-    <div class="video-container">
-      <video autoplay muted loop playsinline>
-        <source src="https://cdn.shopify.com/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
-
-  <!-- 5. Women's Collection -->
-  <section class="collection-section">
-    <h2 class="section-title">Women's Collection</h2>
-    <div class="collection-grid grid-4">
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0279.jpg?v=1791130565" alt="Women 1"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?v=1791130565" alt="Women 2"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0280.jpg?v=1791130565" alt="Women 3"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565" alt="Women 4"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0287.jpg?v=1791130565" alt="Women 5"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Women 6"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?v=1791130566" alt="Women 7"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?v=1791130566" alt="Women 8"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0286.jpg?v=1791130566" alt="Women 9"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?v=1791130566" alt="Women 10"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0283.jpg?v=1791130566" alt="Women 11"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?v=1791130593" alt="Women 12"></div>
-    </div>
-  </section>
-
-  <!-- 6. Men's Collection -->
-  <section class="collection-section">
-    <h2 class="section-title">Men's Collection</h2>
-    <div class="collection-grid grid-4">
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?v=1791130614" alt="Men 1"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="Men 2"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?v=1791130614" alt="Men 3"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?v=1791130614" alt="Men 4"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0299.jpg?v=1791130614" alt="Men 5"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0296.jpg?v=1791130614" alt="Men 6"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?v=1791130614" alt="Men 7"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0292.jpg?v=1791130614" alt="Men 8"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?v=1791130614" alt="Men 9"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0298.jpg?v=1791130614" alt="Men 10"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?v=1791130614" alt="Men 11"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0315.jpg?v=1791130614" alt="Men 12"></div>
-    </div>
-  </section>
-
-  <!-- 7. Girls Kids Collection -->
-  <section class="collection-section">
-    <h2 class="section-title">Girls Collection</h2>
-    <div class="collection-grid grid-3">
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?v=1791130627" alt="Girls 1"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?v=1791130628" alt="Girls 2"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?v=1791130628" alt="Girls 3"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?v=1791130628" alt="Girls 4"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Girls 5"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0310.jpg?v=1791130628" alt="Girls 6"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0307.jpg?v=1791130628" alt="Girls 7"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0308.jpg?v=1791130628" alt="Girls 8"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0313.jpg?v=1791130628" alt="Girls 9"></div>
-    </div>
-  </section>
-
-  <!-- 8. Boys Kids Collection -->
-  <section class="collection-section">
-    <h2 class="section-title">Boys Collection</h2>
-    <div class="collection-grid grid-4">
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?v=1791131195" alt="Boys 1"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?v=1791131195" alt="Boys 2"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0324.jpg?v=1791131195" alt="Boys 3"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?v=1791131195" alt="Boys 4"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0323.jpg?v=1791131195" alt="Boys 5"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0319.jpg?v=1791131195" alt="Boys 6"></div>
-      <div class="collection-item"><img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0320.jpg?v=1791131196" alt="Boys 7"></div>
-    </div>
-  </section>
-
-  <!-- 9. Full Width Photo with Luxe Text -->
-  <section class="section-fullwidth">
-    <div class="fullwidth-text">
-      <h2>"Elegance is not standing out, but being remembered."</h2>
-      <p>The Séra Philosophy</p>
-    </div>
-  </section>
-
-  <!-- 10. Three Photos with Description Above -->
-  <section class="section-three-photos">
-    <h2 class="section-title">The Architecture of Style</h2>
-    <div class="three-photos-grid">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?v=1791130566" alt="Detail 1">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?v=1791130614" alt="Detail 2">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?v=1791130627" alt="Detail 3">
-    </div>
-  </section>
-
-  <!-- 11. Final Luxe CTA -->
-  <section class="section-cta">
-    <h2>Join the Inner Circle</h2>
-    <p>Experience the pinnacle of refined living. Subscribe to receive exclusive access to new collections and private events.</p>
-    <a href="#" class="btn-luxe">Discover More</a>
-  </section>
-
-  <!-- 12. Full Footer -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Séra</h4>
-        <ul>
-          <li><a href="#">Our Heritage</a></li>
-          <li><a href="#">Craftsmanship</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Careers</a></li>
-        </ul>
+  <!-- =========================================
+       HOME PAGE
+       ========================================= -->
+  <main id="home" class="page">
+    <section class="hero">
+      <nav class="hero-nav-left">
+        <a href="#women">Women</a>
+        <a href="#men">Men</a>
+        <a href="#kids">Kids</a>
+      </nav>
+      
+      <div class="hero-nav-right">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
       </div>
-      <div class="footer-col">
-        <h4>Collections</h4>
-        <ul>
-          <li><a href="#">Women</a></li>
-          <li><a href="#">Men</a></li>
-          <li><a href="#">Kids</a></li>
-          <li><a href="#">Accessories</a></li>
-        </ul>
+
+      <div class="hero-content">
+        <h1>SÉRA</h1>
+        <p>An Expression of Elegance</p>
       </div>
-      <div class="footer-col">
-        <h4>Client Services</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">Book an Appointment</a></li>
-        </ul>
+    </section>
+
+    <section class="section-split">
+      <div class="split-text">
+        <h2>The Art of Detail</h2>
+        <p>Every stitch tells a story of dedication, craftsmanship, and timeless grace. Our latest collection embodies the pinnacle of refined living, designed for those who appreciate the subtle nuances of true luxury.</p>
       </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-        </ul>
+      <div class="split-image">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Luxury Detail">
       </div>
+    </section>
+
+    <section class="section-two-photos">
+      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?v=1791130565" alt="Luxury Fashion 1">
+      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?v=1791130614" alt="Luxury Fashion 2">
+    </section>
+
+    <section class="section-video">
+      <h2 class="section-title">A Cinematic Journey</h2>
+      <div class="video-container">
+        <video autoplay muted loop playsinline>
+          <source src="https://cdn.shopify.com/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <section class="section-kids">
+      <h2 class="section-title">Petite Elegance</h2>
+      <div class="kids-photos-container">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Kids Fashion 1">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?v=1791131195" alt="Kids Fashion 2">
+      </div>
+    </section>
+
+    <section class="section-products">
+      <h2 class="section-title">Curated Selections</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="Product 1">
+          <h4>The Obsidian Trench</h4>
+          <span class="price">$2,100</span>
+        </div>
+        <div class="product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?v=1791130593" alt="Product 2">
+          <h4>Velvet Midnight Dress</h4>
+          <span class="price">$1,850</span>
+        </div>
+        <div class="product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?v=1791130566" alt="Product 3">
+          <h4>Cashmere Wrap Coat</h4>
+          <span class="price">$3,200</span>
+        </div>
+        <div class="product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?v=1791130614" alt="Product 4">
+          <h4>Tailored Linen Blazer</h4>
+          <span class="price">$1,650</span>
+        </div>
+        <div class="product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Product 5">
+          <h4>Signature Silk Blouse</h4>
+          <span class="price">$980</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-fullwidth">
+      <div class="fullwidth-text">
+        <h2>"Elegance is not standing out, but being remembered."</h2>
+        <p>The Séra Philosophy</p>
+      </div>
+    </section>
+
+    <section class="section-three-photos">
+      <h2 class="section-title">The Architecture of Style</h2>
+      <div class="three-photos-grid">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?v=1791130566" alt="Detail 1">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?v=1791130614" alt="Detail 2">
+        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?v=1791130627" alt="Detail 3">
+      </div>
+    </section>
+
+    <section class="section-cta">
+      <h2>Join the Inner Circle</h2>
+      <p>Experience the pinnacle of refined living. Subscribe to receive exclusive access to new collections and private events.</p>
+      <a href="#" class="btn-luxe">Discover More</a>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Séra</h4>
+          <ul>
+            <li><a href="#">Our Heritage</a></li>
+            <li><a href="#">Craftsmanship</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Collections</h4>
+          <ul>
+            <li><a href="#women">Women</a></li>
+            <li><a href="#men">Men</a></li>
+            <li><a href="#kids">Kids</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Client Services</h4>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Book an Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
+      </div>
+    </footer>
+  </main>
+
+  <!-- =========================================
+       WOMEN'S COLLECTION PAGE
+       ========================================= -->
+  <main id="women" class="page">
+    <header class="collection-header-bar">
+      <a href="#home" class="brand-link">SÉRA</a>
+      <nav class="collection-nav">
+        <a href="#women">Women</a>
+        <a href="#men">Men</a>
+        <a href="#kids">Kids</a>
+      </nav>
+      <div class="hero-nav-right">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
+    </header>
+    <div class="collection-page-content">
+      <div class="collection-hero">
+        <h1>Women's Collection</h1>
+        <p>Timeless elegance for the modern muse.</p>
+      </div>
+      <div class="collection-grid">
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0279.jpg?v=1791130565" alt="Ethereal Silk Dress">
+          <h4>Ethereal Silk Dress</h4>
+          <span class="price">$1,850</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?v=1791130565" alt="Tailored Wool Coat">
+          <h4>Tailored Wool Coat</h4>
+          <span class="price">$3,200</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0280.jpg?v=1791130565" alt="Cashmere Wrap Blouse">
+          <h4>Cashmere Wrap Blouse</h4>
+          <span class="price">$980</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565" alt="Obsidian Evening Gown">
+          <h4>Obsidian Evening Gown</h4>
+          <span class="price">$4,500</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0287.jpg?v=1791130565" alt="Pleated Midi Skirt">
+          <h4>Pleated Midi Skirt</h4>
+          <span class="price">$1,200</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Signature Silk Blouse">
+          <h4>Signature Silk Blouse</h4>
+          <span class="price">$980</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?v=1791130566" alt="Cashmere Wrap Coat">
+          <h4>Cashmere Wrap Coat</h4>
+          <span class="price">$3,200</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?v=1791130566" alt="The Obsidian Trench">
+          <h4>The Obsidian Trench</h4>
+          <span class="price">$2,100</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0286.jpg?v=1791130566" alt="Linen Summer Dress">
+          <h4>Linen Summer Dress</h4>
+          <span class="price">$1,450</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?v=1791130566" alt="Velvet Midnight Dress">
+          <h4>Velvet Midnight Dress</h4>
+          <span class="price">$1,850</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0283.jpg?v=1791130566" alt="Merino Wool Sweater">
+          <h4>Merino Wool Sweater</h4>
+          <span class="price">$890</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?v=1791130593" alt="Classic Trench Coat">
+          <h4>Classic Trench Coat</h4>
+          <span class="price">$2,400</span>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="footer-bottom">
+          &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
+        </div>
+      </footer>
     </div>
-    <div class="footer-bottom">
-      &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
+  </main>
+
+  <!-- =========================================
+       MEN'S COLLECTION PAGE
+       ========================================= -->
+  <main id="men" class="page">
+    <header class="collection-header-bar">
+      <a href="#home" class="brand-link">SÉRA</a>
+      <nav class="collection-nav">
+        <a href="#women">Women</a>
+        <a href="#men">Men</a>
+        <a href="#kids">Kids</a>
+      </nav>
+      <div class="hero-nav-right">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
+    </header>
+    <div class="collection-page-content">
+      <div class="collection-hero">
+        <h1>Men's Collection</h1>
+        <p>Refined sophistication in every detail.</p>
+      </div>
+      <div class="collection-grid">
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?v=1791130614" alt="Classic Linen Suit">
+          <h4>Classic Linen Suit</h4>
+          <span class="price">$2,800</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="The Obsidian Trench">
+          <h4>The Obsidian Trench</h4>
+          <span class="price">$2,100</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?v=1791130614" alt="Tailored Cotton Chinos">
+          <h4>Tailored Cotton Chinos</h4>
+          <span class="price">$650</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?v=1791130614" alt="Merino Wool Turtleneck">
+          <h4>Merino Wool Turtleneck</h4>
+          <span class="price">$780</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0299.jpg?v=1791130614" alt="Double-Breasted Blazer">
+          <h4>Double-Breasted Blazer</h4>
+          <span class="price">$1,950</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0296.jpg?v=1791130614" alt="Oxford Cotton Shirt">
+          <h4>Oxford Cotton Shirt</h4>
+          <span class="price">$450</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?v=1791130614" alt="Structured Overcoat">
+          <h4>Structured Overcoat</h4>
+          <span class="price">$3,100</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0292.jpg?v=1791130614" alt="Silk Blend Tie">
+          <h4>Silk Blend Tie</h4>
+          <span class="price">$220</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?v=1791130614" alt="Tailored Linen Blazer">
+          <h4>Tailored Linen Blazer</h4>
+          <span class="price">$1,650</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0298.jpg?v=1791130614" alt="Cashmere Scarf">
+          <h4>Cashmere Scarf</h4>
+          <span class="price">$350</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?v=1791130614" alt="Velvet Smoking Jacket">
+          <h4>Velvet Smoking Jacket</h4>
+          <span class="price">$2,200</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0315.jpg?v=1791130614" alt="Premium Leather Loafers">
+          <h4>Premium Leather Loafers</h4>
+          <span class="price">$890</span>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="footer-bottom">
+          &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
+        </div>
+      </footer>
     </div>
-  </footer>
+  </main>
+
+  <!-- =========================================
+       KIDS COLLECTION PAGE
+       ========================================= -->
+  <main id="kids" class="page">
+    <header class="collection-header-bar">
+      <a href="#home" class="brand-link">SÉRA</a>
+      <nav class="collection-nav">
+        <a href="#women">Women</a>
+        <a href="#men">Men</a>
+        <a href="#kids">Kids</a>
+      </nav>
+      <div class="hero-nav-right">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
+    </header>
+    <div class="collection-page-content">
+      <div class="collection-hero">
+        <h1>Children's Collection</h1>
+        <p>Petite elegance for the little ones.</p>
+      </div>
+      
+      <h2 class="subsection-title">Girls</h2>
+      <div class="collection-grid">
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?v=1791130627" alt="Petite Floral Dress">
+          <h4>Petite Floral Dress</h4>
+          <span class="price">$450</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?v=1791130628" alt="Velvet Party Frock">
+          <h4>Velvet Party Frock</h4>
+          <span class="price">$520</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?v=1791130628" alt="Cashmere Cardigan">
+          <h4>Cashmere Cardigan</h4>
+          <span class="price">$280</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?v=1791130628" alt="Pleated School Skirt">
+          <h4>Pleated School Skirt</h4>
+          <span class="price">$310</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Classic Trench Coat">
+          <h4>Classic Trench Coat</h4>
+          <span class="price">$650</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0310.jpg?v=1791130628" alt="Silk Ribbon Blouse">
+          <h4>Silk Ribbon Blouse</h4>
+          <span class="price">$290</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0307.jpg?v=1791130628" alt="Wool Blend Coat">
+          <h4>Wool Blend Coat</h4>
+          <span class="price">$580</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0308.jpg?v=1791130628" alt="Linen Summer Dress">
+          <h4>Linen Summer Dress</h4>
+          <span class="price">$340</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0313.jpg?v=1791130628" alt="Embroidered Cotton Dress">
+          <h4>Embroidered Cotton Dress</h4>
+          <span class="price">$390</span>
+        </div>
+      </div>
+
+      <h2 class="subsection-title">Boys</h2>
+      <div class="collection-grid">
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?v=1791131195" alt="Junior Tailored Blazer">
+          <h4>Junior Tailored Blazer</h4>
+          <span class="price">$480</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?v=1791131195" alt="Classic Cotton Shirt">
+          <h4>Classic Cotton Shirt</h4>
+          <span class="price">$220</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0324.jpg?v=1791131195" alt="Wool Blend Trousers">
+          <h4>Wool Blend Trousers</h4>
+          <span class="price">$290</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?v=1791131195" alt="Cashmere Sweater">
+          <h4>Cashmere Sweater</h4>
+          <span class="price">$310</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0323.jpg?v=1791131195" alt="Structured Overcoat">
+          <h4>Structured Overcoat</h4>
+          <span class="price">$550</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0319.jpg?v=1791131195" alt="Linen Shorts Set">
+          <h4>Linen Shorts Set</h4>
+          <span class="price">$260</span>
+        </div>
+        <div class="collection-item">
+          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0320.jpg?v=1791131196" alt="Premium Leather Shoes">
+          <h4>Premium Leather Shoes</h4>
+          <span class="price">$340</span>
+        </div>
+      </div>
+      
+      <footer class="footer">
+        <div class="footer-bottom">
+          &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
+        </div>
+      </footer>
+    </div>
+  </main>
 
 </body>
 </html>
