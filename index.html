@@ -48,7 +48,7 @@
       text-align: center;
       font-size: 2.2rem;
       color: var(--color-dark);
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       font-weight: 400;
@@ -62,12 +62,10 @@
       animation: fadeIn 0.6s ease;
     }
 
-    /* Default: Show home if no target is active */
     body:not(:has(.page:target)) #home {
       display: block;
     }
 
-    /* Show the specifically targeted page */
     .page:target {
       display: block;
     }
@@ -608,7 +606,7 @@
     }
 
     /* =========================================
-       MOBILE RESPONSIVENESS
+       MOBILE RESPONSIVENESS (Desktop-like Layout)
        ========================================= */
     @media (max-width: 1024px) {
       .products-grid,
@@ -639,11 +637,11 @@
       .hero-nav-left {
         top: 1.5rem;
         left: 1.5rem;
-        gap: 1.2rem;
+        gap: 1rem;
       }
 
       .hero-nav-left a {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         letter-spacing: 0.15em;
       }
 
@@ -660,37 +658,56 @@
       .section-title {
         font-size: 1.6rem;
         letter-spacing: 0.15em;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
 
+      /* KEEP SIDE-BY-SIDE LIKE DESKTOP */
       .section-split {
-        flex-direction: column;
-        min-height: auto;
-      }
-
-      .split-image {
-        height: 50vh;
-        order: -1;
+        flex-direction: row;
+        min-height: 45vh;
       }
 
       .split-text {
-        padding: 3rem 2rem;
+        flex: 1;
+        padding: 2rem 1.5rem;
+        justify-content: center;
       }
 
       .split-text h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
       }
 
-      .section-two-photos,
+      .split-text p {
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+
+      .split-image {
+        flex: 1;
+        height: 45vh;
+      }
+
+      /* KEEP TWO PHOTOS SIDE-BY-SIDE */
+      .section-two-photos {
+        flex-direction: row;
+        height: 40vh;
+      }
+
+      .section-two-photos img {
+        width: 50%;
+        height: 100%;
+      }
+
+      /* KEEP KIDS PHOTOS SIDE-BY-SIDE */
       .kids-photos-container {
-        flex-direction: column;
-        height: auto;
+        flex-direction: row;
+        height: 40vh;
       }
 
-      .section-two-photos img,
       .kids-photos-container img {
-        width: 100%;
-        height: 55vh;
+        width: 50%;
+        height: 100%;
       }
 
       .video-container {
@@ -713,25 +730,40 @@
       }
 
       .three-photos-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
       }
 
       .three-photos-grid img {
-        height: 350px;
+        height: 250px;
       }
 
+      /* KEEP FOOTER 4 COLUMNS LIKE DESKTOP */
       .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
         text-align: center;
-        gap: 2.5rem;
+      }
+
+      .footer-col h4 {
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 0.4rem;
+      }
+
+      .footer-col ul li a {
+        font-size: 0.6rem;
+        letter-spacing: 0.05em;
       }
 
       .section-cta h2 {
         font-size: 2rem;
       }
 
-      /* Collection Mobile Adjustments */
       .collection-header-bar {
         padding: 0 1.5rem;
         height: 70px;
@@ -742,11 +774,11 @@
       }
       
       .collection-nav {
-        gap: 1.2rem;
+        gap: 1rem;
       }
       
       .collection-nav a {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         letter-spacing: 0.1em;
       }
       
@@ -756,6 +788,11 @@
       
       .collection-page-content {
         padding-top: 70px;
+      }
+
+      .subsection-title {
+        font-size: 1.4rem;
+        margin: 3rem 0 1.5rem;
       }
     }
   </style>
@@ -790,9 +827,9 @@
       </div>
     </section>
 
+    <h2 class="section-title">The Art of Detail</h2>
     <section class="section-split">
       <div class="split-text">
-        <h2>The Art of Detail</h2>
         <p>Every stitch tells a story of dedication, craftsmanship, and timeless grace. Our latest collection embodies the pinnacle of refined living, designed for those who appreciate the subtle nuances of true luxury.</p>
       </div>
       <div class="split-image">
