@@ -1,1277 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SÉRA | An Expression of Elegance</title>
-  <link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/c72aed73-2a33-445a-9fad-f2ab26771e26_27144956-8329-418D-AB34-EBB0130CC802.png?v=1793558681">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-gold: #87745A;
-      --color-brown: #70462E;
-      --color-dark: #3D342D;
-      --color-muted: #63513F;
-      --color-darkest: #3F3324;
-      --color-bg: #F5F1EB;
-      --color-white: #FFFFFF;
-      --color-black: #000000;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.2rem;
-      color: var(--color-dark);
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-weight: 400;
-    }
-
-    /* =========================================
-       PURE CSS PAGE ROUTING (No JavaScript)
-       ========================================= */
-    .page {
-      display: none;
-      animation: fadeIn 0.6s ease;
-    }
-
-    body:not(:has(.page:target)) #home {
-      display: block;
-    }
-
-    .page:target {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* =========================================
-       HOME PAGE STYLES
-       ========================================= */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 600px;
-      background-image: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?v=1791130566');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(61, 52, 45, 0.15);
-    }
-
-    .hero-nav-left {
-      position: absolute;
-      top: 3rem;
-      left: 3rem;
-      display: flex;
-      gap: 2.5rem;
-      z-index: 2;
-    }
-
-    .hero-nav-left a {
-      color: var(--color-white);
-      text-decoration: none;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      transition: color 0.4s ease;
-    }
-
-    .hero-nav-left a:hover {
-      color: var(--color-gold);
-    }
-
-    .hero-nav-right {
-      position: absolute;
-      top: 3rem;
-      right: 3rem;
-      display: flex;
-      gap: 1.5rem;
-      z-index: 2;
-    }
-
-    .hero-nav-right svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--color-white);
-      stroke-width: 1.5;
-      fill: none;
-      cursor: pointer;
-      transition: stroke 0.4s ease;
-    }
-
-    .hero-nav-right svg:hover {
-      stroke: var(--color-gold);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: var(--color-white);
-      padding: 0 1rem;
-    }
-
-    .hero-content h1 {
-      font-size: 5.5rem;
-      letter-spacing: 0.25em;
-      margin-bottom: 1rem;
-      font-weight: 400;
-    }
-
-    .hero-content p {
-      font-size: 1.1rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .section-split {
-      display: flex;
-      width: 100%;
-      min-height: 85vh;
-      background-color: var(--color-bg);
-    }
-
-    .split-text {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5rem 6rem;
-    }
-
-    .split-text h2 {
-      font-size: 2.8rem;
-      color: var(--color-dark);
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-    }
-
-    .split-text p {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: var(--color-muted);
-      max-width: 420px;
-      font-weight: 300;
-      letter-spacing: 0.05em;
-    }
-
-    .split-image {
-      flex: 1.3;
-      height: 85vh;
-      overflow: hidden;
-    }
-
-    .split-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    .section-two-photos {
-      display: flex;
-      gap: 0;
-      width: 100%;
-      height: 85vh;
-    }
-
-    .section-two-photos img {
-      flex: 1;
-      width: 50%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    .section-video {
-      padding: 4rem 0;
-      text-align: center;
-      width: 100%;
-    }
-
-    .video-container {
-      width: 100%;
-      height: 85vh;
-      overflow: hidden;
-    }
-
-    .video-container video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .section-kids {
-      padding: 5rem 0;
-      text-align: center;
-    }
-
-    .kids-photos-container {
-      display: flex;
-      gap: 0;
-      width: 100%;
-      height: 70vh;
-    }
-
-    .kids-photos-container img {
-      flex: 1;
-      width: 50%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    .section-products {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .product-card img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      margin-bottom: 1.2rem;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    .product-card:hover img {
-      transform: scale(1.03);
-    }
-
-    .product-card h4 {
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-      color: var(--color-dark);
-      font-weight: 400;
-    }
-
-    .product-card .price {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      color: var(--color-black);
-      letter-spacing: 0.1em;
-      font-weight: 500;
-    }
-
-    .section-fullwidth {
-      position: relative;
-      width: 100%;
-      height: 85vh;
-      background-image: url('https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .section-fullwidth::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(63, 51, 36, 0.35);
-    }
-
-    .fullwidth-text {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: var(--color-white);
-      padding: 2rem;
-      max-width: 800px;
-    }
-
-    .fullwidth-text h2 {
-      font-size: 3.2rem;
-      letter-spacing: 0.15em;
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .fullwidth-text p {
-      font-size: 1rem;
-      letter-spacing: 0.25em;
-      font-weight: 300;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .section-three-photos {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .three-photos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .three-photos-grid img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    .section-cta {
-      background-color: var(--color-dark);
-      padding: 6rem 2rem;
-      text-align: center;
-      color: var(--color-white);
-    }
-
-    .section-cta h2 {
-      font-size: 2.8rem;
-      letter-spacing: 0.15em;
-      margin-bottom: 1.5rem;
-      color: var(--color-gold);
-    }
-
-    .section-cta p {
-      font-size: 1.05rem;
-      letter-spacing: 0.15em;
-      margin-bottom: 3rem;
-      font-weight: 300;
-      color: #dcdcdc;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .btn-luxe {
-      display: inline-block;
-      padding: 1.1rem 3.5rem;
-      border: 1px solid var(--color-gold);
-      color: var(--color-gold);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      font-size: 0.85rem;
-      font-weight: 400;
-      transition: all 0.5s ease;
-    }
-
-    .btn-luxe:hover {
-      background-color: var(--color-gold);
-      color: var(--color-white);
-    }
-
-    /* =========================================
-       COLLECTION PAGES STYLES
-       ========================================= */
-    .collection-header-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
-      background-color: rgba(245, 241, 235, 0.95);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 3rem;
-      z-index: 100;
-      border-bottom: 1px solid rgba(135, 116, 90, 0.2);
-    }
-
-    .collection-header-bar .brand-link {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--color-dark);
-      text-decoration: none;
-      letter-spacing: 0.15em;
-    }
-
-    .collection-nav {
-      display: flex;
-      gap: 2.5rem;
-    }
-
-    .collection-nav a {
-      color: var(--color-dark);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
-
-    .collection-nav a:hover {
-      color: var(--color-gold);
-    }
-
-    .collection-page-content {
-      padding-top: 80px;
-      min-height: 100vh;
-    }
-
-    .collection-hero {
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      background-color: var(--color-bg);
-    }
-
-    .collection-hero h1 {
-      font-size: 3.5rem;
-      color: var(--color-dark);
-      margin-bottom: 1rem;
-      letter-spacing: 0.15em;
-    }
-
-    .collection-hero p {
-      font-size: 1.1rem;
-      color: var(--color-muted);
-      letter-spacing: 0.1em;
-      font-weight: 300;
-    }
-
-    .collection-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem 2rem 6rem;
-    }
-
-    .collection-item {
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .collection-item img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      margin-bottom: 1.2rem;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    .collection-item:hover img {
-      transform: scale(1.03);
-    }
-
-    .collection-item h4 {
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-      color: var(--color-dark);
-      font-weight: 400;
-    }
-
-    .collection-item .price {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      color: var(--color-black);
-      letter-spacing: 0.1em;
-      font-weight: 500;
-    }
-
-    .subsection-title {
-      text-align: center;
-      font-size: 2rem;
-      color: var(--color-dark);
-      margin: 4rem 0 2rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    /* =========================================
-       FOOTER STYLES
-       ========================================= */
-    .footer {
-      background-color: var(--color-darkest);
-      color: var(--color-muted);
-      padding: 5rem 2rem 2rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto 4rem;
-    }
-
-    .footer-col h4 {
-      color: var(--color-gold);
-      font-size: 0.9rem;
-      letter-spacing: 0.2em;
-      margin-bottom: 1.8rem;
-      text-transform: uppercase;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 500;
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 1rem;
-    }
-
-    .footer-col ul li a {
-      color: #b0a89e;
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      transition: color 0.3s ease;
-      font-weight: 300;
-    }
-
-    .footer-col ul li a:hover {
-      color: var(--color-gold);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      border-top: 1px solid rgba(135, 116, 90, 0.2);
-      padding-top: 2.5rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      color: #8a7e72;
-      text-transform: uppercase;
-    }
-
-    /* =========================================
-       MOBILE RESPONSIVENESS (Desktop-like Layout)
-       ========================================= */
-    @media (max-width: 1024px) {
-      .products-grid,
-      .collection-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      
-      .hero-content h1 {
-        font-size: 4rem;
-      }
-
-      .split-text {
-        padding: 4rem 3rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2.8rem;
-        letter-spacing: 0.15em;
-      }
-      
-      .hero-content p {
-        font-size: 0.85rem;
-        letter-spacing: 0.2em;
-      }
-
-      .hero-nav-left {
-        top: 1.5rem;
-        left: 1.5rem;
-        gap: 1rem;
-      }
-
-      .hero-nav-left a {
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
-      }
-
-      .hero-nav-right {
-        top: 1.5rem;
-        right: 1.5rem;
-      }
-
-      .hero-nav-right svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      .section-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.15em;
-        margin-bottom: 1.5rem;
-      }
-
-      /* KEEP SIDE-BY-SIDE LIKE DESKTOP */
-      .section-split {
-        flex-direction: row;
-        min-height: 45vh;
-      }
-
-      .split-text {
-        flex: 1;
-        padding: 2rem 1.5rem;
-        justify-content: center;
-      }
-
-      .split-text h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .split-text p {
-        font-size: 0.8rem;
-        line-height: 1.6;
-      }
-
-      .split-image {
-        flex: 1;
-        height: 45vh;
-      }
-
-      /* KEEP TWO PHOTOS SIDE-BY-SIDE */
-      .section-two-photos {
-        flex-direction: row;
-        height: 40vh;
-      }
-
-      .section-two-photos img {
-        width: 50%;
-        height: 100%;
-      }
-
-      /* KEEP KIDS PHOTOS SIDE-BY-SIDE */
-      .kids-photos-container {
-        flex-direction: row;
-        height: 40vh;
-      }
-
-      .kids-photos-container img {
-        width: 50%;
-        height: 100%;
-      }
-
-      .video-container {
-        height: 65vh;
-      }
-
-      .products-grid,
-      .collection-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        padding: 2rem 1rem 4rem;
-      }
-
-      .fullwidth-text h2 {
-        font-size: 2rem;
-      }
-
-      .fullwidth-text p {
-        font-size: 0.8rem;
-      }
-
-      .three-photos-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-      }
-
-      .three-photos-grid img {
-        height: 250px;
-      }
-
-      /* BEAUTIFUL MOBILE FOOTER - 2x2 Grid Layout */
-      .footer {
-        padding: 3.5rem 1.5rem 2rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem 1.5rem;
-        margin: 0 auto 3rem;
-        max-width: 100%;
-      }
-
-      .footer-col {
-        text-align: left;
-      }
-
-      .footer-col h4 {
-        font-size: 0.8rem;
-        letter-spacing: 0.18em;
-        margin-bottom: 1.2rem;
-      }
-
-      .footer-col ul li {
-        margin-bottom: 0.7rem;
-      }
-
-      .footer-col ul li a {
-        font-size: 0.78rem;
-        letter-spacing: 0.06em;
-      }
-
-      .footer-bottom {
-        padding-top: 2rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
-      }
-
-      .section-cta h2 {
-        font-size: 2rem;
-      }
-
-      .collection-header-bar {
-        padding: 0 1.5rem;
-        height: 70px;
-      }
-      
-      .collection-header-bar .brand-link {
-        font-size: 1.4rem;
-      }
-      
-      .collection-nav {
-        gap: 1rem;
-      }
-      
-      .collection-nav a {
-        font-size: 0.7rem;
-        letter-spacing: 0.1em;
-      }
-      
-      .collection-hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .collection-page-content {
-        padding-top: 70px;
-      }
-
-      .subsection-title {
-        font-size: 1.4rem;
-        margin: 3rem 0 1.5rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna & David | 07.07.2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* === ՀԻՄՆԱԿԱՆ ՈՃԵՐ (CSS) === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #fdfbf7; /* Նուրբ կրեմագույն ֆոն */
+            color: #333;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        /* === ԳԼԽԱՎՈՐ ՀԱՏՎԱԴ (HERO) === */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .hero .date {
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .hero .divider {
+            width: 60px;
+            height: 1px;
+            background: white;
+            margin: 20px auto;
+        }
+
+        /* === ՀԱՇՎԱՐԿ (COUNTDOWN) === */
+        .countdown {
+            padding: 60px 20px;
+            background: #fff;
+        }
+
+        .countdown h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #8b7355; /* Ոսկեգույն/շագանակագույն */
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: #fdfbf7;
+            border: 1px solid #e0dcd3;
+            padding: 20px;
+            min-width: 100px;
+            border-radius: 8px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: #333;
+        }
+
+        .time-box label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        /* === ՄԱՆՐԱՄԱՍՆԵՐ (DETAILS) === */
+        .details {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .details h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .detail-item {
+            margin-bottom: 40px;
+        }
+
+        .detail-item h3 {
+            font-size: 1.5rem;
+            color: #8b7355;
+            margin-bottom: 10px;
+        }
+
+        /* === RSVP (ՀԱՍՏԱՏՄԱՆ ՁԵՎ) === */
+        .rsvp {
+            background: #f4f1ea;
+            padding: 80px 20px;
+        }
+
+        .rsvp h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .rsvp p {
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .rsvp-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .rsvp-btn:hover {
+            background: #8b7355;
+        }
+
+        /* === ՀԵՌԱԽՈՍԻ ՀԱՄԱՐ (RESPONSIVE) === */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .date { font-size: 1rem; }
+            .time-box { min-width: 70px; padding: 15px; }
+            .time-box span { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- =========================================
-       HOME PAGE
-       ========================================= -->
-  <main id="home" class="page">
-    <section class="hero">
-      <nav class="hero-nav-left">
-        <a href="#women">Women</a>
-        <a href="#men">Men</a>
-        <a href="#kids">Kids</a>
-      </nav>
-      
-      <div class="hero-nav-right">
-        <svg viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <svg viewBox="0 0 24 24">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-      </div>
-
-      <div class="hero-content">
-        <h1>SÉRA</h1>
-        <p>An Expression of Elegance</p>
-      </div>
-    </section>
-
-    <h2 class="section-title">The Art of Detail</h2>
-    <section class="section-split">
-      <div class="split-text">
-        <p>Every stitch tells a story of dedication, craftsmanship, and timeless grace. Our latest collection embodies the pinnacle of refined living, designed for those who appreciate the subtle nuances of true luxury.</p>
-      </div>
-      <div class="split-image">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Luxury Detail">
-      </div>
-    </section>
-
-    <section class="section-two-photos">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?v=1791130565" alt="Luxury Fashion 1">
-      <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?v=1791130614" alt="Luxury Fashion 2">
-    </section>
-
-    <section class="section-video">
-      <h2 class="section-title">A Cinematic Journey</h2>
-      <div class="video-container">
-        <video autoplay muted loop playsinline>
-          <source src="https://cdn.shopify.com/videos/c/o/v/b770c23be3754499b7923c11ae0b717a.mov" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </section>
-
-    <section class="section-kids">
-      <h2 class="section-title">Petite Elegance</h2>
-      <div class="kids-photos-container">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Kids Fashion 1">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?v=1791131195" alt="Kids Fashion 2">
-      </div>
-    </section>
-
-    <section class="section-products">
-      <h2 class="section-title">Curated Selections</h2>
-      <div class="products-grid">
-        <div class="product-card">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="Product 1">
-          <h4>The Obsidian Trench</h4>
-          <span class="price">$2,100</span>
-        </div>
-        <div class="product-card">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?v=1791130593" alt="Product 2">
-          <h4>Velvet Midnight Dress</h4>
-          <span class="price">$1,850</span>
-        </div>
-        <div class="product-card">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?v=1791130566" alt="Product 3">
-          <h4>Cashmere Wrap Coat</h4>
-          <span class="price">$3,200</span>
-        </div>
-        <div class="product-card">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?v=1791130614" alt="Product 4">
-          <h4>Tailored Linen Blazer</h4>
-          <span class="price">$1,650</span>
-        </div>
-        <div class="product-card">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Product 5">
-          <h4>Signature Silk Blouse</h4>
-          <span class="price">$980</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-fullwidth">
-      <div class="fullwidth-text">
-        <h2>"Elegance is not standing out, but being remembered."</h2>
-        <p>The Séra Philosophy</p>
-      </div>
-    </section>
-
-    <section class="section-three-photos">
-      <h2 class="section-title">The Architecture of Style</h2>
-      <div class="three-photos-grid">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?v=1791130566" alt="Detail 1">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?v=1791130614" alt="Detail 2">
-        <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?v=1791130627" alt="Detail 3">
-      </div>
-    </section>
-
-    <section class="section-cta">
-      <h2>Join the Inner Circle</h2>
-      <p>Experience the pinnacle of refined living. Subscribe to receive exclusive access to new collections and private events.</p>
-      <a href="#" class="btn-luxe">Discover More</a>
-    </section>
-
-    <footer class="footer">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Séra</h4>
-          <ul>
-            <li><a href="#">Our Heritage</a></li>
-            <li><a href="#">Craftsmanship</a></li>
-            <li><a href="#">Sustainability</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Collections</h4>
-          <ul>
-            <li><a href="#women">Women</a></li>
-            <li><a href="#men">Men</a></li>
-            <li><a href="#kids">Kids</a></li>
-            <li><a href="#">Accessories</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Client Services</h4>
-          <ul>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Shipping & Returns</a></li>
-            <li><a href="#">Size Guide</a></li>
-            <li><a href="#">Book an Appointment</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Cookie Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
-      </div>
-    </footer>
-  </main>
-
-  <!-- =========================================
-       WOMEN'S COLLECTION PAGE
-       ========================================= -->
-  <main id="women" class="page">
-    <header class="collection-header-bar">
-      <a href="#home" class="brand-link">SÉRA</a>
-      <nav class="collection-nav">
-        <a href="#women">Women</a>
-        <a href="#men">Men</a>
-        <a href="#kids">Kids</a>
-      </nav>
-      <div class="hero-nav-right">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      </div>
+    <!-- Գլխավոր հատված -->
+    <header class="hero">
+        <h1>Anna & David</h1>
+        <div class="divider"></div>
+        <p class="date">July 7, 2027</p>
+        <p style="margin-top: 20px; font-size: 1.1rem; letter-spacing: 1px;">We are getting married!</p>
     </header>
-    <div class="collection-page-content">
-      <div class="collection-hero">
-        <h1>Women's Collection</h1>
-        <p>Timeless elegance for the modern muse.</p>
-      </div>
-      <div class="collection-grid">
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0279.jpg?v=1791130565" alt="Ethereal Silk Dress">
-          <h4>Ethereal Silk Dress</h4>
-          <span class="price">$1,850</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0278.jpg?v=1791130565" alt="Tailored Wool Coat">
-          <h4>Tailored Wool Coat</h4>
-          <span class="price">$3,200</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0280.jpg?v=1791130565" alt="Cashmere Wrap Blouse">
-          <h4>Cashmere Wrap Blouse</h4>
-          <span class="price">$980</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0291.jpg?v=1791130565" alt="Obsidian Evening Gown">
-          <h4>Obsidian Evening Gown</h4>
-          <span class="price">$4,500</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0287.jpg?v=1791130565" alt="Pleated Midi Skirt">
-          <h4>Pleated Midi Skirt</h4>
-          <span class="price">$1,200</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0281.jpg?v=1791130565" alt="Signature Silk Blouse">
-          <h4>Signature Silk Blouse</h4>
-          <span class="price">$980</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0290.jpg?v=1791130566" alt="Cashmere Wrap Coat">
-          <h4>Cashmere Wrap Coat</h4>
-          <span class="price">$3,200</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0289.jpg?v=1791130566" alt="The Obsidian Trench">
-          <h4>The Obsidian Trench</h4>
-          <span class="price">$2,100</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0286.jpg?v=1791130566" alt="Linen Summer Dress">
-          <h4>Linen Summer Dress</h4>
-          <span class="price">$1,450</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0288.jpg?v=1791130566" alt="Velvet Midnight Dress">
-          <h4>Velvet Midnight Dress</h4>
-          <span class="price">$1,850</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0283.jpg?v=1791130566" alt="Merino Wool Sweater">
-          <h4>Merino Wool Sweater</h4>
-          <span class="price">$890</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0277.jpg?v=1791130593" alt="Classic Trench Coat">
-          <h4>Classic Trench Coat</h4>
-          <span class="price">$2,400</span>
-        </div>
-      </div>
-      <footer class="footer">
-        <div class="footer-bottom">
-          &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
-        </div>
-      </footer>
-    </div>
-  </main>
 
-  <!-- =========================================
-       MEN'S COLLECTION PAGE
-       ========================================= -->
-  <main id="men" class="page">
-    <header class="collection-header-bar">
-      <a href="#home" class="brand-link">SÉRA</a>
-      <nav class="collection-nav">
-        <a href="#women">Women</a>
-        <a href="#men">Men</a>
-        <a href="#kids">Kids</a>
-      </nav>
-      <div class="hero-nav-right">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      </div>
-    </header>
-    <div class="collection-page-content">
-      <div class="collection-hero">
-        <h1>Men's Collection</h1>
-        <p>Refined sophistication in every detail.</p>
-      </div>
-      <div class="collection-grid">
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0303.jpg?v=1791130614" alt="Classic Linen Suit">
-          <h4>Classic Linen Suit</h4>
-          <span class="price">$2,800</span>
+    <!-- Հետհաշվարկի ժամացույց -->
+    <section class="countdown">
+        <h2>Counting Down To Our Big Day</h2>
+        <div class="timer" id="timer">
+            <div class="time-box"><span id="days">00</span><label>Days</label></div>
+            <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+            <div class="time-box"><span id="minutes">00</span><label>Minutes</label></div>
+            <div class="time-box"><span id="seconds">00</span><label>Seconds</label></div>
         </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0304.jpg?v=1791130614" alt="The Obsidian Trench">
-          <h4>The Obsidian Trench</h4>
-          <span class="price">$2,100</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0305.jpg?v=1791130614" alt="Tailored Cotton Chinos">
-          <h4>Tailored Cotton Chinos</h4>
-          <span class="price">$650</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0293.jpg?v=1791130614" alt="Merino Wool Turtleneck">
-          <h4>Merino Wool Turtleneck</h4>
-          <span class="price">$780</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0299.jpg?v=1791130614" alt="Double-Breasted Blazer">
-          <h4>Double-Breasted Blazer</h4>
-          <span class="price">$1,950</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0296.jpg?v=1791130614" alt="Oxford Cotton Shirt">
-          <h4>Oxford Cotton Shirt</h4>
-          <span class="price">$450</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0301.jpg?v=1791130614" alt="Structured Overcoat">
-          <h4>Structured Overcoat</h4>
-          <span class="price">$3,100</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0292.jpg?v=1791130614" alt="Silk Blend Tie">
-          <h4>Silk Blend Tie</h4>
-          <span class="price">$220</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0302.jpg?v=1791130614" alt="Tailored Linen Blazer">
-          <h4>Tailored Linen Blazer</h4>
-          <span class="price">$1,650</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0298.jpg?v=1791130614" alt="Cashmere Scarf">
-          <h4>Cashmere Scarf</h4>
-          <span class="price">$350</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0297.jpg?v=1791130614" alt="Velvet Smoking Jacket">
-          <h4>Velvet Smoking Jacket</h4>
-          <span class="price">$2,200</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0315.jpg?v=1791130614" alt="Premium Leather Loafers">
-          <h4>Premium Leather Loafers</h4>
-          <span class="price">$890</span>
-        </div>
-      </div>
-      <footer class="footer">
-        <div class="footer-bottom">
-          &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
-        </div>
-      </footer>
-    </div>
-  </main>
+    </section>
 
-  <!-- =========================================
-       KIDS COLLECTION PAGE
-       ========================================= -->
-  <main id="kids" class="page">
-    <header class="collection-header-bar">
-      <a href="#home" class="brand-link">SÉRA</a>
-      <nav class="collection-nav">
-        <a href="#women">Women</a>
-        <a href="#men">Men</a>
-        <a href="#kids">Kids</a>
-      </nav>
-      <div class="hero-nav-right">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      </div>
-    </header>
-    <div class="collection-page-content">
-      <div class="collection-hero">
-        <h1>KID'S COLLECTION</h1>
-        <p>Petite elegance for the little ones.</p>
-      </div>
-      
-      <h2 class="subsection-title">Girls</h2>
-      <div class="collection-grid">
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0306.jpg?v=1791130627" alt="Petite Floral Dress">
-          <h4>Petite Floral Dress</h4>
-          <span class="price">$450</span>
+    <!-- Մանրամասներ -->
+    <section class="details">
+        <h2>The Details</h2>
+        
+        <div class="detail-item">
+            <h3>When</h3>
+            <p>Wednesday, July 7, 2027<br>at 4:00 PM</p>
         </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0311.jpg?v=1791130628" alt="Velvet Party Frock">
-          <h4>Velvet Party Frock</h4>
-          <span class="price">$520</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0312.jpg?v=1791130628" alt="Cashmere Cardigan">
-          <h4>Cashmere Cardigan</h4>
-          <span class="price">$280</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0309.jpg?v=1791130628" alt="Pleated School Skirt">
-          <h4>Pleated School Skirt</h4>
-          <span class="price">$310</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0314.jpg?v=1791130628" alt="Classic Trench Coat">
-          <h4>Classic Trench Coat</h4>
-          <span class="price">$650</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0310.jpg?v=1791130628" alt="Silk Ribbon Blouse">
-          <h4>Silk Ribbon Blouse</h4>
-          <span class="price">$290</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0307.jpg?v=1791130628" alt="Wool Blend Coat">
-          <h4>Wool Blend Coat</h4>
-          <span class="price">$580</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0308.jpg?v=1791130628" alt="Linen Summer Dress">
-          <h4>Linen Summer Dress</h4>
-          <span class="price">$340</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0313.jpg?v=1791130628" alt="Embroidered Cotton Dress">
-          <h4>Embroidered Cotton Dress</h4>
-          <span class="price">$390</span>
-        </div>
-      </div>
 
-      <h2 class="subsection-title">Boys</h2>
-      <div class="collection-grid">
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0318.jpg?v=1791131195" alt="Junior Tailored Blazer">
-          <h4>Junior Tailored Blazer</h4>
-          <span class="price">$480</span>
+        <div class="detail-item">
+            <h3>Where</h3>
+            <p>The Grand Garden Estate<br>123 Wedding Lane, Yerevan, Armenia</p>
         </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0321.jpg?v=1791131195" alt="Classic Cotton Shirt">
-          <h4>Classic Cotton Shirt</h4>
-          <span class="price">$220</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0324.jpg?v=1791131195" alt="Wool Blend Trousers">
-          <h4>Wool Blend Trousers</h4>
-          <span class="price">$290</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0322.jpg?v=1791131195" alt="Cashmere Sweater">
-          <h4>Cashmere Sweater</h4>
-          <span class="price">$310</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0323.jpg?v=1791131195" alt="Structured Overcoat">
-          <h4>Structured Overcoat</h4>
-          <span class="price">$550</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0319.jpg?v=1791131195" alt="Linen Shorts Set">
-          <h4>Linen Shorts Set</h4>
-          <span class="price">$260</span>
-        </div>
-        <div class="collection-item">
-          <img src="https://cdn.shopify.com/s/files/1/0703/3195/7291/files/IMG_0320.jpg?v=1791131196" alt="Premium Leather Shoes">
-          <h4>Premium Leather Shoes</h4>
-          <span class="price">$340</span>
-        </div>
-      </div>
-      
-      <footer class="footer">
-        <div class="footer-bottom">
-          &copy; 2026 Séra. All Rights Reserved. An Expression of Elegance.
-        </div>
-      </footer>
-    </div>
-  </main>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp">
+        <h2>Will You Join Us?</h2>
+        <p>Please let us know if you can make it by June 1, 2027.</p>
+        <a href="mailto:annaanddavid@example.com?subject=RSVP for Wedding" class="rsvp-btn">RSVP Now</a>
+    </section>
+
+    <!-- JavaScript (Հաշվարկի կոդը) -->
+    <script>
+        // Սահմանում ենք հարսանիքի ամսաթիվը
+        const weddingDate = new Date("July 7, 2027 16:00:00").getTime();
+
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            // Հաշվարկում ենք օրերը, ժամերը, րոպեները և վայրկյանները
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Ցույց ենք տալիս էկրանին
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+
+            // Եթե ամսաթիվը հասել է
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("timer").innerHTML = "<h3>The Big Day is Here!</h3>";
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
